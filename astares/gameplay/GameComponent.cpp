@@ -150,7 +150,7 @@ const ObjectPtr<Object>& GameComponent::GetOwner() const {
 
 REFLECTION_BEGIN(GameComponent)
 	PARENT(Object)
-	PROPERTY_PARAMS(ObjectPtr<Object>, Owner, PROP_FLAG_SERIALIGNORE);
-	PROPERTY(ComponentTickConfig, TickConfig);
-	PROPERTY(bool, bActive);
+	FIELD_PARAMS(ObjectPtr<Object>, Owner, PROP_FLAG_SERIALIGNORE);
+	FIELD(ComponentTickConfig, TickConfig);
+	FIELD(bool, bActive);
 REFLECTION_END(GameComponent)

@@ -14,5 +14,5 @@ int AudioMessage::GetAudioId() const {
 
 REFLECTION_BEGIN(AudioMessage)
 	PARENT(Message)
-	PROPERTY(int, AudioId)
+	FIELD(int, AudioId)
 REFLECTION_END(AudioMessage)

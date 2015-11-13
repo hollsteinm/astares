@@ -93,5 +93,5 @@ Asset* AssetManager::Get(int index) {
 
 REFLECTION_BEGIN(AssetManager)
 	PARENT(Object)
-	PROPERTY(ObjectArray<ObjectPtr<Asset>>, Registry)
+	FIELD(ObjectArray<ObjectPtr<Asset>>, Registry)
 REFLECTION_END(AssetManager)

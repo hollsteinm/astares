@@ -10,6 +10,6 @@ Model::~Model() {
 
 REFLECTION_BEGIN(Model)
 	PARENT(GraphicsAsset)
-	PROPERTY(IndexBuffer, iBuff)
-	PROPERTY(VertexBuffer, vBuff)
+	FIELD(IndexBuffer, iBuff)
+	FIELD(VertexBuffer, vBuff)
 REFLECTION_END(Model)

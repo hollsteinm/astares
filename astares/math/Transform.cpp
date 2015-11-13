@@ -136,8 +136,8 @@ Transform& Transform::ScaleTransform(const Vector3& scale) {
 
 REFLECTION_BEGIN(Transform)
 	PARENT(Object)
-	PROPERTY(Vector3, Position)
-	PROPERTY(Vector3, Rotation)
-	PROPERTY(Vector3, Scale)
-	PROPERTY(ObjectPtr<Transform>, Parent)
+	FIELD(Vector3, Position)
+	FIELD(Vector3, Rotation)
+	FIELD(Vector3, Scale)
+	FIELD(ObjectPtr<Transform>, Parent)
 REFLECTION_END(Transform)

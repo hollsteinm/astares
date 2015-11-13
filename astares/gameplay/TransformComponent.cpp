@@ -10,5 +10,5 @@ TransformComponent::~TransformComponent() {
 
 REFLECTION_BEGIN(TransformComponent)
 	PARENT(GameComponent)
-	PROPERTY(Transform, ComponentTransform)
+	FIELD(Transform, ComponentTransform)
 REFLECTION_END(TransformComponent)

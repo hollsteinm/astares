@@ -24,5 +24,5 @@ long Asset::GetAssetId() const{
 
 REFLECTION_BEGIN(Asset)
 	PARENT(Object)
-	PROPERTY(long, AssetId)
+	FIELD(long, AssetId)
 REFLECTION_END(Asset)

@@ -1,14 +1,14 @@
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef FIELD_H
+#define FIELD_H
 
-#include "IProperty.h"
+#include "IField.h"
 #include "Types.h"
 
 template<typename C, typename P>
-struct Property : public IProperty {
-	Property(std::string name, P C::*property, int flags = 0) :
-		IProperty(name, TYPEOF(P), flags),
-		property(property)
+struct Field : public IField {
+	Field(std::string name, P C::*fielderty, int flags = 0) :
+		IField(name, TYPEOF(P), flags),
+		fielderty(fielderty)
 	{}
 
 	void* Get(void* obj) const override {
@@ -22,8 +22,8 @@ struct Property : public IProperty {
 	}
 
 	virtual bool Read(void* obj, std::istream& in, int version) override {
-		if (HasFlag(PropertyFlags::SerialIgnore)) return true;
-		if (IProperty::Read(obj, in, version)) {
+		if (HasFlag(FieldFlags::SerialIgnore)) return true;
+		if (IField::Read(obj, in, version)) {
 			P v;
 			in >> v;
 			InternalSet(*(C*)obj, v);
@@ -35,8 +35,8 @@ struct Property : public IProperty {
 	}
 
 	virtual bool Write(void* obj, std::ostream& out, int version) const override {
-		if (HasFlag(PropertyFlags::SerialIgnore)) return true;
-		if (IProperty::Write(obj, out, version)) {
+		if (HasFlag(FieldFlags::SerialIgnore)) return true;
+		if (IField::Write(obj, out, version)) {
 			P v = InternalGet(*(C*)obj);
 			out << v << ' ';
 			return true;
@@ -48,14 +48,14 @@ struct Property : public IProperty {
 
 protected:
 	P InternalGet(C& obj) const {
-		return obj.*property;
+		return obj.*fielderty;
 	}
 
 	void InternalSet(C& obj, P value) {
-		obj.*property = value;
+		obj.*fielderty = value;
 	}
 
 private:
-	P C::*property;
+	P C::*fielderty;
 };
 #endif

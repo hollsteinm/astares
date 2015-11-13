@@ -267,12 +267,12 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="physics\Particle.h" />
     <ClInclude Include="physics\SpringForceGenerator.h" />
     <ClInclude Include="reflection\Class.h" />
-    <ClInclude Include="reflection\IProperty.h" />
+    <ClInclude Include="reflection\IField.h" />
     <ClInclude Include="reflection\ISerializer.h" />
     <ClInclude Include="reflection\IType.h" />
     <ClInclude Include="reflection\Meta.h" />
     <ClInclude Include="reflection\MetaGraph.h" />
-    <ClInclude Include="reflection\Property.h" />
+    <ClInclude Include="reflection\Field.h" />
     <ClInclude Include="reflection\Reflection.h" />
     <ClInclude Include="reflection\Serialization.h" />
     <ClInclude Include="reflection\test\SerializationTests.h" />
@@ -348,7 +348,7 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="physics\Particle.cpp" />
     <ClCompile Include="physics\SpringForceGenerator.cpp" />
     <ClCompile Include="reflection\Class.cpp" />
-    <ClCompile Include="reflection\IProperty.cpp" />
+    <ClCompile Include="reflection\IField.cpp" />
     <ClCompile Include="reflection\Meta.cpp" />
     <ClCompile Include="reflection\MetaGraph.cpp" />
     <ClCompile Include="reflection\Serialization.cpp" />

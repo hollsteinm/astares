@@ -28,6 +28,6 @@ int Player::GetId() const {
 
 REFLECTION_BEGIN(Player)
 	PARENT(Object)
-	PROPERTY(int, PlayerId)
-	PROPERTY(int, PlayerState)
+	FIELD(int, PlayerId)
+	FIELD(int, PlayerState)
 REFLECTION_END(Player)

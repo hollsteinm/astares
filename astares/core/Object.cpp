@@ -1,7 +1,7 @@
 #include "Object.h"
-#include "../reflection/IProperty.h"
+#include "../reflection/IField.h"
 #include "../reflection/Serialization.h"
-#include "../reflection/Property.h"
+#include "../reflection/Field.h"
 #include "ObjectFactory.h"
 #include "../reflection/MetaGraph.h"
 
@@ -16,7 +16,7 @@ Object& Object::StaticInstance() {
 
 Class& Object::StaticClass() {
 	static Class Object__class("Object", TYPEOF(Object));
-	Object__class.Add(new Property<Object, long>("instanceId", &Object::instanceId));
+	Object__class.Add(new Field<Object, long>("instanceId", &Object::instanceId));
 	MetaGraph::Get().Add(&Object__class);
 	return Object__class;
 }
@@ -28,12 +28,12 @@ Object* Object::CreateSelf() const {
 	return new Object();
 }
 
-IProperty* Object::GetProperty(std::string name) const {
-	return Object::StaticClass().GetProperty(name);
+IField* Object::GetField(std::string name) const {
+	return Object::StaticClass().GetField(name);
 }
 
-std::vector<IProperty*> Object::GetProperties() const {
-	return Object::StaticClass().GetProperties();
+std::vector<IField*> Object::GetFields() const {
+	return Object::StaticClass().GetFields();
 }
 
 const std::string Object::GetName() const {

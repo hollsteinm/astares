@@ -23,8 +23,8 @@ public:
 	//Must be overriden by inherited classes//
 	//////////////////////////////////////////
 	virtual Object* CreateSelf() const;
-	virtual IProperty* GetProperty(std::string name) const;
-	virtual std::vector<IProperty*> GetProperties() const;
+	virtual IField* GetField(std::string name) const;
+	virtual std::vector<IField*> GetFields() const;
 	virtual const std::string GetName() const;
 	virtual const long GetTypeId() const;
 	//////////////////////////////////////////

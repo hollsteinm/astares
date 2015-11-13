@@ -1,31 +1,31 @@
 #include "Class.h"
 #include "Meta.h"
-#include "IProperty.h"
+#include "IField.h"
 #include "MetaGraph.h"
 
 
 Class::Class(std::string name, unsigned long typeId) :
 	Meta(name, typeId),
-	Properties()
+	Fields()
 {
 	MetaGraph::Get().Add(this);
 }
 
 Class::~Class() {
-	for (auto kvp : Properties) {
+	for (auto kvp : Fields) {
 		delete kvp.second;
 	}
-	Properties.clear();
+	Fields.clear();
 }
 
-void Class::Add(IProperty* prop) {
-	if (prop)
+void Class::Add(IField* field) {
+	if (field)
 	{
-		const std::string name = prop->GetName();
-		if (Properties.size() <= 0 || Properties.find(name) == Properties.cend())
-			Properties[name] = prop;
+		const std::string name = field->GetName();
+		if (Fields.size() <= 0 || Fields.find(name) == Fields.cend())
+			Fields[name] = field;
 		else
-			delete prop;
+			delete field;
 	}
 }
 
@@ -39,33 +39,33 @@ void Class::Add(unsigned long parentType) {
 	}
 }
 
-std::vector<IProperty*> Class::GetProperties() const {
-	std::vector<IProperty*> props;
+std::vector<IField*> Class::GetFields() const {
+	std::vector<IField*> fields;
 	for (auto parent : ParentTypes) {
 		Class* pClass = (Class*)MetaGraph::Get().Get(parent);
 		if (pClass != nullptr) {
-			for (auto prop : pClass->GetProperties()) {
-				props.push_back(prop);
+			for (auto field : pClass->GetFields()) {
+				fields.push_back(field);
 			}
 		}
 	}
-	for (auto kvp : Properties) {
-		props.push_back(kvp.second);
+	for (auto kvp : Fields) {
+		fields.push_back(kvp.second);
 	}
-	return props;
+	return fields;
 }
 
-IProperty* Class::GetProperty(std::string name) const {
-	if (Properties.find(name) != Properties.end()){
-		return Properties.at(name);
+IField* Class::GetField(std::string name) const {
+	if (Fields.find(name) != Fields.end()){
+		return Fields.at(name);
 	}
 	else {
 		for (auto parent : ParentTypes) {
 			const Class* pClass = (Class*)MetaGraph::Get().Get(parent);
 			if (pClass != nullptr) {
-				auto prop = pClass->GetProperty(name);
-				if (prop != nullptr) {
-					return prop;
+				auto field = pClass->GetField(name);
+				if (field != nullptr) {
+					return field;
 				}
 			}
 		}
@@ -76,10 +76,10 @@ IProperty* Class::GetProperty(std::string name) const {
 bool Class::Read(void* obj, std::istream& in, int version) {
 	if (Meta::Read(obj, in, version)){
 		bool result = true;
-		std::vector<IProperty*> props = GetProperties();
-		int count = props.size();
+		std::vector<IField*> fields = GetFields();
+		int count = fields.size();
 		for (int i = 0; i < count; ++i) {
-			result &= props[i]->Read(obj, in, version);
+			result &= fields[i]->Read(obj, in, version);
 		}
 		return result;
 	}
@@ -91,10 +91,10 @@ bool Class::Read(void* obj, std::istream& in, int version) {
 bool Class::Write(void* obj, std::ostream& out, int version) const {
 	if (Meta::Write(obj, out, version)){
 		bool result = true;
-		std::vector<IProperty*> props = GetProperties();
-		int count = props.size();
+		std::vector<IField*> fields = GetFields();
+		int count = fields.size();
 		for (int i = 0; i < count; ++i) {
-			result &= props[i]->Write(obj, out, version);
+			result &= fields[i]->Write(obj, out, version);
 		}
 		return result;
 	}

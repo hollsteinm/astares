@@ -300,9 +300,6 @@
     <ClInclude Include="reflection\Class.h">
       <Filter>Header Files\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="reflection\IProperty.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
     <ClInclude Include="reflection\ISerializer.h">
       <Filter>Header Files\Reflection</Filter>
     </ClInclude>
@@ -313,9 +310,6 @@
       <Filter>Header Files\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="reflection\MetaGraph.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Property.h">
       <Filter>Header Files\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="reflection\Reflection.h">
@@ -398,6 +392,12 @@
     </ClInclude>
     <ClInclude Include="core\String.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IField.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Field.h">
+      <Filter>Header Files\Reflection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -545,9 +545,6 @@
     <ClCompile Include="reflection\Class.cpp">
       <Filter>Source Files\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="reflection\IProperty.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
     <ClCompile Include="reflection\Meta.cpp">
       <Filter>Source Files\Reflection</Filter>
     </ClCompile>
@@ -616,6 +613,9 @@
     </ClCompile>
     <ClCompile Include="core\String.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\IField.cpp">
+      <Filter>Source Files\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

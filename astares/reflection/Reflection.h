@@ -2,9 +2,9 @@
 #define REFLECTION_H
 
 #include "Types.h"
-#include "IProperty.h"
+#include "IField.h"
 #include "Class.h"
-#include "Property.h"
+#include "Field.h"
 #include "../core/ObjectFactory.h"
 #include "../core/Object.h"
 #include "Serialization.h"
@@ -15,9 +15,9 @@
 #define DECL_PTR_TYPE(T) TYPE(ObjectPtr<T>)
 #define DECL_ARR_TYPE(T) TYPE(ObjectArray<T>)
 
-#define PROP_FLAG_NONE			(int)PropertyFlags::None
-#define PROP_FLAG_SERIALIGNORE	(int)PropertyFlags::SerialIgnore
-#define PROP_FLAG_ALL			(int)PropertyFlags::All
+#define PROP_FLAG_NONE			(int)FieldFlags::None
+#define PROP_FLAG_SERIALIGNORE	(int)FieldFlags::SerialIgnore
+#define PROP_FLAG_ALL			(int)FieldFlags::All
 
 #define VERSION 0
 
@@ -35,8 +35,8 @@
 		static Class& StaticClass();\
 		static C& StaticInstance();\
 		virtual Object* CreateSelf() const override;\
-		virtual IProperty* GetProperty(std::string name) const override;\
-		virtual std::vector<IProperty*> GetProperties() const override;\
+		virtual IField* GetField(std::string name) const override;\
+		virtual std::vector<IField*> GetFields() const override;\
 		virtual const std::string GetName() const override;\
 		virtual const long GetTypeId() const override;
 
@@ -44,8 +44,8 @@
 
 #define CTOR_REGISTER(C) ObjectFactory::Get().Add(#C, &C##__static);
 
-#define PROPERTY_PARAMS(PROPTYPE, NAME, FLAGS) staticInst->Add(new Property<Me, PROPTYPE> (#NAME, &Me::NAME, FLAGS));
-#define PROPERTY(PROP, NAME) PROPERTY_PARAMS(PROP, NAME, PROP_FLAG_NONE)
+#define FIELD_PARAMS(PROPTYPE, NAME, FLAGS) staticInst->Add(new Field<Me, PROPTYPE> (#NAME, &Me::NAME, FLAGS));
+#define FIELD(PROP, NAME) FIELD_PARAMS(PROP, NAME, PROP_FLAG_NONE)
 #define PARENT(PARENTTYPE) staticInst->Add(TYPEOF(PARENTTYPE));
 
 #define REFLECTION_BEGIN(C) DEF_STATIC_CLASS(C) \
@@ -53,11 +53,11 @@
 		Object* C::CreateSelf() const { \
 			return new C();\
 		}\
-		IProperty* C::GetProperty(std::string name) const {\
-			return C::StaticClass().GetProperty(name);\
+		IField* C::GetField(std::string name) const {\
+			return C::StaticClass().GetField(name);\
 		}\
-		std::vector<IProperty*> C::GetProperties() const {\
-			return C::StaticClass().GetProperties();\
+		std::vector<IField*> C::GetFields() const {\
+			return C::StaticClass().GetFields();\
 		}\
 		const std::string C::GetName() const {\
 			return C::StaticClass().GetName();\

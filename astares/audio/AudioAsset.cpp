@@ -16,10 +16,10 @@ AudioAsset::~AudioAsset() {
 
 REFLECTION_BEGIN(AudioAsset)
 	PARENT(Asset)
-	PROPERTY(int, Volume)
-	PROPERTY(bool, Loops)
-	PROPERTY(int, LoopCount)
-	PROPERTY(String, Filename)
+	FIELD(int, Volume)
+	FIELD(bool, Loops)
+	FIELD(int, LoopCount)
+	FIELD(String, Filename)
 REFLECTION_END(AudioAsset)
 
 MusicAudioAsset::MusicAudioAsset() :

@@ -19,5 +19,5 @@ const ObjectPtr<Object>& Message::GetSender() const {
 
 REFLECTION_BEGIN(Message)
 	PARENT(Object)
-	PROPERTY(ObjectPtr<Object>, Sender)
+	FIELD(ObjectPtr<Object>, Sender)
 REFLECTION_END(Message)
