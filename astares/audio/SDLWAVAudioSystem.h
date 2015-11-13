@@ -2,7 +2,7 @@
 #define SDLWAV_AUDIO_SYSTEM_H
 
 #include "IAudioSystem.h"
-#include <vector>
+#include "../core/Array.h"
 
 class SDLWAVAudioSystem : public IAudioSystem {
 public:
@@ -27,7 +27,7 @@ public:
 private:
 	char Channels;
 	String DeviceName;
-	std::vector<String> AllAudioDevices;
+	Array<String> AllAudioDevices;
 
 protected:
 	class AssetManager* Manager;

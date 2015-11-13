@@ -39,8 +39,8 @@ void Class::Add(unsigned long parentType) {
 	}
 }
 
-std::vector<IField*> Class::GetFields() const {
-	std::vector<IField*> fields;
+Array<IField*> Class::GetFields() const {
+	Array<IField*> fields;
 	for (auto parent : ParentTypes) {
 		Class* pClass = (Class*)MetaGraph::Get().Get(parent);
 		if (pClass != nullptr) {
@@ -76,7 +76,7 @@ IField* Class::GetField(String name) const {
 bool Class::Read(void* obj, std::istream& in, int version) {
 	if (Meta::Read(obj, in, version)){
 		bool result = true;
-		std::vector<IField*> fields = GetFields();
+		Array<IField*> fields = GetFields();
 		int count = fields.size();
 		for (int i = 0; i < count; ++i) {
 			result &= fields[i]->Read(obj, in, version);
@@ -91,7 +91,7 @@ bool Class::Read(void* obj, std::istream& in, int version) {
 bool Class::Write(void* obj, std::ostream& out, int version) const {
 	if (Meta::Write(obj, out, version)){
 		bool result = true;
-		std::vector<IField*> fields = GetFields();
+		Array<IField*> fields = GetFields();
 		int count = fields.size();
 		for (int i = 0; i < count; ++i) {
 			result &= fields[i]->Write(obj, out, version);

@@ -16,9 +16,8 @@ void test::audio::Console() {
 
 	IAudioSystem* sys = new SDLWAVAudioSystem(manager);
 
-	std::vector<ISubsystem*> subs{
-		sys
-	};
+	Array<ISubsystem*> subs;
+	subs.push_back(sys);
 
 	Config cfg("");
 
@@ -45,7 +44,7 @@ void test::audio::Console() {
 	delete assetPtr;
 	assetPtr = nullptr;
 
-	system = System(&logger, {});
+	system = System(&logger, Array<ISubsystem*>());
 	manager = new AssetManager();
 	manager->SetLogger(&logger);
 	sys = new SDLWAVAudioSystem(manager);

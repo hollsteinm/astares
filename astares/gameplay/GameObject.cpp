@@ -11,5 +11,5 @@ GameObject::~GameObject() {
 
 REFLECTION_BEGIN(GameObject)
 	PARENT(Object)
-	FIELD(ObjectArray<ObjectPtr<GameComponent>>, Components)
+	FIELD(Array<ObjectPtr<GameComponent>>, Components)
 REFLECTION_END(GameObject)

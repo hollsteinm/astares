@@ -24,7 +24,7 @@ public:
 	//////////////////////////////////////////
 	virtual Object* CreateSelf() const;
 	virtual IField* GetField(String name) const;
-	virtual std::vector<IField*> GetFields() const;
+	virtual Array<IField*> GetFields() const;
 	virtual const String GetName() const;
 	virtual const long GetTypeId() const;
 	//////////////////////////////////////////

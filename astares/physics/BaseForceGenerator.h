@@ -2,7 +2,7 @@
 #define BASE_FORCE_GENERATOR_H
 
 #include "IForceGenerator.h"
-#include <vector>
+#include "../core/Array.h"
 
 
 
@@ -15,7 +15,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void Clear() override;
 private:
-	std::vector<Particle*> EffectedParticles;
+	Array<Particle*> EffectedParticles;
 
 protected:
 	virtual void Tick(float DeltaTime, Particle* particle) = 0;

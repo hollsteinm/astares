@@ -24,7 +24,7 @@ public:
 	void SetLogger(ILogger* logger);
 
 private:
-	ObjectArray<ObjectPtr<Asset>> Registry;
+	Array<ObjectPtr<Asset>> Registry;
 	long currId = 0;
 
 protected:

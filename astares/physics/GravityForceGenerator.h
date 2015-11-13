@@ -15,7 +15,7 @@ private:
 protected:
 	virtual void Tick(float DeltaTime, Particle* particle) override;
 
-	std::vector<Particle*> EffectedParticles;
+	Array<Particle*> EffectedParticles;
 	Vector3 Gravity;
 };
 

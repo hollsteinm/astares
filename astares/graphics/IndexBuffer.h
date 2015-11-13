@@ -4,7 +4,7 @@
 #include "../core/Array.h"
 
 struct IndexBuffer {
-	ObjectArray<long> Indices;
+	Array<long> Indices;
 
 	static const size_t IndexElementSize;
 

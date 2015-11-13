@@ -1,5 +1,5 @@
 #include "String.h"
-#include <vector>
+#include "../core/Array.h"
 
 String::String() :
 	std::string()

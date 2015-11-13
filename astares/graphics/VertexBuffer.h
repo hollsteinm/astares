@@ -3,12 +3,12 @@
 
 #include "../core/Array.h"
 struct VertexBuffer {
-	ObjectArray<float> Vertices;
-	ObjectArray<float> UVs;
-	ObjectArray<float> Normals;
-	ObjectArray<float> Tangents;
-	ObjectArray<float> Binormals;
-	ObjectArray<float> Colors;
+	Array<float> Vertices;
+	Array<float> UVs;
+	Array<float> Normals;
+	Array<float> Tangents;
+	Array<float> Binormals;
+	Array<float> Colors;
 
 	static const size_t VertexElementSize;
 

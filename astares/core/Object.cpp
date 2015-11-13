@@ -32,7 +32,7 @@ IField* Object::GetField(String name) const {
 	return Object::StaticClass().GetField(name);
 }
 
-std::vector<IField*> Object::GetFields() const {
+Array<IField*> Object::GetFields() const {
 	return Object::StaticClass().GetFields();
 }
 

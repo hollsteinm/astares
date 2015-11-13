@@ -1,14 +1,14 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include <vector>
+#include "../core/Array.h"
 
 struct ILogger;
 
 
 class System {
 public:
-	System(ILogger* logger, const std::vector<struct ISubsystem*>& subSystems);
+	System(ILogger* logger, const Array<struct ISubsystem*>& subSystems);
 	virtual ~System();
 
 	virtual void Configure(const class Config& config);
@@ -17,7 +17,7 @@ public:
 	virtual void Shutdown();
 private:
 protected:
-	std::vector<struct ISubsystem*> Subsystems;
+	Array<struct ISubsystem*> Subsystems;
 	ILogger* logger;
 };
 

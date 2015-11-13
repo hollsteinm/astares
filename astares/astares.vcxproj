@@ -290,6 +290,7 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="audio\PlayAudioMessage.cpp" />
     <ClCompile Include="audio\SDLWAVAudioSystem.cpp" />
     <ClCompile Include="audio\test\AudioTests.cpp" />
+    <ClCompile Include="core\Array.cpp" />
     <ClCompile Include="core\Asset.cpp" />
     <ClCompile Include="core\AssetManager.cpp" />
     <ClCompile Include="core\Config.cpp" />

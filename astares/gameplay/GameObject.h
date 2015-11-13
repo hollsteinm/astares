@@ -43,7 +43,7 @@ protected:
 	void DestroyComponent(GameComponent* component);
 
 private:
-	ObjectArray<ObjectPtr<GameComponent>> Components;
+	Array<ObjectPtr<GameComponent>> Components;
 };
 
 #endif

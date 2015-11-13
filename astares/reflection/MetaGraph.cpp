@@ -49,8 +49,8 @@ Meta* MetaGraph::Get(String name) const {
 	return nullptr;
 }
 
-std::vector<long> MetaGraph::AllTypeIds() const {
-	std::vector<long> res;
+Array<long> MetaGraph::AllTypeIds() const {
+	Array<long> res;
 	for (auto C : Classes) {
 		res.push_back(C.first);
 	}

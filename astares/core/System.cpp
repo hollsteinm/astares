@@ -14,7 +14,7 @@ static const char* CompanyId = "Company";
 static const char* ProjectId = "Project";
 static const char* NameId = "Name";
 
-System::System(ILogger* logger, const std::vector<ISubsystem*>& subSystems) {
+System::System(ILogger* logger, const Array<ISubsystem*>& subSystems) {
 	GREEDY_LOAD_CORE_TYPES
 	GREEDY_LOAD_GEOMETRY_TYPES
 	GREEDY_LOAD_MATRIX_TYPES

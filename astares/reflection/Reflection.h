@@ -13,7 +13,7 @@
 #include "../core/Array.h"
 
 #define DECL_PTR_TYPE(T) TYPE(ObjectPtr<T>)
-#define DECL_ARR_TYPE(T) TYPE(ObjectArray<T>)
+#define DECL_ARR_TYPE(T) TYPE(Array<T>)
 
 #define PROP_FLAG_NONE			(int)FieldFlags::None
 #define PROP_FLAG_SERIALIGNORE	(int)FieldFlags::SerialIgnore
@@ -36,7 +36,7 @@
 		static C& StaticInstance();\
 		virtual Object* CreateSelf() const override;\
 		virtual IField* GetField(String name) const override;\
-		virtual std::vector<IField*> GetFields() const override;\
+		virtual Array<IField*> GetFields() const override;\
 		virtual const String GetName() const override;\
 		virtual const long GetTypeId() const override;
 
@@ -56,7 +56,7 @@
 		IField* C::GetField(String name) const {\
 			return C::StaticClass().GetField(name);\
 		}\
-		std::vector<IField*> C::GetFields() const {\
+		Array<IField*> C::GetFields() const {\
 			return C::StaticClass().GetFields();\
 		}\
 		const String C::GetName() const {\
@@ -74,7 +74,7 @@
 		Class& C::StaticClass() {\
 			static Class C##__class(#C, TYPEOF(C)); \
 			TYPEOF(ObjectPtr<C>);\
-			TYPEOF(ObjectArray<C>);\
+			TYPEOF(Array<C>);\
 			Class* staticInst = &C##__class;\
 			MetaGraph* metaSystem = &MetaGraph::Get();
 
