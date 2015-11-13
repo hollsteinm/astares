@@ -24,7 +24,7 @@ SDLWAVAudioSystem::~SDLWAVAudioSystem() {
 	Shutdown();
 }
 
-AudioAsset* SDLWAVAudioSystem::AddAsset(long typeId, std::string filename) {
+AudioAsset* SDLWAVAudioSystem::AddAsset(long typeId, String filename) {
 	AudioAsset* result = (AudioAsset*)Manager->LoadExternalContent(typeId, "Audio/" + filename);
 	if (result != nullptr) {
 		return result;
@@ -97,14 +97,14 @@ void SDLWAVAudioSystem::ResumeAudio(long audioId) {
 	}
 }
 
-std::string SDLWAVAudioSystem::GetName() const {
+String SDLWAVAudioSystem::GetName() const {
 	return "SDLWAVAudioSystem";
 }
 
 void SDLWAVAudioSystem::Configure(const Config& config) {
 	if (config.HasSection(AUDIO_SECTION)) {
 		if (config.HasSetting(AUDIO_CHANNEL_SETTING)) {
-			Channels = (char)config.Int(AUDIO_CHANNEL_SETTING);
+			Channels = (char)config.AsInt(AUDIO_CHANNEL_SETTING);
 		}
 	}
 }
@@ -124,7 +124,7 @@ bool SDLWAVAudioSystem::Initialize(ILogger* logger) {
 			for (int i = 0; i < length; ++i) {
 				const char* name = SDL_GetAudioDeviceName(i, AUDIO_TYPES);
 				if (name != nullptr) {
-					AllAudioDevices.push_back(std::string(name, strlen(name)));
+					AllAudioDevices.push_back(String(name, strlen(name)));
 					if (logger != nullptr) {
 						logger->Info("Found %s audio device.", name);
 					}

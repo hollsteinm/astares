@@ -6,7 +6,7 @@
 #include "NetworkMessage.h"
 #include <sstream>
 
-UDPListener::UDPListener(std::string port) :
+UDPListener::UDPListener(String port) :
 	Sock(new UDPSocket())
 {
 	Address loopback = Address("", port, Family::IPv6);
@@ -23,7 +23,7 @@ UDPListener::~UDPListener() {
 void UDPListener::Digest() {
 	const static long MaxBuffer = 32000;
 	
-	std::string data;
+	String data;
 	data.reserve(MaxBuffer);
 
 	int read = 0;

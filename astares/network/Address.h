@@ -1,7 +1,7 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 
-#include <string>
+#include "../core/String.h"
 
 enum class Family {
 	IPv4 = 0,
@@ -11,16 +11,16 @@ enum class Family {
 
 class Address {
 private:
-	std::string Hostname;
-	std::string Port;
+	String Hostname;
+	String Port;
 	Family Fam;
 
 public:
-	Address(std::string hostname, std::string port, Family family);
+	Address(String hostname, String port, Family family);
 	Address(const Address& other);
 
-	inline std::string GetHostname() const { return Hostname; }
-	inline std::string GetPort() const { return Port; }
+	inline String GetHostname() const { return Hostname; }
+	inline String GetPort() const { return Port; }
 	inline Family GetFamily() const { return Fam; }
 };
 

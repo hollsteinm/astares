@@ -2,7 +2,7 @@
 #define MATRIX2_H
 
 #include "Vector.h"
-#include <string>
+#include "../core/String.h"
 
 //col-major
 
@@ -52,7 +52,7 @@ struct Matrix2 {
 	bool operator!=(const Matrix2& other) const;
 
 	int ToBuffer(float Out[2][2], bool transpose = false);
-	const std::string ToString() const;
+	const String ToString() const;
 
 	float& operator()(int row, int col);
 	const float& operator()(int row, int col) const;

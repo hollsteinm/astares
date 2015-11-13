@@ -6,7 +6,7 @@
 
 template<typename C, typename P>
 struct Field : public IField {
-	Field(std::string name, P C::*fielderty, int flags = 0) :
+	Field(String name, P C::*fielderty, int flags = 0) :
 		IField(name, TYPEOF(P), flags),
 		fielderty(fielderty)
 	{}

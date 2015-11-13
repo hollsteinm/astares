@@ -1,7 +1,7 @@
 #include "Address.h"
 
 
-Address::Address(std::string hostname, std::string port, Family family) :
+Address::Address(String hostname, String port, Family family) :
 	Hostname(hostname),
 	Port(port),
 	Fam(family)

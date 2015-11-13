@@ -40,7 +40,7 @@ Meta* MetaGraph::Get(unsigned long typeId) const {
 	}
 }
 
-Meta* MetaGraph::Get(std::string name) const {
+Meta* MetaGraph::Get(String name) const {
 	for (auto C : Classes) {
 		if (C.second->GetName() == name) {
 			return C.second;

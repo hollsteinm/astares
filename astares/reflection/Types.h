@@ -38,7 +38,7 @@ TYPE(double)
 
 namespace type {
 	__forceinline static const IType* GetType(unsigned long typeId) { return TypeGraph::Get().Get(typeId); }
-	__forceinline static const std::string GetName(unsigned long typeId) { return TypeGraph::Get().Get(typeId)->GetTypeName(); }
+	__forceinline static const String GetName(unsigned long typeId) { return TypeGraph::Get().Get(typeId)->GetTypeName(); }
 }
 
 #define GREEDY_LOAD_CORE_TYPES TYPEOF(Null); TYPEOF(int); TYPEOF(long); TYPEOF(char); TYPEOF(bool); TYPEOF(float); TYPEOF(double);

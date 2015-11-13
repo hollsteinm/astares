@@ -2,7 +2,7 @@
 #include "MetaGraph.h"
 
 
-Meta::Meta(std::string name, unsigned long typeId) : 
+Meta::Meta(String name, unsigned long typeId) : 
 	name(name),
 	typeId(typeId)
 {
@@ -13,7 +13,7 @@ Meta::~Meta() {
 
 }
 
-const std::string Meta::GetName() const {
+const String Meta::GetName() const {
 	return name; 
 }
 

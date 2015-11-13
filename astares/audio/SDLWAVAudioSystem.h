@@ -9,7 +9,7 @@ public:
 	SDLWAVAudioSystem(class AssetManager* assetManager);
 	~SDLWAVAudioSystem();
 
-	virtual class AudioAsset* AddAsset(long typeId, std::string filename) override;
+	virtual class AudioAsset* AddAsset(long typeId, String filename) override;
 	virtual void RemoveAsset(long id) override;
 
 	virtual void PlayAudio(long audioId) override;
@@ -17,7 +17,7 @@ public:
 	virtual void PauseAudio(long audioId) override;
 	virtual void ResumeAudio(long audioId) override;
 
-	virtual std::string GetName() const override;
+	virtual String GetName() const override;
 
 	virtual void Configure(const class Config& config) override;
 	virtual bool Initialize(struct ILogger* logger) override;
@@ -26,8 +26,8 @@ public:
 
 private:
 	char Channels;
-	std::string DeviceName;
-	std::vector<std::string> AllAudioDevices;
+	String DeviceName;
+	std::vector<String> AllAudioDevices;
 
 protected:
 	class AssetManager* Manager;

@@ -56,12 +56,12 @@ void test::network::Console() {
 	if (ListenSocket->Open(Address("", "12345", Family::IPv6))) {
 		if (ListenSocket->Bind(Address("", "12345", Family::IPv6))) {
 			if (RemoteSocket->Open(Address("localhost", "12345", Family::IPv6))) {
-				std::string write = "Test Message";
+				String write = "Test Message";
 
 				std::thread t([](ISocket* listener) {
 					int e = 0;
 
-					std::string read;
+					String read;
 
 					int r = listener->Read(read, 128);
 					if (r != 0) {

@@ -1,17 +1,17 @@
 #include "File.h"
 #include <SDL.h>
 
-const std::string File::ContentDir = "Content/";
+const String File::ContentDir = "Content/";
 
-std::string File::Company = "";
-std::string File::Project = "";
+String File::Company = "";
+String File::Project = "";
 
-void File::Init(std::string company, std::string project) {
+void File::Init(String company, String project) {
 	Company = company;
 	Project = project;
 }
 
-bool File::Read(std::string filepath, std::string& out){
+bool File::Read(String filepath, String& out){
 	SDL_RWops* fandle = SDL_RWFromFile(filepath.c_str(), "r");
 	if (fandle != nullptr) {
 		long length = (long)SDL_RWseek( fandle, 0, RW_SEEK_END );
@@ -39,7 +39,7 @@ bool File::Read(std::string filepath, std::string& out){
 	}
 }
 
-static bool DoWrite(std::string filepath, std::string out, const char* mode) {
+static bool DoWrite(String filepath, String out, const char* mode) {
 	SDL_RWops* fandle = SDL_RWFromFile(filepath.c_str(), mode);
 	if (fandle != nullptr) {
 		int length = out.size();
@@ -53,19 +53,19 @@ static bool DoWrite(std::string filepath, std::string out, const char* mode) {
 	}
 }
 
-bool File::Write(std::string filepath, std::string out){
+bool File::Write(String filepath, String out){
 	return DoWrite(filepath, out, "w");
 }
 
-bool File::Append(std::string filepath, std::string in){
+bool File::Append(String filepath, String in){
 	return DoWrite(filepath, in, "a");
 }
 
-bool File::Delete(std::string filepath){
+bool File::Delete(String filepath){
 	return std::remove(filepath.c_str()) == 0;
 }
 
-bool File::Create(std::string filepath){
+bool File::Create(String filepath){
 	SDL_RWops* fandle = SDL_RWFromFile(filepath.c_str(), "w");
 	if (fandle != nullptr) {
 		SDL_RWclose(fandle);
@@ -76,7 +76,7 @@ bool File::Create(std::string filepath){
 	}
 }
 
-std::string File::Expand(std::string filepath) {
+String File::Expand(String filepath) {
 	if (filepath[0] == '/' || filepath[0] == '\\'){
 		filepath = filepath.substr(1, filepath.size());
 	}
@@ -84,11 +84,11 @@ std::string File::Expand(std::string filepath) {
 	return SafeWriteDir().append(ContentDir).append(filepath);
 }
 
-std::string File::SafeWriteDir(){
+String File::SafeWriteDir(){
 	char* path = SDL_GetPrefPath(Company.c_str(), Project.c_str());
 	if (path != nullptr) {
 		int size = strlen(path);
-		std::string result(path, size);
+		String result(path, size);
 		return result;
 	}
 	else {

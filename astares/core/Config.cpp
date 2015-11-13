@@ -15,10 +15,10 @@ const char Config::SectionNameEndToken = ')';
 ]
 **/
 
-Config::Config(std::string filepath) :
+Config::Config(const String& filepath) :
 	CurrentSection("")
 {
-	std::string potentialContent;
+	String potentialContent;
 	if (Load(filepath, potentialContent)) {
 		Parse(potentialContent);
 	}
@@ -28,12 +28,12 @@ Config::~Config() {
 
 }
 
-Config& Config::MoveSection(std::string section) {
+Config& Config::MoveSection(String section) {
 	CurrentSection = section;
 	return *this;
 }
 
-bool Config::HasSetting(std::string setting) const {
+bool Config::HasSetting(String setting) const {
 	if (HasSection(CurrentSection)) {
 		return Configurations.at(CurrentSection).find(setting) != Configurations.at(CurrentSection).cend();
 	}
@@ -42,11 +42,11 @@ bool Config::HasSetting(std::string setting) const {
 	}
 }
 
-bool Config::HasSection(std::string section) const {
+bool Config::HasSection(String section) const {
 	return Configurations.find(section) != Configurations.cend();
 }
 
-bool Config::Bool(std::string setting) const {
+bool Config::AsBool(String setting) const {
 	if (HasSetting(setting)) {
 		auto set = Configurations.at(CurrentSection).at(setting);
 		int i = 0;
@@ -69,7 +69,7 @@ bool Config::Bool(std::string setting) const {
 	}
 }
 
-std::string Config::String(std::string setting) const {
+String Config::AsString(String setting) const {
 	if (HasSetting(setting)) {
 		return Configurations.at(CurrentSection).at(setting);
 	}
@@ -78,7 +78,7 @@ std::string Config::String(std::string setting) const {
 	}
 }
 
-float Config::Float(std::string setting) const {
+float Config::AsFloat(String setting) const {
 	if (HasSetting(setting)) {
 		return (float)atof(Configurations.at(CurrentSection).at(setting).c_str());
 	}
@@ -87,7 +87,7 @@ float Config::Float(std::string setting) const {
 	}
 }
 
-int Config::Int(std::string setting) const {
+int Config::AsInt(String setting) const {
 	if (HasSetting(setting)) {
 		return atoi(Configurations.at(CurrentSection).at(setting).c_str());
 	}
@@ -96,11 +96,11 @@ int Config::Int(std::string setting) const {
 	}
 }
 
-bool Config::Load(std::string filename, std::string& content) {
+bool Config::Load(String filename, String& content) {
 	return File::Read(File::SafeWriteDir().append(filename), content);
 }
 
-void Config::Parse(std::string content) {
+void Config::Parse(String content) {
 	unsigned int index = 0;
 
 	while (index < content.size()) {
@@ -118,7 +118,7 @@ void Config::Parse(std::string content) {
 					next = content[index++];
 				}
 
-				std::string str;
+				String str;
 				do {
 					str.push_back(next);
 					next = content[index++];
@@ -126,7 +126,7 @@ void Config::Parse(std::string content) {
 
 				next = content[index++];
 
-				std::string ct;
+				String ct;
 				do {
 					ct.push_back(next);
 					next = content[index++];
@@ -140,14 +140,14 @@ void Config::Parse(std::string content) {
 
 		case SectionNameStartToken:
 		{
-			std::string str;
+			String str;
 			next = content[index++];
 			do{
 				str.push_back(next);
 				next = content[index++];
 			} while (next != SectionNameEndToken);
 			CurrentSection = str;
-			Configurations[str] = std::map<std::string, std::string>();
+			Configurations[str] = std::map<String, String>();
 			break;
 		}
 			break;
@@ -157,6 +157,6 @@ void Config::Parse(std::string content) {
 	}
 }
 
-bool Config::Save(std::string filename, std::string content) {
+bool Config::Save(String filename, String content) {
 	return File::Write(File::SafeWriteDir().append(filename), content);
 }

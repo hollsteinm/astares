@@ -14,7 +14,7 @@ DECL_CLASS_BASE(Asset) {
 
 		long GetAssetId() const;
 
-		virtual bool ImportFromFile(std::string filename);
+		virtual bool ImportFromFile(String filename);
 
 		friend void Assign(Asset* asset, long id);
 

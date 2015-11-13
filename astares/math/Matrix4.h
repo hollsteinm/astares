@@ -3,7 +3,7 @@
 
 #include "Vector.h"
 #include "Matrix3.h"
-#include <string>
+#include "../core/String.h"
 
 //col-major
 
@@ -69,7 +69,7 @@ struct Matrix4 {
 	const float& operator()(int row, int col) const;
 
 	int ToBuffer(float Out[4][4], bool transpose = false);
-	const std::string ToString() const;
+	const String ToString() const;
 
 	Vector4 m[4];
 

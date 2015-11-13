@@ -28,7 +28,7 @@ Object* Object::CreateSelf() const {
 	return new Object();
 }
 
-IField* Object::GetField(std::string name) const {
+IField* Object::GetField(String name) const {
 	return Object::StaticClass().GetField(name);
 }
 
@@ -36,7 +36,7 @@ std::vector<IField*> Object::GetFields() const {
 	return Object::StaticClass().GetFields();
 }
 
-const std::string Object::GetName() const {
+const String Object::GetName() const {
 	return Object::StaticClass().GetName();
 }
 

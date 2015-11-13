@@ -14,7 +14,7 @@ Asset::Asset(long id) {
 	AssetId = id;
 }
 
-bool Asset::ImportFromFile(std::string filename) {
+bool Asset::ImportFromFile(String filename) {
 	return false;
 }
 

@@ -41,7 +41,7 @@ const IType* TypeGraph::Get(unsigned long typeId) const {
 	}
 }
 
-std::string TypeGraph::ToString() const {
+String TypeGraph::ToString() const {
 	std::stringstream ss;
 
 	ss << "All Registered Types:" << std::endl;

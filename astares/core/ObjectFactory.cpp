@@ -15,7 +15,7 @@ ObjectFactory& ObjectFactory::Get() {
 	return *__instance;
 }
 
-Object* ObjectFactory::GetDefault(std::string name) {
+Object* ObjectFactory::GetDefault(String name) {
 	if (Graph.find(name) != Graph.end()) {
 		return Graph.at(name);
 	}
@@ -24,7 +24,7 @@ Object* ObjectFactory::GetDefault(std::string name) {
 	}
 }
 
-Object* ObjectFactory::CreateNew(std::string name) {
+Object* ObjectFactory::CreateNew(String name) {
 	Object* original = GetDefault(name);
 	if (original != nullptr) {
 		return original->CreateSelf();
@@ -54,7 +54,7 @@ Object* ObjectFactory::CreateNew(unsigned long typeId) {
 	}
 }
 
-void ObjectFactory::Add(std::string name, Object* obj) {
+void ObjectFactory::Add(String name, Object* obj) {
 	if (obj)
 	{
 		if (Graph.find(name) == Graph.end()) {
@@ -110,10 +110,10 @@ ObjectFactory::~ObjectFactory() {
 ObjectFactory::ObjectFactory() {
 }
 
-std::string ObjectFactory::ToString() const {
+String ObjectFactory::ToString() const {
 	std::stringstream ss;
 
-	std::string s = "Registered Object Types:\n";
+	String s = "Registered Object Types:\n";
 	
 	for (auto kvp : Graph) {
 		s.append("\t").append(kvp.first).append("\n");

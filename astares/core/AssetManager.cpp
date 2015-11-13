@@ -12,10 +12,10 @@ AssetManager::~AssetManager() {
 	Registry.clear();
 }
 
-Asset* AssetManager::LoadExternalContent(long typeId, std::string filename) {
+Asset* AssetManager::LoadExternalContent(long typeId, String filename) {
 	Asset* asset = (Asset*)ObjectFactory::Get().CreateNew(typeId);
 	if (asset != nullptr) {
-		std::string fullpath = File::Expand(filename);
+		String fullpath = File::Expand(filename);
 		if (asset->ImportFromFile(fullpath)) {
 			Assign(asset, currId++);
 			Registry.push_back(ObjectPtr<Asset>(asset));
@@ -36,9 +36,9 @@ Asset* AssetManager::LoadExternalContent(long typeId, std::string filename) {
 	return asset;
 }
 
-void AssetManager::WriteRegistryToDisk(std::string filename) {
+void AssetManager::WriteRegistryToDisk(String filename) {
 	std::stringstream str;
-	std::string fullpath = File::Expand(filename);
+	String fullpath = File::Expand(filename);
 	if (Write(str)){
 		if (!File::Write(fullpath, str.str())){
 			if (logger != nullptr){
@@ -54,9 +54,9 @@ void AssetManager::WriteRegistryToDisk(std::string filename) {
 	}
 }
 
-void AssetManager::LoadRegistryFromDisk(std::string filename) {
-	std::string dat;
-	std::string fullpath = File::Expand(filename);
+void AssetManager::LoadRegistryFromDisk(String filename) {
+	String dat;
+	String fullpath = File::Expand(filename);
 	if (File::Read(fullpath, dat)){
 		std::stringstream str(dat);
 		if (!Read(str)){

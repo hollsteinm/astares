@@ -1,13 +1,13 @@
 #ifndef UDPLISTENER_H
 #define UDPLISTENER_H
 
-#include <string>
+#include "../core/String.h"
 #include "../messaging/MessageHub.h"
 
 
 class UDPListener : public MessageHub {
 public:
-	UDPListener(std::string port);
+	UDPListener(String port);
 	~UDPListener();
 
 	void Digest();

@@ -21,14 +21,14 @@ protected:
 DECL_CLASS(MusicAudioAsset) : public AudioAsset{
 	DECL_BODY(MusicAudioAsset)
 public:
-	virtual bool ImportFromFile(std::string filename) override;
+	virtual bool ImportFromFile(String filename) override;
 	struct _Mix_Music* Data;
 };
 
 DECL_CLASS(SFXAudioAsset) : public AudioAsset{
 	DECL_BODY(SFXAudioAsset)
 public:
-	virtual bool ImportFromFile(std::string filename) override;
+	virtual bool ImportFromFile(String filename) override;
 	struct Mix_Chunk* Data;
 };
 

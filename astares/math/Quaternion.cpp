@@ -145,10 +145,10 @@ int Quaternion::ToBuffer(float out_buffer[4]) const {
 	return 4;
 }
 
-const std::string Quaternion::ToString() const {
+const String Quaternion::ToString() const {
 	char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f, %f]", x, y, z, w);
-	return std::string(buffer, size);
+	return String(buffer, size);
 }
 
 float& Quaternion::operator[](int index) {

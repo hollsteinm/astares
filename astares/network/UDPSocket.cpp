@@ -13,7 +13,7 @@ bool UDPSocket::Open(const Address& address) {
 	return false;
 }
 
-int UDPSocket::Send(std::string data) {
+int UDPSocket::Send(String data) {
 	int sent = 0;
 	for (addrinfo* ptr = AddressInfo; ptr != nullptr; ptr = ptr->ai_next) {
 		sent = sendto(Sock, data.c_str(), data.size(), 0, ptr->ai_addr, ptr->ai_addrlen);
@@ -24,7 +24,7 @@ int UDPSocket::Send(std::string data) {
 	return sent;
 }
 
-int UDPSocket::Read(std::string& outData, int size) {
+int UDPSocket::Read(String& outData, int size) {
 	sockaddr_storage ipsockaddr;
 	int length = sizeof(sockaddr_storage);
 	

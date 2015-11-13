@@ -7,7 +7,7 @@ struct IAudioSystem : public ISubsystem {
 	IAudioSystem(){}
 	virtual ~IAudioSystem(){}
 
-	virtual class AudioAsset* AddAsset(long typeId, std::string filename) = 0;
+	virtual class AudioAsset* AddAsset(long typeId, String filename) = 0;
 	virtual void RemoveAsset(long id) = 0;
 
 	virtual void PlayAudio(long audioId) = 0;

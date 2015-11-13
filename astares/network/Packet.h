@@ -10,7 +10,7 @@
 #endif
 
 #include <iostream>
-
+#include "../core/String.h"
 
 union PacketSize {
 	char	c[8];
@@ -22,15 +22,15 @@ struct Packet {
 	char Header;
 	PacketSize Size;
 
-	std::string data;
+	String data;
 
 	Packet();
-	Packet(const std::string& in, long size);
+	Packet(const String& in, long size);
 	Packet(const Packet& other);
 	~Packet();
 
 	long RawSize() const;
-	long ToRaw(std::string& outData) const;
+	long ToRaw(String& outData) const;
 };
 
 

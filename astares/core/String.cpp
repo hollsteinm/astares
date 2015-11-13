@@ -19,13 +19,19 @@ String::String(const char* str) :
 
 }
 
+String::String(const char* str, int length) :
+	std::string(str, length)
+{
+
+}
+
 String::~String() {
 
 }
 
 void String::Encode() {
 	auto pos = find(" ");
-	while (pos != std::string::npos) {
+	while (pos != String::npos) {
 		replace(pos, 1, "%20");
 		pos = find(" ");
 	}
@@ -33,7 +39,7 @@ void String::Encode() {
 
 void String::Decode() {
 	auto pos = find("%20");
-	while (pos != std::string::npos) {
+	while (pos != String::npos) {
 		replace(pos, 3, " ");
 		pos = find("%20");
 	}

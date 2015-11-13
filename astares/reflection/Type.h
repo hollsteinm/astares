@@ -9,7 +9,7 @@ static long MakeTypeHash(std::string constantName) {
 
 template<typename T>
 struct Type : public IType {
-	Type(std::string constantName) :
+	Type(String constantName) :
 		name(constantName),
 		typeId(MakeTypeHash(constantName)),
 		size(sizeof(T))
@@ -18,7 +18,7 @@ struct Type : public IType {
 	}
 
 	long GetTypeId() const override { return typeId; }
-	std::string GetTypeName() const override { return name; }
+	String GetTypeName() const override { return name; }
 	size_t GetSize() const override { return size; }
 
 	bool IsTypeOf(IType* other) const override {
@@ -27,7 +27,7 @@ struct Type : public IType {
 
 private:
 	unsigned long typeId;
-	std::string name;
+	String name;
 	size_t size;
 };
 

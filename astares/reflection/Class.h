@@ -2,7 +2,7 @@
 #define CLASS_H
 
 #include <vector>
-#include <string>
+#include "../core/String.h"
 #include <map>
 #include "Meta.h"
 
@@ -10,14 +10,14 @@
 struct IField;
 
 struct Class : public Meta {
-	Class(std::string name, unsigned long typeId);
+	Class(String name, unsigned long typeId);
 	~Class();
 
 	void Add(IField* field);
 	void Add(unsigned long parentType);
 
 	std::vector<IField*> GetFields() const;
-	IField* GetField(std::string name) const;
+	IField* GetField(String name) const;
 
 	virtual bool Read(void* obj, std::istream& in, int version) override;
 	virtual bool Write(void* obj, std::ostream& out, int version) const override;

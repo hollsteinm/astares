@@ -2,7 +2,7 @@
 #include "Meta.h"
 
 
-IField::IField(std::string name, unsigned long typeId, int flags) :
+IField::IField(String name, unsigned long typeId, int flags) :
 	Meta(name, typeId),
 	Flags(flags)
 {}

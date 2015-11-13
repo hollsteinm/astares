@@ -3,7 +3,7 @@
 
 #include <map>
 #include <vector>
-
+#include "../core/String.h"
 
 class MetaGraph
 {
@@ -14,7 +14,7 @@ public:
 	void Add(struct Meta* Class);
 
 	struct Meta* Get(unsigned long typeId) const;
-	struct Meta* Get(std::string name) const;
+	struct Meta* Get(String name) const;
 
 	std::vector<long> AllTypeIds() const;
 

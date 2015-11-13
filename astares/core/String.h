@@ -12,6 +12,7 @@ struct String : public std::string{
 	String();
 	String(const std::string& str);
 	String(const char* str);
+	String(const char* str, int length);
 	~String();
 
 	void operator=(const char* str);

@@ -55,7 +55,7 @@ REFLECTION_BEGIN(SFXAudioAsset)
 	PARENT(AudioAsset)
 REFLECTION_END(SFXAudioAsset)
 
-bool MusicAudioAsset::ImportFromFile(std::string filename) {
+bool MusicAudioAsset::ImportFromFile(String filename) {
 	Mix_FreeMusic(Data);
 	Data = nullptr;
 	Filename = filename;
@@ -63,7 +63,7 @@ bool MusicAudioAsset::ImportFromFile(std::string filename) {
 	return Data != nullptr;
 }
 
-bool SFXAudioAsset::ImportFromFile(std::string filename) {
+bool SFXAudioAsset::ImportFromFile(String filename) {
 	Mix_FreeChunk(Data);
 	Data = nullptr;
 	Filename = filename;

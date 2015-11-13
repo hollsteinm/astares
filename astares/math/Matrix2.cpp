@@ -176,12 +176,12 @@ int Matrix2::ToBuffer(float Out[2][2], bool transpose) {
 	return 4;
 }
 
-const std::string Matrix2::ToString() const {
+const String Matrix2::ToString() const {
 	char buffer[256];
 	size_t size = sprintf_s(buffer, "[%f, %f]\n[%f, %f]",
 		m[0][0], m[1][0],
 		m[0][1], m[1][1]);
-	return std::string(buffer, size);
+	return String(buffer, size);
 }
 
 float& Matrix2::operator()(int row, int col) {

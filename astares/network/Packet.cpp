@@ -9,7 +9,7 @@ Packet::Packet() :
 	Size.l = 0;
 }
 
-Packet::Packet(const std::string& in, long size) {
+Packet::Packet(const String& in, long size) {
 	Header = 0x17;
 	data = in;
 	Size.l = size;
@@ -30,7 +30,7 @@ long Packet::RawSize() const {
 	return PACKET_HEADER_SIZE + PACKET_SIZE_SIZE + Size.l;
 }
 
-long Packet::ToRaw(std::string& outData) const {
+long Packet::ToRaw(String& outData) const {
 	long length = RawSize();
 	
 	int idx = 0;
@@ -58,7 +58,7 @@ std::istream& operator>>(std::istream& in, Packet& packet) {
 	char* buffer = new char[length];
 
 	in.read(buffer, length);
-	packet = Packet(std::string(buffer, length), length);
+	packet = Packet(String(buffer, length), length);
 
 	delete[] buffer;
 

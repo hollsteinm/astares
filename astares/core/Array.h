@@ -1,7 +1,8 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include "Object.h"
+#include <iostream>
+#include <vector>
 
 template <typename T>
 class ObjectArray : public std::vector<T> {

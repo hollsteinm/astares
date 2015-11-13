@@ -4,7 +4,7 @@
 #include "MetaGraph.h"
 
 
-Class::Class(std::string name, unsigned long typeId) :
+Class::Class(String name, unsigned long typeId) :
 	Meta(name, typeId),
 	Fields()
 {
@@ -21,7 +21,7 @@ Class::~Class() {
 void Class::Add(IField* field) {
 	if (field)
 	{
-		const std::string name = field->GetName();
+		const String name = field->GetName();
 		if (Fields.size() <= 0 || Fields.find(name) == Fields.cend())
 			Fields[name] = field;
 		else
@@ -55,7 +55,7 @@ std::vector<IField*> Class::GetFields() const {
 	return fields;
 }
 
-IField* Class::GetField(std::string name) const {
+IField* Class::GetField(String name) const {
 	if (Fields.find(name) != Fields.end()){
 		return Fields.at(name);
 	}

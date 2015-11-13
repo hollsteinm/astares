@@ -172,10 +172,10 @@ int Vector2::ToBuffer(float* out_buffer) const {
 	return 2;
 }
 
-const std::string Vector2::ToString() const {
+const String Vector2::ToString() const {
 	char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f]", data[0], data[1]);
-	return std::string(buffer, size);
+	return String(buffer, size);
 }
 
 float& Vector2::operator[](int index) {

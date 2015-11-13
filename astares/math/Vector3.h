@@ -1,7 +1,7 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
-#include <string>
+#include "../core/String.h"
 
 
 struct Vector2;
@@ -62,7 +62,7 @@ struct Vector3 {
 	const float& operator[](int index) const;
 
 	int ToBuffer(float out_buffer[3]) const;
-	const std::string ToString() const;
+	const String ToString() const;
 
 	float data[3];
 

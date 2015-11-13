@@ -1,6 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "String.h"
 #include <map>
 
 #ifndef VIDEO_SECTION
@@ -9,25 +10,25 @@
 
 class Config {
 public:
-	Config(std::string filepath);
+	Config(const String& filepath);
 	~Config();
 
-	Config& MoveSection(std::string section);
+	Config& MoveSection(String section);
 
-	bool HasSetting(std::string setting) const;
-	bool HasSection(std::string section) const;
+	bool HasSetting(String setting) const;
+	bool HasSection(String section) const;
 
-	bool Bool(std::string setting) const;
-	std::string String(std::string setting) const;
-	float Float(std::string setting) const;
-	int Int(std::string setting) const;
+	bool AsBool(String setting) const;
+	String AsString(String setting) const;
+	float AsFloat(String setting) const;
+	int AsInt(String setting) const;
 
-	void Parse(std::string content);
+	void Parse(String content);
 
 private:
-	std::map<std::string, std::map<std::string, std::string>> Configurations;
+	std::map<String, std::map<String, String>> Configurations;
 
-	std::string CurrentSection;
+	String CurrentSection;
 
 	static const char SectionStartToken;
 	static const char SectionEndToken;
@@ -36,8 +37,8 @@ private:
 	static const char SectionNameEndToken;
 
 protected:
-	bool Load(std::string filename, std::string& outContent);
-	bool Save(std::string filename, std::string content);
+	bool Load(String filename, String& outContent);
+	bool Save(String filename, String content);
 
 };
 

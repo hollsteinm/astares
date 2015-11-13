@@ -7,7 +7,7 @@
 #include <sstream>
 
 
-UDPSender::UDPSender(std::string host, std::string port) :
+UDPSender::UDPSender(String host, String port) :
 	Sock(new UDPSocket())
 {
 	Sock->Open(Address(host, port, Family::IPv6));

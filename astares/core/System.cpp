@@ -38,16 +38,16 @@ System::~System() {
 }
 
 void System::Configure(const Config& config) {
-	std::string companyName = "a";
-	std::string projectName = "b";
+	String companyName = "a";
+	String projectName = "b";
 
 	if (config.HasSection(ProjectId)) {
 		if (config.HasSetting(CompanyId)) {
-			companyName = config.String(CompanyId);
+			companyName = config.AsString(CompanyId);
 		}
 
 		if (config.HasSetting(NameId)) {
-			projectName = config.String(NameId);
+			projectName = config.AsString(NameId);
 		}
 	}
 

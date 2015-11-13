@@ -14,9 +14,9 @@ DECL_CLASS_BASE(AssetManager) {
 	DECL_BODY(AssetManager)
 
 public:
-	virtual Asset* LoadExternalContent(long typeId, std::string filename);
-	virtual void WriteRegistryToDisk(std::string filename);
-	virtual void LoadRegistryFromDisk(std::string filename);
+	virtual Asset* LoadExternalContent(long typeId, String filename);
+	virtual void WriteRegistryToDisk(String filename);
+	virtual void LoadRegistryFromDisk(String filename);
 
 	Asset* operator[](int index);
 	Asset* Get(int index);

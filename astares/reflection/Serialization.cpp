@@ -2,10 +2,10 @@
 #include "../core/ObjectFactory.h"
 #include "../core/Object.h"
 
-static inline std::string GetClassName(std::istream& in) {
+static inline String GetClassName(std::istream& in) {
 	char str[256];
 	in.get(str, 256, ' ');
-	std::string className(str);
+	String className(str);
 	className.shrink_to_fit();
 	int ugc = className.size();
 	for (int i = 0; i < ugc; ++i){
@@ -15,7 +15,7 @@ static inline std::string GetClassName(std::istream& in) {
 }
 
 Object* Deserialize(std::istream& in) {
-	std::string parseName = GetClassName(in);
+	String parseName = GetClassName(in);
 
 	Object* o = ObjectFactory::Get().CreateNew(parseName);
 	if (o != nullptr) {

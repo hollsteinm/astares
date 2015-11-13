@@ -297,11 +297,11 @@ int Matrix3::ToBuffer(float Out[3][3], bool transpose) {
 	return 9;
 }
 
-const std::string Matrix3::ToString() const {
+const String Matrix3::ToString() const {
 	char buffer[256];
 	size_t size = sprintf_s(buffer, "[%f, %f, %f]\n[%f, %f, %f]\n[%f, %f, %f]",
 		m[0][0], m[1][0], m[2][0],
 		m[0][1], m[1][1], m[2][1],
 		m[0][2], m[1][2], m[2][2]);
-	return std::string(buffer, size);
+	return String(buffer, size);
 }

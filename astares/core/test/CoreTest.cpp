@@ -13,7 +13,7 @@
 
 void test::core::Console() {
 	ILogger* logger = new CommonLogger();
-	std::string content = "(Section0) garbage [Char=k Float=45.67 bool=false]   (Section9)\r\r\n[somthing=this]";
+	String content = "(Section0) garbage [Char=k Float=45.67 bool=false]   (Section9)\r\r\n[somthing=this]";
 
 	Config cfg("");
 	cfg.Parse(content);

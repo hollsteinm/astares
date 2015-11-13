@@ -44,7 +44,7 @@ struct Quaternion {
 	const float& operator[](int index) const;
 
 	int ToBuffer(float out_buffer[4]) const;
-	const std::string ToString() const;
+	const String ToString() const;
 };
 
 

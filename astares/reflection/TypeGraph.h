@@ -19,7 +19,7 @@ public:
 
 	~TypeGraph();
 
-	std::string ToString() const;
+	struct String ToString() const;
 
 private:
 	TypeGraph();

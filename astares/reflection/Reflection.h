@@ -35,9 +35,9 @@
 		static Class& StaticClass();\
 		static C& StaticInstance();\
 		virtual Object* CreateSelf() const override;\
-		virtual IField* GetField(std::string name) const override;\
+		virtual IField* GetField(String name) const override;\
 		virtual std::vector<IField*> GetFields() const override;\
-		virtual const std::string GetName() const override;\
+		virtual const String GetName() const override;\
 		virtual const long GetTypeId() const override;
 
 #define DEF_STATIC_CLASS(C) C C::C##__static;
@@ -53,13 +53,13 @@
 		Object* C::CreateSelf() const { \
 			return new C();\
 		}\
-		IField* C::GetField(std::string name) const {\
+		IField* C::GetField(String name) const {\
 			return C::StaticClass().GetField(name);\
 		}\
 		std::vector<IField*> C::GetFields() const {\
 			return C::StaticClass().GetFields();\
 		}\
-		const std::string C::GetName() const {\
+		const String C::GetName() const {\
 			return C::StaticClass().GetName();\
 		}\
 		const long C::GetTypeId() const {\

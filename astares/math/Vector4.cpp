@@ -254,10 +254,10 @@ int Vector4::ToBuffer(float* out_buffer) const {
 	return 4;
 }
 
-const std::string Vector4::ToString() const {
+const String Vector4::ToString() const {
 	char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f, %f]", data[0], data[1], data[2], data[3]);
-	return std::string(buffer, size);
+	return String(buffer, size);
 }
 
 float& Vector4::operator[](int index) {

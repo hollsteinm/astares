@@ -1,7 +1,7 @@
 #ifndef IFIELD_H
 #define IFIELD_H
 
-#include <string>
+#include "../core/String.h"
 #include "Meta.h"
 
 
@@ -16,7 +16,7 @@ enum class FieldFlags {
 };
 
 struct IField : public Meta {
-	IField(std::string name, unsigned long typeId, int flags = (int)FieldFlags::None);
+	IField(String name, unsigned long typeId, int flags = (int)FieldFlags::None);
 
 	virtual void* Get(void* obj) const = 0;
 	virtual void Set(void* obj, void* value) = 0;

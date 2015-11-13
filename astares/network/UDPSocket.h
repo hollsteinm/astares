@@ -9,8 +9,8 @@ class UDPSocket : public CoreSocket {
 public:
 	virtual bool Open(const Address& address) override;
 
-	virtual int Send(std::string data) override;
-	virtual int Read(std::string& outData, int size) override;
+	virtual int Send(String data) override;
+	virtual int Read(String& outData, int size) override;
 };
 
 

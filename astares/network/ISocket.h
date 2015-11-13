@@ -2,8 +2,7 @@
 #define ISOCKET_H
 
 #include <iostream>
-
-
+#include "../core/String.h"
 
 struct ISocket {
 	virtual ~ISocket() {}
@@ -13,8 +12,8 @@ struct ISocket {
 
 	virtual void Close() = 0;
 
-	virtual int Send(std::string data) = 0;
-	virtual int Read(std::string& outData, int size) = 0;
+	virtual int Send(String data) = 0;
+	virtual int Read(String& outData, int size) = 0;
 };
 
 
