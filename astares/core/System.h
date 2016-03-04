@@ -11,7 +11,7 @@ public:
 	System(ILogger* logger, const Array<struct ISubsystem*>& subSystems);
 	virtual ~System();
 
-	virtual void Configure(const class Config& config);
+	virtual void Configure(class Config& config);
 	virtual bool Initialize();
 	virtual bool Run();
 	virtual void Shutdown();

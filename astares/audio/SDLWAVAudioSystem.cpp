@@ -3,6 +3,7 @@
 #include "../core/AssetManager.h"
 #include "../log/ILogger.h"
 #include "AudioAsset.h"
+#include <SDL.h>
 #include <SDL_mixer.h>
 
 #define AUDIO_CHANNEL_SETTING "Channels"
@@ -101,7 +102,7 @@ String SDLWAVAudioSystem::GetName() const {
 	return "SDLWAVAudioSystem";
 }
 
-void SDLWAVAudioSystem::Configure(const Config& config) {
+void SDLWAVAudioSystem::Configure(Config& config) {
 	if (config.HasSection(AUDIO_SECTION)) {
 		if (config.HasSetting(AUDIO_CHANNEL_SETTING)) {
 			Channels = (char)config.AsInt(AUDIO_CHANNEL_SETTING);
@@ -109,9 +110,13 @@ void SDLWAVAudioSystem::Configure(const Config& config) {
 	}
 }
 
-
-
 bool SDLWAVAudioSystem::Initialize(ILogger* logger) {
+	if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+		if (logger != nullptr) {
+			logger->Error("Could not initialize audio: %s", SDL_GetError());
+		}
+	}
+
 	if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, Channels, 2048) < 0) {
 		if (logger != nullptr) {
 			logger->Error("%s", Mix_GetError());

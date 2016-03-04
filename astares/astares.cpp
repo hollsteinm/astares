@@ -11,6 +11,7 @@
 #include "reflection\test\SerializationTests.h"
 #include "log\test\LoggerTests.h"
 #include "audio\test\AudioTests.h"
+#include "input\test\InputTests.h"
 
 int main(int, char**){
 	test::matrix::Console();
@@ -19,5 +20,6 @@ int main(int, char**){
 	test::network::Console();
 	test::log::Console();
 	test::audio::Console();
+	test::input::Console();
 	return 0;
 }

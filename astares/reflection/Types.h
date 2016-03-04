@@ -35,13 +35,14 @@ TYPE(char)
 TYPE(bool)
 TYPE(float)
 TYPE(double)
+TYPE(String)
 
 namespace type {
 	__forceinline static const IType* GetType(unsigned long typeId) { return TypeGraph::Get().Get(typeId); }
 	__forceinline static const String GetName(unsigned long typeId) { return TypeGraph::Get().Get(typeId)->GetTypeName(); }
 }
 
-#define GREEDY_LOAD_CORE_TYPES TYPEOF(Null); TYPEOF(int); TYPEOF(long); TYPEOF(char); TYPEOF(bool); TYPEOF(float); TYPEOF(double);
+#define GREEDY_LOAD_CORE_TYPES TYPEOF(Null); TYPEOF(int); TYPEOF(long); TYPEOF(char); TYPEOF(bool); TYPEOF(float); TYPEOF(double); TYPEOF(String);
 
 
 #endif

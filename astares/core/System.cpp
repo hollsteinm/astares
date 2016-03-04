@@ -22,7 +22,7 @@ System::System(ILogger* logger, const Array<ISubsystem*>& subSystems) {
 
 	this->logger = logger;
 	Subsystems = subSystems;	
-	if (!SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) == 0) {
+	if (!SDL_Init(SDL_INIT_VIDEO ) == 0) {
 		if (logger != nullptr) {
 			logger->Critical("Failed to initialize SDL: %s", SDL_GetError());
 		}
@@ -37,7 +37,7 @@ System::~System() {
 	Subsystems.clear();
 }
 
-void System::Configure(const Config& config) {
+void System::Configure(Config& config) {
 	String companyName = "a";
 	String projectName = "b";
 
@@ -77,9 +77,13 @@ bool System::Initialize() {
 
 bool System::Run() {
 	bool stillRunning = true;
-	for (auto* ptr : Subsystems) {
-		stillRunning &= ptr->Run();
+
+	if (stillRunning) {
+		for (auto* ptr : Subsystems) {
+			stillRunning &= ptr->Run();
+		}
 	}
+
 	return stillRunning;
 }
 

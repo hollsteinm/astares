@@ -115,6 +115,12 @@
     <Filter Include="Header Files\Audio\Test">
       <UniqueIdentifier>{52b3243b-04bf-49c2-b998-a17d19210e14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Input\Test">
+      <UniqueIdentifier>{6fd9a35f-d666-4d11-bc2a-130867ba8c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input\Test">
+      <UniqueIdentifier>{63e0fe51-e7f5-4157-a779-4e6ce9f68025}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -399,6 +405,27 @@
     <ClInclude Include="reflection\Field.h">
       <Filter>Header Files\Reflection</Filter>
     </ClInclude>
+    <ClInclude Include="input\IInputSystem.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\SDLInputSystem.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\KeyEventMessage.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\KeyState.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="input\test\InputTests.h">
+      <Filter>Header Files\Input\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\SDLRenderSystem.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IEnum.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -619,6 +646,15 @@
     </ClCompile>
     <ClCompile Include="core\Array.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="input\SDLInputSystem.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\KeyEventMessage.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="input\test\InputTests.cpp">
+      <Filter>Source Files\Input\Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

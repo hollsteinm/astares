@@ -19,7 +19,7 @@ public:
 
 	virtual String GetName() const override;
 
-	virtual void Configure(const class Config& config) override;
+	virtual void Configure(class Config& config) override;
 	virtual bool Initialize(struct ILogger* logger) override;
 	virtual bool Run() override;
 	virtual void Shutdown() override;

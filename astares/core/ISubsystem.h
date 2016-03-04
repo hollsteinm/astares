@@ -1,7 +1,7 @@
 #ifndef ISUBSYSTEM_H
 #define ISUBSYSTEM_H
 
-#include "../core/String.h"
+#include "String.h"
 
 struct ISubsystem {
 	ISubsystem(){}
@@ -12,7 +12,7 @@ struct ISubsystem {
 
 	virtual String GetName() const = 0;
 
-	virtual void Configure(const class Config& config) = 0;
+	virtual void Configure(class Config& config) = 0;
 	virtual bool Initialize(struct ILogger* logger) = 0;
 	virtual bool Run() = 0;
 	virtual void Shutdown() = 0;

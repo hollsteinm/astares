@@ -217,9 +217,15 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="graphics\IRenderSystem.h" />
     <ClInclude Include="graphics\Material.h" />
     <ClInclude Include="graphics\Model.h" />
+    <ClInclude Include="graphics\SDLRenderSystem.h" />
     <ClInclude Include="graphics\Shader.h" />
     <ClInclude Include="graphics\Texture.h" />
     <ClInclude Include="graphics\VertexBuffer.h" />
+    <ClInclude Include="input\IInputSystem.h" />
+    <ClInclude Include="input\KeyEventMessage.h" />
+    <ClInclude Include="input\KeyState.h" />
+    <ClInclude Include="input\SDLInputSystem.h" />
+    <ClInclude Include="input\test\InputTests.h" />
     <ClInclude Include="log\CommonLogger.h" />
     <ClInclude Include="log\ILogger.h" />
     <ClInclude Include="log\test\LoggerTests.h" />
@@ -267,6 +273,7 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="physics\Particle.h" />
     <ClInclude Include="physics\SpringForceGenerator.h" />
     <ClInclude Include="reflection\Class.h" />
+    <ClInclude Include="reflection\IEnum.h" />
     <ClInclude Include="reflection\IField.h" />
     <ClInclude Include="reflection\ISerializer.h" />
     <ClInclude Include="reflection\IType.h" />
@@ -311,6 +318,9 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="graphics\Shader.cpp" />
     <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />
+    <ClCompile Include="input\KeyEventMessage.cpp" />
+    <ClCompile Include="input\SDLInputSystem.cpp" />
+    <ClCompile Include="input\test\InputTests.cpp" />
     <ClCompile Include="log\CommonLogger.cpp" />
     <ClCompile Include="log\test\LoggerTests.cpp" />
     <ClCompile Include="math\Geometry.cpp" />
