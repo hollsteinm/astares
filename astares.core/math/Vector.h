@@ -10,17 +10,17 @@
 #include <iosfwd>
 
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, const Vector2& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Vector2& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector2& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector2& vec);
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, const Vector3& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Vector3& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector3& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector3& vec);
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, const Vector4& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Vector4& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector4& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector4& vec);
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, const Quaternion& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Quaternion& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Quaternion& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Quaternion& vec);
 
 
 #ifndef _X

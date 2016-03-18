@@ -47,7 +47,7 @@ template<typename T>
 using vector = std::vector<T, std::allocator<T>>;
 
 template<typename T>
-std::ostream& operator << (std::ostream& out, const vector<T>& arr) {
+WriteStream& operator << (WriteStream& out, const vector<T>& arr) {
 	out << arr.size() << ' ';
 	for (auto elem : arr) {
 		out << elem << ' ';
@@ -56,7 +56,7 @@ std::ostream& operator << (std::ostream& out, const vector<T>& arr) {
 }
 
 template<typename T>
-std::istream& operator >> (std::istream& in, vector<T>& arr) {
+ReadStream& operator >> (ReadStream& in, vector<T>& arr) {
 	size_t size;
 	in >> size;
 	arr.resize(size);
@@ -67,20 +67,20 @@ std::istream& operator >> (std::istream& in, vector<T>& arr) {
 }
 
 template<> ASTARESCORE_API
-std::ostream& operator << (std::ostream& out, const std::vector<int8>& arr);
+WriteStream& operator << (WriteStream& out, const std::vector<int8>& arr);
 template<> ASTARESCORE_API
-std::istream& operator >> (std::istream& in, std::vector<int8>& arr);
+ReadStream& operator >> (ReadStream& in, std::vector<int8>& arr);
 
 template<> ASTARESCORE_API
-std::ostream& operator << (std::ostream& out, const std::vector<uint8>& arr);
+WriteStream& operator << (WriteStream& out, const std::vector<uint8>& arr);
 template<> ASTARESCORE_API
-std::istream& operator >> (std::istream& in, std::vector<uint8>& arr);
+ReadStream& operator >> (ReadStream& in, std::vector<uint8>& arr);
 
 template<typename K, typename V>
 using map = std::map<K, V>;
 
 template<typename T, typename V>
-std::ostream& operator << (std::ostream& out, const map<T, V>& m) {
+WriteStream& operator << (WriteStream& out, const map<T, V>& m) {
 	out << m.size() << ' ';
 	for (auto kvp : m) {
 		out << kvp.first << ' ' << kvp.second << ' ';
@@ -89,7 +89,7 @@ std::ostream& operator << (std::ostream& out, const map<T, V>& m) {
 }
 
 template<typename T, typename V>
-std::istream& operator >> (std::istream& in, map<T, V>& m) {
+ReadStream& operator >> (ReadStream& in, map<T, V>& m) {
 	size_t size;
 	in >> size;
 	for (size_t i = 0; i < size; ++i) {
@@ -105,7 +105,7 @@ template<typename T>
 using queue = std::queue<T>;
 
 template<typename T>
-std::ostream& operator << (std::ostream& out, const queue<T>& q) {
+WriteStream& operator << (WriteStream& out, const queue<T>& q) {
 	out << q.size() << ' ';
 	for (auto elem : q) {
 		out << elem << ' ';
@@ -114,7 +114,7 @@ std::ostream& operator << (std::ostream& out, const queue<T>& q) {
 }
 
 template<typename T>
-std::istream& operator >> (std::istream& in, queue<T>& q) {
+ReadStream& operator >> (ReadStream& in, queue<T>& q) {
 	size_t size;
 	in >> size;
 	q.resize(size);

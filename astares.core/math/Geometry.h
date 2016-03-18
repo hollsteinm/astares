@@ -8,18 +8,18 @@
 #include "Sphere.h"
 #include "Hull.h"
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Plane& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Plane& p);
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Ray2& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Ray2& p);
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Ray3& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Ray3& p);
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Box& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Box& p);
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Sphere& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Sphere& p);
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Hull& p);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Hull& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Plane& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Plane& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Ray2& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Ray2& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Ray3& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Ray3& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Box& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Box& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Sphere& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Sphere& p);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Hull& p);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Hull& p);
 
 
 #endif

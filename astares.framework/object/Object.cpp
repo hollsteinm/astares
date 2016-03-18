@@ -6,13 +6,13 @@ static int64 GInstances = 0;
 #include "../reflection/Reflection.h"
 #include <iostream>
 
-void Object::Serialize(std::ostream& out, int32 version) const {
+void Object::Serialize(WriteStream& out, int32 version) const {
 	PreSerialize(out, version);
 	InternalSerialize(out, version);
 	PostSerialize(out, version);
 }
 
-void Object::Deserialize(std::istream& in, int32 version) {
+void Object::Deserialize(ReadStream& in, int32 version) {
 	PreDeserialize(in, version);
 	InternalDeserialize(in, version);
 	PostDeserialize(in, version);
@@ -46,22 +46,22 @@ Object* Object::CreateDefault() const
 	return new Object();
 }
 
-void Object::PostSerialize(std::ostream& out, int32 version) const
+void Object::PostSerialize(WriteStream& out, int32 version) const
 {
 
 }
 
-void Object::PreSerialize(std::ostream& out, int32 version) const
+void Object::PreSerialize(WriteStream& out, int32 version) const
 {
 
 }
 
-void Object::PostDeserialize(std::istream& in, int32 version)
+void Object::PostDeserialize(ReadStream& in, int32 version)
 {
 
 }
 
-void Object::PreDeserialize(std::istream& in, int32 version)
+void Object::PreDeserialize(ReadStream& in, int32 version)
 {
 
 }

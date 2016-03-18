@@ -17,22 +17,22 @@ public:
 
 	virtual string ToString() const;
 
-	void Serialize(std::ostream& out, int32 version) const;
-	void Deserialize(std::istream& in, int32 version);
+	void Serialize(WriteStream& out, int32 version) const;
+	void Deserialize(ReadStream& in, int32 version);
 
 	void Reflect(struct IReflector* reflector) const;
 
-	friend std::ostream& operator << (std::ostream& out, const Object& obj);
-	friend std::istream& operator >> (std::istream& in, Object& obj);
+	friend WriteStream& operator << (WriteStream& out, const Object& obj);
+	friend ReadStream& operator >> (ReadStream& in, Object& obj);
 
 protected:
-	virtual void PostSerialize(std::ostream& out, int32 version) const;
-	virtual void PreSerialize(std::ostream& out, int32 version) const;
-	virtual void InternalSerialize(std::ostream& out, int32 version) const;
+	virtual void PostSerialize(WriteStream& out, int32 version) const;
+	virtual void PreSerialize(WriteStream& out, int32 version) const;
+	virtual void InternalSerialize(WriteStream& out, int32 version) const;
 
-	virtual void InternalDeserialize(std::istream& in, int32 version);
-	virtual void PostDeserialize(std::istream& in, int32 version);
-	virtual void PreDeserialize(std::istream& in, int32 version);
+	virtual void InternalDeserialize(ReadStream& in, int32 version);
+	virtual void PostDeserialize(ReadStream& in, int32 version);
+	virtual void PreDeserialize(ReadStream& in, int32 version);
 
 	virtual void InternalReflect(struct IReflector* reflector) const;
 };
@@ -44,15 +44,15 @@ DECL_VARIANT(Object)
 #endif
 
 #ifndef SERIALIZEABLE
-#define SERIALIZEABLE(type) virtual void InternalDeserialize(std::istream& in, int32 version) override; \
-	virtual void InternalSerialize(std::ostream& out, int32 version) const override; \
-	friend std::ostream& operator << (std::ostream& out, const type& obj); \
-	friend std::istream& operator >> (std::istream& in, type& obj);
+#define SERIALIZEABLE(type) virtual void InternalDeserialize(ReadStream& in, int32 version) override; \
+	virtual void InternalSerialize(WriteStream& out, int32 version) const override; \
+	friend WriteStream& operator << (WriteStream& out, const type& obj); \
+	friend ReadStream& operator >> (ReadStream& in, type& obj);
 #endif
 
 #ifndef START_SERIAL
-#define START_SERIAL(type) std::ostream& operator <<(std::ostream& out, const type& obj) { obj.Serialize(out, 0); return out; } \
-	void type::InternalSerialize(std::ostream& out, int32 version) const { out << VariantTypeId<type>().GetCustomType() << ' ';
+#define START_SERIAL(type) WriteStream& operator <<(WriteStream& out, const type& obj) { obj.Serialize(out, 0); return out; } \
+	void type::InternalSerialize(WriteStream& out, int32 version) const { out << VariantTypeId<type>().GetCustomType() << ' ';
 #endif
 
 #ifndef PARENT_SERIAL
@@ -68,8 +68,8 @@ DECL_VARIANT(Object)
 #endif
 
 #ifndef START_DESERIAL
-#define START_DESERIAL(type) std::istream& operator >> (std::istream& in, type& obj) { obj.Deserialize(in, 0); return in; } \
-	void type::InternalDeserialize(std::istream& in, int32 version) { int64 whattoDo; in >> whattoDo;
+#define START_DESERIAL(type) ReadStream& operator >> (ReadStream& in, type& obj) { obj.Deserialize(in, 0); return in; } \
+	void type::InternalDeserialize(ReadStream& in, int32 version) { int64 whattoDo; in >> whattoDo;
 #endif
 
 #ifndef PARENT_DESERIAL

@@ -250,7 +250,7 @@ bool Vector4::operator!=(const Vector4& other) const {
 }
 
 int32 Vector4::ToBuffer(f32* out_buffer) const {
-	out_buffer = new f32[4]{ data[0], data[1], data[2], data[3] };
+	memcpy(out_buffer, &data[0], sizeof(f32) * 4);
 	return 4;
 }
 

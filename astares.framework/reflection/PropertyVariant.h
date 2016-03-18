@@ -65,8 +65,8 @@ public:
 
 	string GetPropertyName() const { return propName; }
 
-	friend std::ostream& operator << (std::ostream& out, const PropertyVariant& variant);
-	friend std::istream& operator >> (std::istream& in, PropertyVariant& variant);
+	friend WriteStream& operator << (WriteStream& out, const PropertyVariant& variant);
+	friend ReadStream& operator >> (ReadStream& in, PropertyVariant& variant);
 };
 
 

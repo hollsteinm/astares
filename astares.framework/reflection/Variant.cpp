@@ -36,13 +36,13 @@ Variant::Variant(const Variant& other)
 
 
 
-std::ostream& operator << (std::ostream& out, const VariantType& val)
+WriteStream& operator << (WriteStream& out, const VariantType& val)
 {
 	out << (int32)val;
 	return out;
 }
 
-std::istream& operator >> (std::istream& in, VariantType& val)
+ReadStream& operator >> (ReadStream& in, VariantType& val)
 {
 	int32 o;
 	in >> o;
@@ -50,7 +50,7 @@ std::istream& operator >> (std::istream& in, VariantType& val)
 	return in;
 }
 
-std::ostream& operator << (std::ostream& out, const Variant& variant)
+WriteStream& operator << (WriteStream& out, const Variant& variant)
 {
 	return out << variant.type				  << ' '
 		<< variant.customType				  << ' '
@@ -59,7 +59,7 @@ std::ostream& operator << (std::ostream& out, const Variant& variant)
 		<< StringHelper::Encode(variant.buffer.str());
 }
 
-std::istream& operator >> (std::istream& in, Variant& variant)
+ReadStream& operator >> (ReadStream& in, Variant& variant)
 {
 	string inboundData;
 	in >> variant.type

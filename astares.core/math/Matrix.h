@@ -5,13 +5,13 @@
 #include "Matrix3.h"
 #include "Matrix4.h"
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Matrix2& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Matrix2& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Matrix2& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Matrix2& vec);
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Matrix3& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Matrix3& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Matrix3& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Matrix3& vec);
 
-ASTARESCORE_API std::ostream& operator<<(std::ostream& out, Matrix4& vec);
-ASTARESCORE_API std::istream& operator>>(std::istream& in, Matrix4& vec);
+ASTARESCORE_API WriteStream& operator<<(WriteStream& out, Matrix4& vec);
+ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Matrix4& vec);
 
 #endif

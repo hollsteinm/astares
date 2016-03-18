@@ -97,7 +97,7 @@ string File::SafeWriteDir(){
 	}
 }
 
-std::istream& File::ReadStream(string path, FileMode mode) {
+ReadStream& File::ReadStream(string path, FileMode mode) {
 	switch (mode._value)
 	{
 	case FileMode::Binary:
@@ -109,7 +109,7 @@ std::istream& File::ReadStream(string path, FileMode mode) {
 	}
 }
 
-std::ostream& File::WriteStream(string path, FileMode mode) {
+WriteStream& File::WriteStream(string path, FileMode mode) {
 	switch (mode._value)
 	{
 	case FileMode::Binary:

@@ -41,8 +41,8 @@ enum class VariantType
 };
 
 
-std::ostream& operator << (std::ostream& out, const VariantType& val);
-std::istream& operator >> (std::istream& in, VariantType& val);
+WriteStream& operator << (WriteStream& out, const VariantType& val);
+ReadStream& operator >> (ReadStream& in, VariantType& val);
 
 template<typename T>
 struct VariantTypeId
@@ -192,8 +192,8 @@ public:
 	const int64 GetCustomType() const;
 	const string Value() const;
 
-	friend std::ostream& operator << (std::ostream& out, const Variant& variant);
-	friend std::istream& operator >> (std::istream& in, Variant& variant);
+	friend WriteStream& operator << (WriteStream& out, const Variant& variant);
+	friend ReadStream& operator >> (ReadStream& in, Variant& variant);
 };
 
 #endif

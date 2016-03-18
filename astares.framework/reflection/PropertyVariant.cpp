@@ -17,7 +17,7 @@ PropertyVariant::PropertyVariant(const PropertyVariant& other)
 	propName = other.propName;
 }
 
-std::istream& operator >> (std::istream& in, PropertyVariant& variant)
+ReadStream& operator >> (ReadStream& in, PropertyVariant& variant)
 {
 	string encodedData;
 	in >> variant.type >> variant.customType >> variant.size >> variant.name >> encodedData >> variant.propName;
@@ -27,7 +27,7 @@ std::istream& operator >> (std::istream& in, PropertyVariant& variant)
 	return in;
 }
 
-std::ostream& operator << (std::ostream& out, const PropertyVariant& variant)
+WriteStream& operator << (WriteStream& out, const PropertyVariant& variant)
 {
 	return out << variant.type << ' '
 		<< variant.customType << ' '
