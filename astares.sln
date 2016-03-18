@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares", "astares\astares.vcxproj", "{79287995-740E-405E-BA64-539DCD9F64C9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.game", "astares.game\astares.game.vcxproj", "{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.core", "astares.core\astares.core.vcxproj", "{F80942B0-EE2C-4BA2-838C-8BB4094CD262}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.framework", "astares.framework\astares.framework.vcxproj", "{70493F2F-C34C-466B-980E-7B2406ADACA0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.core.test", "astares.core.test\astares.core.test.vcxproj", "{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +19,30 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Debug|Win32.Build.0 = Debug|Win32
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Debug|x64.ActiveCfg = Debug|x64
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Debug|x64.Build.0 = Debug|x64
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Release|Win32.ActiveCfg = Release|Win32
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Release|Win32.Build.0 = Release|Win32
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Release|x64.ActiveCfg = Release|x64
-		{79287995-740E-405E-BA64-539DCD9F64C9}.Release|x64.Build.0 = Release|x64
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Debug|Win32.Build.0 = Debug|Win32
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Debug|x64.ActiveCfg = Debug|Win32
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Release|Win32.ActiveCfg = Release|Win32
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Release|Win32.Build.0 = Release|Win32
+		{A5AC13DD-43E9-4E05-B58C-192D6F6BD6DF}.Release|x64.ActiveCfg = Release|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Debug|Win32.Build.0 = Debug|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Debug|x64.ActiveCfg = Debug|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Release|Win32.ActiveCfg = Release|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Release|Win32.Build.0 = Release|Win32
+		{F80942B0-EE2C-4BA2-838C-8BB4094CD262}.Release|x64.ActiveCfg = Release|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Debug|Win32.Build.0 = Debug|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Debug|x64.ActiveCfg = Debug|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Release|Win32.ActiveCfg = Release|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Release|Win32.Build.0 = Release|Win32
+		{70493F2F-C34C-466B-980E-7B2406ADACA0}.Release|x64.ActiveCfg = Release|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Debug|Win32.Build.0 = Debug|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Debug|x64.ActiveCfg = Debug|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|Win32.ActiveCfg = Release|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|Win32.Build.0 = Release|Win32
+		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

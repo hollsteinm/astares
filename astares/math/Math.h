@@ -1,16 +1,16 @@
 #ifndef MATH_H
 #define MATH_H
 
-
+#include "../core/Types.h"
 
 struct Math {
-	static const float Epsilon;
+	static const f32 Epsilon;
 
-	static bool LargerThanAlmostZero(float value);
+	static bool LargerThanAlmostZero(f32 value);
 
-	static float SquareRoot(float value);
-	static float InverseSquareRoot(float value);
-	static void Correct(float& value);
+	static f32 SquareRoot(f32 value);
+	static f32 InverseSquareRoot(f32 value);
+	static void Correct(f32& value);
 };
 
 namespace math {

@@ -5,46 +5,46 @@
 
 
 struct Quaternion {
-	float w;
-	float x;
-	float y;
-	float z;
+	f32 w;
+	f32 x;
+	f32 y;
+	f32 z;
 
 	Quaternion();
-	Quaternion(const Vector3& axis, float angle);
-	Quaternion(const float x, const float y, const float z, const float w);
+	Quaternion(const Vector3& axis, f32 angle);
+	Quaternion(const f32 x, const f32 y, const f32 z, const f32 w);
 
-	Quaternion& Rotate(const Vector3& axis, float angle);
+	Quaternion& Rotate(const Vector3& axis, f32 angle);
 
 	Quaternion GetNormalized() const;
 
-	float GetDot(const Quaternion& other) const;
-	float GetLength() const;
-	float GetLengthSquared() const;
+	f32 GetDot(const Quaternion& other) const;
+	f32 GetLength() const;
+	f32 GetLengthSquared() const;
 
 	Quaternion& Normalize();
 
-	float GetDistance(const Quaternion& other) const;
-	float GetDistanceSquared(const Quaternion& other) const;
+	f32 GetDistance(const Quaternion& other) const;
+	f32 GetDistanceSquared(const Quaternion& other) const;
 
 	Quaternion operator+(const Quaternion& other) const;
 	Quaternion operator-(const Quaternion& other) const;
-	Quaternion operator*(float a) const;
-	Quaternion operator/(float b) const;
+	Quaternion operator*(f32 a) const;
+	Quaternion operator/(f32 b) const;
 
 	Quaternion& operator+=(const Quaternion& other);
 	Quaternion& operator-=(const Quaternion& other);
-	Quaternion& operator*=(float a);
-	Quaternion& operator/=(float b);
+	Quaternion& operator*=(f32 a);
+	Quaternion& operator/=(f32 b);
 
 	bool operator==(const Quaternion& other) const;
 	bool operator!=(const Quaternion& other) const;
 
-	float& operator[](int index);
-	const float& operator[](int index) const;
+	f32& operator[](int32 index);
+	const f32& operator[](int32 index) const;
 
-	int ToBuffer(float out_buffer[4]) const;
-	const String ToString() const;
+	int32 ToBuffer(f32 out_buffer[4]) const;
+	const std::string ToString() const;
 };
 
 

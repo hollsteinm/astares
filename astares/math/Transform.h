@@ -1,7 +1,6 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
-#include "../reflection/Reflection.h"
 #include "Matrix.h"
 #include "Vector.h"
 
@@ -9,10 +8,11 @@ static const Vector3 Up = Vector3(0.0f, 1.0f, 0.0f);
 static const Vector3 Right = Vector3(1.0f, 0.0f, 0.0f);
 static const Vector3 Forward = Vector3(0.0f, 0.0f, 1.0f);
 
-DECL_CLASS_BASE(Transform) {
-		DECL_BODY(Transform)
-
+class Transform {
 public:
+	Transform();
+	~Transform();
+
 	Transform& SnapTo(const Vector3& position, const Vector3& rotation, const Vector3& scale);
 
 	const Vector3 GetUp() const;
@@ -45,8 +45,7 @@ protected:
 	Vector3 Position;
 	Vector3 Rotation;
 	Vector3 Scale;
-
-	ObjectPtr<Transform> Parent;
+	std::shared_ptr<Transform> Parent;
 
 };
 

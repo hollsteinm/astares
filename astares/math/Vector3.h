@@ -1,17 +1,17 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
-#include "../core/String.h"
+#include "../core/Types.h"
 
 
 struct Vector2;
 
 struct Vector3 {
 	~Vector3();
-	Vector3(float x, float y, float z);
+	Vector3(f32 x, f32 y, f32 z);
 	Vector3();
-	Vector3(float x);
-	Vector3(float x, float y);
+	Vector3(f32 x);
+	Vector3(f32 x, f32 y);
 	Vector3(const Vector3& other);
 	Vector3(const Vector2& other);
 
@@ -20,17 +20,17 @@ struct Vector3 {
 	Vector3 GetInverse() const;
 	Vector3 GetOrthonormalBasis(Vector3& b, Vector3& c) const;
 
-	float GetDot(const Vector3& other) const;
-	float GetLength() const;
-	float GetLengthSquared() const;
+	f32 GetDot(const Vector3& other) const;
+	f32 GetLength() const;
+	f32 GetLengthSquared() const;
 
 	Vector3& Cross(const Vector3& other);
 	Vector3& Normalize();
 	Vector3& Invert();
 	Vector3& OrthonormalBasis(Vector3& b, Vector3& c);
 
-	float GetDistance(const Vector3& other) const;
-	float GetDistanceSquared(const Vector3& other) const;
+	f32 GetDistance(const Vector3& other) const;
+	f32 GetDistanceSquared(const Vector3& other) const;
 
 	Vector3 operator+(const Vector2& other) const;
 	Vector3 operator-(const Vector2& other) const;
@@ -41,30 +41,30 @@ struct Vector3 {
 	Vector3& operator+=(const Vector3& other);
 	Vector3& operator-=(const Vector3& other);
 
-	Vector3 operator+(const float& other) const;
-	Vector3 operator-(const float& other) const;
-	Vector3 operator*(const float& a) const;
-	Vector3 operator/(const float& a) const;
-	Vector3& operator+=(const float& other);
-	Vector3& operator-=(const float& other);
-	Vector3& operator*=(const float& a);
-	Vector3& operator/=(const float& a);
+	Vector3 operator+(const f32& other) const;
+	Vector3 operator-(const f32& other) const;
+	Vector3 operator*(const f32& a) const;
+	Vector3 operator/(const f32& a) const;
+	Vector3& operator+=(const f32& other);
+	Vector3& operator-=(const f32& other);
+	Vector3& operator*=(const f32& a);
+	Vector3& operator/=(const f32& a);
 
-	friend Vector3 operator+(const float& lhs, const Vector3& rhs);
-	friend Vector3 operator-(const float& lhs, const Vector3& rhs);
-	friend Vector3 operator*(const float& lhs, const Vector3& rhs);
-	friend Vector3 operator/(const float& lhs, const Vector3& rhs);
+	friend Vector3 operator+(const f32& lhs, const Vector3& rhs);
+	friend Vector3 operator-(const f32& lhs, const Vector3& rhs);
+	friend Vector3 operator*(const f32& lhs, const Vector3& rhs);
+	friend Vector3 operator/(const f32& lhs, const Vector3& rhs);
 
 	bool operator==(const Vector3& other) const;
 	bool operator!=(const Vector3& other) const;
 
-	float& operator[](int index);
-	const float& operator[](int index) const;
+	f32& operator[](int32 index);
+	const f32& operator[](int32 index) const;
 
-	int ToBuffer(float out_buffer[3]) const;
-	const String ToString() const;
+	int32 ToBuffer(f32 out_buffer[3]) const;
+	const std::string ToString() const;
 
-	float data[3];
+	f32 data[3];
 
 };
 

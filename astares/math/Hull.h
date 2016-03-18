@@ -2,12 +2,12 @@
 #define HULL_H
 
 #include "Vector3.h"
-#include "../core/Array.h"
+#include <vector>
 
 struct Hull {
-	Hull(const Array<Vector3>& points, int count);
+	Hull(const std::vector<Vector3>& points, int32 count);
 
-	Array<Vector3> Points;
+	std::vector<Vector3> Points;
 };
 
 

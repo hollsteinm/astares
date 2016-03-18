@@ -1,37 +1,38 @@
 #include "Math.h"
 
 #include <cmath>
+#include "../core/Types.h"
 
-const float Math::Epsilon = 0.00000001f;
+const f32 Math::Epsilon = 0.00000001f;
 
 //We all know where this came from.
-float Math::InverseSquareRoot(float value) {
+f32 Math::InverseSquareRoot(f32 value) {
 	static_assert(sizeof(value) == 4, "not 32-bit");
 
 	long i;
-	float x2, y;
-	const float threehalfs = 1.5f;
+	f32 x2, y;
+	const f32 threehalfs = 1.5f;
 
 	x2 = value * 0.5f;
 	y = value;
 	i = *(long *)&y;
 	i = 0x5f3759df - (i >> 1);
-	y = *(float *)&i;
+	y = *(f32 *)&i;
 	y = y * (threehalfs - (x2 * y * y));  
 
 	return y;
 }
 
-float Math::SquareRoot(float value) {
-	return (float)math::dsqrt((double)value);
+f32 Math::SquareRoot(f32 value) {
+	return (f32)math::dsqrt((f64)value);
 }
 
-bool Math::LargerThanAlmostZero(float value) {
+bool Math::LargerThanAlmostZero(f32 value) {
 	value = std::fabsf(value);
 	return value > Epsilon;
 }
 
-void Math::Correct(float& value) {
+void Math::Correct(f32& value) {
 	if (!LargerThanAlmostZero(value)) {
 		value = 0.0f;
 	}

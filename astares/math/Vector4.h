@@ -1,19 +1,18 @@
 #ifndef VECTOR4_H
 #define VECTOR4_H
 
-#include "../core/String.h"
-
+#include "../core/Types.h"
 
 struct Vector2;
 struct Vector3;
 
 struct Vector4 {
 	~Vector4();
-	Vector4(float x, float y, float z, float w);
+	Vector4(f32 x, f32 y, f32 z, f32 w);
 	Vector4();
-	Vector4(float x);
-	Vector4(float x, float y);
-	Vector4(float x, float y, float w);
+	Vector4(f32 x);
+	Vector4(f32 x, f32 y);
+	Vector4(f32 x, f32 y, f32 w);
 	Vector4(const Vector4& other);
 	Vector4(const Vector3& other);
 	Vector4(const Vector2& other);
@@ -21,15 +20,15 @@ struct Vector4 {
 	Vector4 GetNormalized() const;
 	Vector4 GetInverse() const;
 
-	float GetDot(const Vector4& other) const;
-	float GetLength() const;
-	float GetLengthSquared() const;
+	f32 GetDot(const Vector4& other) const;
+	f32 GetLength() const;
+	f32 GetLengthSquared() const;
 
 	Vector4& Normalize();
 	Vector4& Invert();
 
-	float GetDistance(const Vector4& other) const;
-	float GetDistanceSquared(const Vector4& other) const;
+	f32 GetDistance(const Vector4& other) const;
+	f32 GetDistanceSquared(const Vector4& other) const;
 
 	Vector4 operator+(const Vector2& other) const;
 	Vector4 operator-(const Vector2& other) const;
@@ -44,30 +43,30 @@ struct Vector4 {
 	Vector4& operator+=(const Vector4& other);
 	Vector4& operator-=(const Vector4& other);
 
-	Vector4 operator+(const float& other) const;
-	Vector4 operator-(const float& other) const;
-	Vector4 operator*(const float& a) const;
-	Vector4 operator/(const float& a) const;
-	Vector4& operator+=(const float& other);
-	Vector4& operator-=(const float& other);
-	Vector4& operator*=(const float& a);
-	Vector4& operator/=(const float& a);
+	Vector4 operator+(const f32& other) const;
+	Vector4 operator-(const f32& other) const;
+	Vector4 operator*(const f32& a) const;
+	Vector4 operator/(const f32& a) const;
+	Vector4& operator+=(const f32& other);
+	Vector4& operator-=(const f32& other);
+	Vector4& operator*=(const f32& a);
+	Vector4& operator/=(const f32& a);
 
-	friend Vector4 operator+(const float& lhs, const Vector4& rhs);
-	friend Vector4 operator-(const float& lhs, const Vector4& rhs);
-	friend Vector4 operator*(const float& lhs, const Vector4& rhs);
-	friend Vector4 operator/(const float& lhs, const Vector4& rhs);
+	friend Vector4 operator+(const f32& lhs, const Vector4& rhs);
+	friend Vector4 operator-(const f32& lhs, const Vector4& rhs);
+	friend Vector4 operator*(const f32& lhs, const Vector4& rhs);
+	friend Vector4 operator/(const f32& lhs, const Vector4& rhs);
 
 	bool operator==(const Vector4& other) const;
 	bool operator!=(const Vector4& other) const;
 
-	float& operator[](int index);
-	const float& operator[](int index) const;
+	f32& operator[](int32 index);
+	const f32& operator[](int32 index) const;
 
-	int ToBuffer(float out_buffer[4]) const;
-	const String ToString() const;
+	int32 ToBuffer(f32 out_buffer[4]) const;
+	const std::string ToString() const;
 
-	float data[4];
+	f32 data[4];
 };
 
 

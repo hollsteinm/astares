@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Audio">
+      <UniqueIdentifier>{81bfac06-d576-44d1-9b8c-9bcb25c931fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Network">
+      <UniqueIdentifier>{a0b9d6eb-0645-45fe-8055-5957870a135f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{5a131871-3545-4277-b628-a263790bfef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{083e42fc-5b86-4184-b122-4b56f6c6f4de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Messaging">
+      <UniqueIdentifier>{2b79a6ac-e8e1-4d5a-ac6c-329797560634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Serialization">
+      <UniqueIdentifier>{295d10a2-8e65-412a-b5fe-aad3aef6a099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{5b2b7668-0ff3-4790-97a4-119983d09317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Reflection">
+      <UniqueIdentifier>{10623b74-c0d1-410a-8fba-e57b3673a6fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{2a14df20-34d7-49cd-9391-be248d4594d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Audio">
+      <UniqueIdentifier>{e9ec8859-dfb7-40ec-89ff-4b843350d330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{0153480c-1fd8-470a-ba12-c24c752cf01f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{0a2d3fd7-e14b-4156-9746-d61a642a7d9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{50e4e3a4-0fa0-486a-98b7-31c50344ccb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Messaging">
+      <UniqueIdentifier>{12b6e427-2c12-4f2f-ad86-ed3200ad8ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Serialization">
+      <UniqueIdentifier>{19e0a5b5-2322-4474-8d08-70323a3a608d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Reflection">
+      <UniqueIdentifier>{268f4796-dc9b-4926-bd77-ac5a9da293fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{6aeac48b-0890-4a62-96a8-fc7a48c89b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{0eca5713-aa85-4837-9db5-1c8c34a38170}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="astares.framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\AudioAsset.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\IAudioSystem.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\SDLWAVAudioSystem.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\SoundType.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Object.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\ObjectFactory.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IReflectionInfo.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IReflector.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\PropertyVariant.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Reflection.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Reflector.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Variant.h">
+      <Filter>Header Files\Reflection</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="astares.framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\AudioAsset.cpp">
+      <Filter>Source Files\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\SDLWAVAudioSystem.cpp">
+      <Filter>Source Files\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\ObjectFactory.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\PropertyVariant.cpp">
+      <Filter>Source Files\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\Reflector.cpp">
+      <Filter>Source Files\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\Variant.cpp">
+      <Filter>Source Files\Reflection</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

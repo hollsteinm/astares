@@ -5,12 +5,12 @@
 
 
 struct Sphere {
-	Sphere(const Vector3& center, const float& radius);
+	Sphere(const Vector3& center, const f32& radius);
 	Sphere(const Vector3& center);
 	Sphere();
 
 	Vector3 Center;
-	float Radius;
+	f32 Radius;
 };
 
 

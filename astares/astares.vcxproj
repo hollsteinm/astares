@@ -25,7 +25,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SDL2)\include\;$(SDL_MIXER)\include\;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
-    <LibraryPath>$(SDL_MIXER)\lib\x86\;$(SDL2)\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SDL2)\include;$(SDL_MIXER)\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(SDL2)\lib\x86\;$(SDL_MIXER)\lib\x86\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <ExecutablePath>$(SDL2)\lib\x86\;$(SDL_MIXER)\lib\x86\;$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH);</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -189,46 +189,30 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\AudioAsset.h" />
-    <ClInclude Include="audio\AudioMessage.h" />
     <ClInclude Include="audio\IAudioSystem.h" />
-    <ClInclude Include="audio\PlayAudioHandler.h" />
-    <ClInclude Include="audio\PlayAudioMessage.h" />
     <ClInclude Include="audio\SDLWAVAudioSystem.h" />
-    <ClInclude Include="audio\test\AudioTests.h" />
-    <ClInclude Include="core\Array.h" />
-    <ClInclude Include="core\Asset.h" />
-    <ClInclude Include="core\AssetManager.h" />
+    <ClInclude Include="audio\SoundType.h" />
     <ClInclude Include="core\Config.h" />
+    <ClInclude Include="core\Enum.h" />
+    <ClInclude Include="core\Export.h" />
     <ClInclude Include="core\File.h" />
     <ClInclude Include="core\ISubsystem.h" />
-    <ClInclude Include="core\Object.h" />
-    <ClInclude Include="core\ObjectFactory.h" />
-    <ClInclude Include="core\Pointer.h" />
-    <ClInclude Include="core\String.h" />
     <ClInclude Include="core\System.h" />
-    <ClInclude Include="core\test\CoreTest.h" />
+    <ClInclude Include="core\Types.h" />
     <ClInclude Include="gameplay\GameObject.h" />
     <ClInclude Include="gameplay\GameComponent.h" />
     <ClInclude Include="gameplay\Player.h" />
     <ClInclude Include="gameplay\TransformComponent.h" />
-    <ClInclude Include="graphics\GraphicsAsset.h" />
     <ClInclude Include="graphics\IndexBuffer.h" />
-    <ClInclude Include="graphics\IRenderable.h" />
     <ClInclude Include="graphics\IRenderSystem.h" />
-    <ClInclude Include="graphics\Material.h" />
-    <ClInclude Include="graphics\Model.h" />
     <ClInclude Include="graphics\SDLRenderSystem.h" />
-    <ClInclude Include="graphics\Shader.h" />
-    <ClInclude Include="graphics\Texture.h" />
     <ClInclude Include="graphics\VertexBuffer.h" />
     <ClInclude Include="input\IInputSystem.h" />
-    <ClInclude Include="input\KeyEventMessage.h" />
+    <ClInclude Include="input\KeyEvent.h" />
     <ClInclude Include="input\KeyState.h" />
     <ClInclude Include="input\SDLInputSystem.h" />
-    <ClInclude Include="input\test\InputTests.h" />
     <ClInclude Include="log\CommonLogger.h" />
     <ClInclude Include="log\ILogger.h" />
-    <ClInclude Include="log\test\LoggerTests.h" />
     <ClInclude Include="math\Box.h" />
     <ClInclude Include="math\Geometry.h" />
     <ClInclude Include="math\Hull.h" />
@@ -242,25 +226,24 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="math\Math.h" />
     <ClInclude Include="math\Plane.h" />
     <ClInclude Include="math\Sphere.h" />
-    <ClInclude Include="math\test\MatrixTests.h" />
     <ClInclude Include="math\Transform.h" />
     <ClInclude Include="math\Vector.h" />
     <ClInclude Include="math\Vector2.h" />
     <ClInclude Include="math\Vector3.h" />
     <ClInclude Include="math\Vector4.h" />
-    <ClInclude Include="messaging\AHandler.h" />
-    <ClInclude Include="messaging\IMessageHandler.h" />
     <ClInclude Include="messaging\Message.h" />
     <ClInclude Include="messaging\MessageHub.h" />
+    <ClInclude Include="messaging\Topic.h" />
     <ClInclude Include="network\Address.h" />
     <ClInclude Include="network\CoreSocket.h" />
     <ClInclude Include="network\ISocket.h" />
     <ClInclude Include="network\NetworkMessage.h" />
     <ClInclude Include="network\Packet.h" />
-    <ClInclude Include="network\test\SocketTest.h" />
     <ClInclude Include="network\UDPListener.h" />
     <ClInclude Include="network\UDPSender.h" />
     <ClInclude Include="network\UDPSocket.h" />
+    <ClInclude Include="object\Object.h" />
+    <ClInclude Include="object\ObjectFactory.h" />
     <ClInclude Include="physics\AnchoredSpringForceGenerator.h" />
     <ClInclude Include="physics\BaseForceGenerator.h" />
     <ClInclude Include="physics\BouyancyForceGenerator.h" />
@@ -272,57 +255,35 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="physics\IPhysicsTickable.h" />
     <ClInclude Include="physics\Particle.h" />
     <ClInclude Include="physics\SpringForceGenerator.h" />
-    <ClInclude Include="reflection\Class.h" />
-    <ClInclude Include="reflection\IEnum.h" />
-    <ClInclude Include="reflection\IField.h" />
-    <ClInclude Include="reflection\ISerializer.h" />
-    <ClInclude Include="reflection\IType.h" />
-    <ClInclude Include="reflection\Meta.h" />
-    <ClInclude Include="reflection\MetaGraph.h" />
-    <ClInclude Include="reflection\Field.h" />
+    <ClInclude Include="reflection\IReflectionInfo.h" />
+    <ClInclude Include="reflection\IReflector.h" />
+    <ClInclude Include="reflection\PropertyVariant.h" />
     <ClInclude Include="reflection\Reflection.h" />
-    <ClInclude Include="reflection\Serialization.h" />
-    <ClInclude Include="reflection\test\SerializationTests.h" />
-    <ClInclude Include="reflection\Type.h" />
-    <ClInclude Include="reflection\TypeGraph.h" />
-    <ClInclude Include="reflection\Types.h" />
+    <ClInclude Include="reflection\Reflector.h" />
+    <ClInclude Include="reflection\Variant.h" />
+    <ClInclude Include="serialization\ArrayHelper.h" />
+    <ClInclude Include="serialization\IObjectSerializer.h" />
+    <ClInclude Include="serialization\JSONSerializer.h" />
+    <ClInclude Include="serialization\StringHelper.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="astares.cpp" />
     <ClCompile Include="audio\AudioAsset.cpp" />
-    <ClCompile Include="audio\AudioMessage.cpp" />
-    <ClCompile Include="audio\PlayAudioHandler.cpp" />
-    <ClCompile Include="audio\PlayAudioMessage.cpp" />
     <ClCompile Include="audio\SDLWAVAudioSystem.cpp" />
-    <ClCompile Include="audio\test\AudioTests.cpp" />
-    <ClCompile Include="core\Array.cpp" />
-    <ClCompile Include="core\Asset.cpp" />
-    <ClCompile Include="core\AssetManager.cpp" />
     <ClCompile Include="core\Config.cpp" />
     <ClCompile Include="core\File.cpp" />
-    <ClCompile Include="core\Object.cpp" />
-    <ClCompile Include="core\ObjectFactory.cpp" />
-    <ClCompile Include="core\String.cpp" />
     <ClCompile Include="core\System.cpp" />
-    <ClCompile Include="core\test\CoreTest.cpp" />
+    <ClCompile Include="core\Types.cpp" />
     <ClCompile Include="gameplay\GameObject.cpp" />
     <ClCompile Include="gameplay\GameComponent.cpp" />
     <ClCompile Include="gameplay\Player.cpp" />
     <ClCompile Include="gameplay\TransformComponent.cpp" />
-    <ClCompile Include="graphics\GraphicsAsset.cpp" />
     <ClCompile Include="graphics\IndexBuffer.cpp" />
-    <ClCompile Include="graphics\Material.cpp" />
-    <ClCompile Include="graphics\Model.cpp" />
-    <ClCompile Include="graphics\Shader.cpp" />
-    <ClCompile Include="graphics\Texture.cpp" />
     <ClCompile Include="graphics\VertexBuffer.cpp" />
-    <ClCompile Include="input\KeyEventMessage.cpp" />
+    <ClCompile Include="input\KeyEvent.cpp" />
     <ClCompile Include="input\SDLInputSystem.cpp" />
-    <ClCompile Include="input\test\InputTests.cpp" />
     <ClCompile Include="log\CommonLogger.cpp" />
-    <ClCompile Include="log\test\LoggerTests.cpp" />
     <ClCompile Include="math\Geometry.cpp" />
     <ClCompile Include="math\Matrix.cpp" />
     <ClCompile Include="math\Matrix2.cpp" />
@@ -333,7 +294,6 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="math\Ray2.cpp" />
     <ClCompile Include="math\Ray3.cpp" />
     <ClCompile Include="math\Math.cpp" />
-    <ClCompile Include="math\test\MatrixTests.cpp" />
     <ClCompile Include="math\Transform.cpp" />
     <ClCompile Include="math\Vector.cpp" />
     <ClCompile Include="math\Vector2.cpp" />
@@ -341,14 +301,16 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="math\Vector4.cpp" />
     <ClCompile Include="messaging\Message.cpp" />
     <ClCompile Include="messaging\MessageHub.cpp" />
+    <ClCompile Include="messaging\Topic.cpp" />
     <ClCompile Include="network\Address.cpp" />
     <ClCompile Include="network\NetworkMessage.cpp" />
     <ClCompile Include="network\Packet.cpp" />
-    <ClCompile Include="network\test\SocketTest.cpp" />
     <ClCompile Include="network\CoreSocket.cpp" />
     <ClCompile Include="network\UDPListener.cpp" />
     <ClCompile Include="network\UDPSender.cpp" />
     <ClCompile Include="network\UDPSocket.cpp" />
+    <ClCompile Include="object\Object.cpp" />
+    <ClCompile Include="object\ObjectFactory.cpp" />
     <ClCompile Include="physics\AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="physics\BaseForceGenerator.cpp" />
     <ClCompile Include="physics\BouyancyForceGenerator.cpp" />
@@ -358,13 +320,11 @@ copy /Y "$(SDL_MIXER)\lib\x64\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="physics\GravityForceGenerator.cpp" />
     <ClCompile Include="physics\Particle.cpp" />
     <ClCompile Include="physics\SpringForceGenerator.cpp" />
-    <ClCompile Include="reflection\Class.cpp" />
-    <ClCompile Include="reflection\IField.cpp" />
-    <ClCompile Include="reflection\Meta.cpp" />
-    <ClCompile Include="reflection\MetaGraph.cpp" />
-    <ClCompile Include="reflection\Serialization.cpp" />
-    <ClCompile Include="reflection\test\SerializationTests.cpp" />
-    <ClCompile Include="reflection\TypeGraph.cpp" />
+    <ClCompile Include="reflection\PropertyVariant.cpp" />
+    <ClCompile Include="reflection\Reflector.cpp" />
+    <ClCompile Include="reflection\Variant.cpp" />
+    <ClCompile Include="serialization\JSONSerializer.cpp" />
+    <ClCompile Include="serialization\StringHelper.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,8 +4,6 @@
 #include "File.h"
 #include <SDL.h>
 #include "../log/ILogger.h"
-
-#include "../reflection/Types.h"
 #include "../math/Matrix.h"
 #include "../math/Vector.h"
 #include "../math/Geometry.h"
@@ -14,12 +12,7 @@ static const char* CompanyId = "Company";
 static const char* ProjectId = "Project";
 static const char* NameId = "Name";
 
-System::System(ILogger* logger, const Array<ISubsystem*>& subSystems) {
-	GREEDY_LOAD_CORE_TYPES
-	GREEDY_LOAD_GEOMETRY_TYPES
-	GREEDY_LOAD_MATRIX_TYPES
-	GREEDY_LOAD_VECTOR_TYPES
-
+System::System(ILogger* logger, const std::vector<ISubsystem*>& subSystems) {
 	this->logger = logger;
 	Subsystems = subSystems;	
 	if (!SDL_Init(SDL_INIT_VIDEO ) == 0) {
@@ -38,8 +31,8 @@ System::~System() {
 }
 
 void System::Configure(Config& config) {
-	String companyName = "a";
-	String projectName = "b";
+	std::string companyName = "a";
+	std::string projectName = "b";
 
 	if (config.HasSection(ProjectId)) {
 		if (config.HasSetting(CompanyId)) {

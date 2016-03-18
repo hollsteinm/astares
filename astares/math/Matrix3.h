@@ -3,7 +3,7 @@
 
 #include "Vector.h"
 #include "Matrix2.h"
-#include "../core/String.h"
+#include <string>
 
 //col-major
 
@@ -31,40 +31,40 @@ struct Matrix3 {
 	Matrix3 GetAdjoint() const;
 	Matrix3 GetCofactorMatrix() const;
 
-	Matrix2 GetMinor(int col, int row) const;
+	Matrix2 GetMinor(int32 col, int32 row) const;
 
-	float GetDeterminant() const;
-	float GetCofactor(int col, int row);
+	f32 GetDeterminant() const;
+	f32 GetCofactor(int32 col, int32 row);
 
 	Matrix3 operator+(const Matrix3& other) const;
 	Matrix3 operator-(const Matrix3& other) const;
-	Matrix3 operator*(float a) const;
+	Matrix3 operator*(f32 a) const;
 	Matrix3 operator*(const Matrix3& other) const;
-	Matrix3 operator/(float b) const;
+	Matrix3 operator/(f32 b) const;
 
 	Matrix3& operator+=(const Matrix3& other);
 	Matrix3& operator-=(const Matrix3& other);
-	Matrix3& operator*=(float a);
-	Matrix3& operator/=(float b);
+	Matrix3& operator*=(f32 a);
+	Matrix3& operator/=(f32 b);
 
 	Vector3 operator*(const Vector3& vec) const;
 
 	friend Vector3& operator*=(Vector3& vec, const Matrix3& mat);
 
 	friend Vector3 operator*(const Vector3& vec, const Matrix3& mat);
-	friend Matrix3 operator*(const float f, const Matrix3& mat);
+	friend Matrix3 operator*(const f32 f, const Matrix3& mat);
 
 	bool operator==(const Matrix3& other) const;
 	bool operator!=(const Matrix3& other) const;
 
-	Vector3& operator[](int col);
-	const Vector3& operator[](int col) const;
+	Vector3& operator[](int32 col);
+	const Vector3& operator[](int32 col) const;
 
-	float& operator()(int row, int col);
-	const float& operator()(int row, int col) const;
+	f32& operator()(int32 row, int32 col);
+	const f32& operator()(int32 row, int32 col) const;
 
-	int ToBuffer(float Out[3][3], bool transpose = false);
-	const String ToString() const;
+	int32 ToBuffer(f32 Out[3][3], bool transpose = false);
+	const std::string ToString() const;
 
 	Vector3 m[3];
 

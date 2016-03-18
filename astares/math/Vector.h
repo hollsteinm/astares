@@ -5,9 +5,8 @@
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Quaternion.h"
-#include "../reflection/Reflection.h"
 
-#include <iostream>
+#include <iosfwd>
 
 
 std::ostream& operator<<(std::ostream& out, const Vector2& vec);
@@ -23,39 +22,32 @@ std::ostream& operator<<(std::ostream& out, const Quaternion& vec);
 std::istream& operator>>(std::istream& in, Quaternion& vec);
 
 
-TYPE(Vector2)
-TYPE(Vector3)
-TYPE(Vector4)
-TYPE(Quaternion)
-
-#define GREEDY_LOAD_VECTOR_TYPES TYPEOF(Vector2); TYPEOF(Vector3); TYPEOF(Vector4); TYPEOF(Quaternion);
-
-#ifndef X
-#define X 0
+#ifndef _X
+#define _X 0
 #endif
 
-#ifndef Y
-#define Y 1
+#ifndef _Y
+#define _Y 1
 #endif
 
-#ifndef Z
-#define Z 2
+#ifndef _Z
+#define _Z 2
 #endif
 
-#ifndef W
-#define W 3
+#ifndef _W
+#define _W 3
 #endif
 
-#ifndef UP
-#define UP Y
+#ifndef _UP
+#define _UP Y
 #endif
 
-#ifndef LEFT
-#define LEFT X
+#ifndef _LEFT
+#define _LEFT X
 #endif
 
-#ifndef FORWARD
-#define FORWARD Z
+#ifndef _FORWARD
+#define _FORWARD Z
 #endif
 
 #endif

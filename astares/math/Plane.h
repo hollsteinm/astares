@@ -5,11 +5,11 @@
 
 struct Plane {
 	~Plane();
-	Plane(const Vector2& normal, float offset);
-	Plane(const Vector3& normal, float offset);
+	Plane(const Vector2& normal, f32 offset);
+	Plane(const Vector3& normal, f32 offset);
 
 	Vector3 Normal;
-	float Offset;
+	f32 Offset;
 };
 
 #endif

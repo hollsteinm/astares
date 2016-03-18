@@ -13,113 +13,89 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Messaging">
-      <UniqueIdentifier>{e6b64b6e-4669-4be7-b62c-8b6e37469f62}</UniqueIdentifier>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{a35936ed-99fe-42ab-b330-caa8051c7d91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Reflection">
-      <UniqueIdentifier>{872e00df-1b62-47da-86cf-56a0557ecf9e}</UniqueIdentifier>
+    <Filter Include="Header Files\Framework">
+      <UniqueIdentifier>{8c22c70f-8ea1-4c52-b600-319964c87b6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Messaging">
-      <UniqueIdentifier>{0a6ce9d2-60c3-454f-a11e-969c270766b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Reflection">
-      <UniqueIdentifier>{83c559b1-7fa7-4f66-a926-b520d8b05d0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Network">
-      <UniqueIdentifier>{4daca03d-349d-4845-9756-ac7545211e17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network">
-      <UniqueIdentifier>{a9b5f876-7af7-43bf-93bb-55d5ab3a6eb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Physics">
-      <UniqueIdentifier>{58534b7a-7a76-4649-bf63-312746c9e5ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Physics">
-      <UniqueIdentifier>{b5b16035-b2fe-4416-9e30-b46882560fa6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math">
-      <UniqueIdentifier>{0bbf3896-b5fb-4e14-9f0c-436f63b31028}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math">
-      <UniqueIdentifier>{f515a029-7277-4f42-af17-c23187cc882a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Audio">
+    <Filter Include="Header Files\Framework\Audio">
       <UniqueIdentifier>{51b85177-75e0-44d9-8a8b-adddf21620d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Audio">
-      <UniqueIdentifier>{82f7cc1c-597e-4d7e-bfa6-669a4cf06132}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{2f90dc30-672d-4cac-9ff1-9c776b923fc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{51d0769b-79aa-4993-bf69-2afd8367e392}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{f0deff1a-79f7-4b7b-b0b3-11f7ec200fcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{6239d0db-3975-4faf-9673-85168ee9ba1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Gameplay">
+    <Filter Include="Header Files\Framework\Gameplay">
       <UniqueIdentifier>{5fff3040-882d-4a07-8840-6e76741abc5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Gameplay">
+    <Filter Include="Header Files\Framework\Graphics">
+      <UniqueIdentifier>{f0deff1a-79f7-4b7b-b0b3-11f7ec200fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Input">
+      <UniqueIdentifier>{2f90dc30-672d-4cac-9ff1-9c776b923fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Log">
+      <UniqueIdentifier>{d0505e0a-ffa5-43a7-aaa2-c0d66e0a2f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Math">
+      <UniqueIdentifier>{0bbf3896-b5fb-4e14-9f0c-436f63b31028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Messaging">
+      <UniqueIdentifier>{e6b64b6e-4669-4be7-b62c-8b6e37469f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Network">
+      <UniqueIdentifier>{4daca03d-349d-4845-9756-ac7545211e17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Physics">
+      <UniqueIdentifier>{58534b7a-7a76-4649-bf63-312746c9e5ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Reflection">
+      <UniqueIdentifier>{872e00df-1b62-47da-86cf-56a0557ecf9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Framework\Serialization">
+      <UniqueIdentifier>{9f75abd9-613c-4e4d-a994-e408bbc6f6c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{184d500a-96e1-4a97-b488-216a9ae98db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Audio">
+      <UniqueIdentifier>{82f7cc1c-597e-4d7e-bfa6-669a4cf06132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Gameplay">
       <UniqueIdentifier>{abe6029d-8abf-4b14-b670-52786d1104cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Graphics">
+      <UniqueIdentifier>{6239d0db-3975-4faf-9673-85168ee9ba1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Input">
+      <UniqueIdentifier>{51d0769b-79aa-4993-bf69-2afd8367e392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Log">
+      <UniqueIdentifier>{a941087e-7475-4939-b360-41aed1695e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Math">
+      <UniqueIdentifier>{f515a029-7277-4f42-af17-c23187cc882a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Messaging">
+      <UniqueIdentifier>{0a6ce9d2-60c3-454f-a11e-969c270766b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Network">
+      <UniqueIdentifier>{a9b5f876-7af7-43bf-93bb-55d5ab3a6eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Physics">
+      <UniqueIdentifier>{b5b16035-b2fe-4416-9e30-b46882560fa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Reflection">
+      <UniqueIdentifier>{83c559b1-7fa7-4f66-a926-b520d8b05d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Serialization">
+      <UniqueIdentifier>{a22e55e9-1c7c-433c-a43a-e3e632d7630c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{72b5d953-e669-4fc6-bb27-2fe54d74d544}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{093792c7-eb4d-49a6-a245-4e7a05e11a63}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{6984bdc1-f6ed-41bc-861b-e82054003ca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Log">
-      <UniqueIdentifier>{d0505e0a-ffa5-43a7-aaa2-c0d66e0a2f50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Log">
-      <UniqueIdentifier>{a941087e-7475-4939-b360-41aed1695e7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math\Test">
-      <UniqueIdentifier>{ff77a950-a5fb-4c9a-a347-f39cc59ea9df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math\Test">
-      <UniqueIdentifier>{bcbfe466-0710-4583-b446-8d044c5c5ce8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Core\Test">
-      <UniqueIdentifier>{56bed3b3-6631-4d02-883a-1ddb74e602c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\Test">
-      <UniqueIdentifier>{9adcf707-859f-43c9-adc5-335b47f29f1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Network\Test">
-      <UniqueIdentifier>{2b7100f5-18cc-44a1-843e-b4b46512723b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Network\Test">
-      <UniqueIdentifier>{4d1f67a3-a264-40fc-88f9-caabaae52a62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Reflection\Test">
-      <UniqueIdentifier>{094e6fc8-876c-46bf-988f-699184a584ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Reflection\Test">
-      <UniqueIdentifier>{19788f2c-1c5e-45d9-a022-a2f9d85fc05b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Log\Test">
-      <UniqueIdentifier>{4d6372dc-4c71-4e6d-8ff3-9b8095feb62d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Log\Test">
-      <UniqueIdentifier>{f7fdc2ae-5ce6-4140-9c56-e445a135315c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Audio\Test">
-      <UniqueIdentifier>{61c4a3ee-d34c-43b3-8351-cc73cd3ba8e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Audio\Test">
-      <UniqueIdentifier>{52b3243b-04bf-49c2-b998-a17d19210e14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Input\Test">
-      <UniqueIdentifier>{6fd9a35f-d666-4d11-bc2a-130867ba8c88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input\Test">
-      <UniqueIdentifier>{63e0fe51-e7f5-4157-a779-4e6ce9f68025}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,214 +109,145 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="messaging\MessageHub.h">
-      <Filter>Header Files\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="messaging\IMessageHandler.h">
-      <Filter>Header Files\Messaging</Filter>
-    </ClInclude>
-    <ClInclude Include="messaging\AHandler.h">
-      <Filter>Header Files\Messaging</Filter>
+      <Filter>Header Files\Framework\Messaging</Filter>
     </ClInclude>
     <ClInclude Include="messaging\Message.h">
-      <Filter>Header Files\Messaging</Filter>
+      <Filter>Header Files\Framework\Messaging</Filter>
     </ClInclude>
     <ClInclude Include="math\Math.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector2.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector3.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Plane.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Ray3.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Ray2.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Matrix3.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Matrix4.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector4.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="gameplay\GameObject.h">
-      <Filter>Header Files\Gameplay</Filter>
+      <Filter>Header Files\Framework\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="gameplay\GameComponent.h">
-      <Filter>Header Files\Gameplay</Filter>
+      <Filter>Header Files\Framework\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="math\Vector.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Array.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Pointer.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Object.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\ObjectFactory.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Geometry.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Matrix.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Matrix2.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\test\MatrixTests.h">
-      <Filter>Header Files\Math\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="core\test\CoreTest.h">
-      <Filter>Header Files\Core\Test</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Transform.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Quaternion.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="gameplay\TransformComponent.h">
-      <Filter>Header Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Asset.h">
-      <Filter>Header Files\Core</Filter>
+      <Filter>Header Files\Framework\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="graphics\VertexBuffer.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\IndexBuffer.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="network\ISocket.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="network\test\SocketTest.h">
-      <Filter>Header Files\Network\Test</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\Address.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\UDPSocket.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\CoreSocket.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\Packet.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\UDPListener.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\NetworkMessage.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="network\UDPSender.h">
-      <Filter>Header Files\Network</Filter>
+      <Filter>Header Files\Framework\Network</Filter>
     </ClInclude>
     <ClInclude Include="log\ILogger.h">
-      <Filter>Header Files\Log</Filter>
+      <Filter>Header Files\Framework\Log</Filter>
     </ClInclude>
     <ClInclude Include="log\CommonLogger.h">
-      <Filter>Header Files\Log</Filter>
+      <Filter>Header Files\Framework\Log</Filter>
     </ClInclude>
     <ClInclude Include="math\Box.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Sphere.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="math\Hull.h">
-      <Filter>Header Files\Math</Filter>
+      <Filter>Header Files\Framework\Math</Filter>
     </ClInclude>
     <ClInclude Include="physics\Particle.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\IPhysicsTickable.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\IForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\GravityForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\DragForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\SpringForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\BaseForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\AnchoredSpringForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\BungeeSpringForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\BouyancyForceGenerator.h">
-      <Filter>Header Files\Physics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="physics\Contact.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\test\SerializationTests.h">
-      <Filter>Header Files\Reflection\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Class.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\ISerializer.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\IType.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Meta.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\MetaGraph.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Reflection.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Serialization.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Type.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\TypeGraph.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Types.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="log\test\LoggerTests.h">
-      <Filter>Header Files\Log\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\IRenderable.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Framework\Physics</Filter>
     </ClInclude>
     <ClInclude Include="gameplay\Player.h">
-      <Filter>Header Files\Gameplay</Filter>
+      <Filter>Header Files\Framework\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="core\ISubsystem.h">
       <Filter>Header Files\Core</Filter>
@@ -351,244 +258,208 @@
     <ClInclude Include="core\File.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\Material.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\Shader.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\Model.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\Texture.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="core\AssetManager.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="core\System.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="audio\IAudioSystem.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\AudioMessage.h">
-      <Filter>Header Files\Audio</Filter>
+      <Filter>Header Files\Framework\Audio</Filter>
     </ClInclude>
     <ClInclude Include="graphics\IRenderSystem.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\GraphicsAsset.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="audio\AudioAsset.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\PlayAudioMessage.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\PlayAudioHandler.h">
-      <Filter>Header Files\Audio</Filter>
+      <Filter>Header Files\Framework\Audio</Filter>
     </ClInclude>
     <ClInclude Include="audio\SDLWAVAudioSystem.h">
-      <Filter>Header Files\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="audio\test\AudioTests.h">
-      <Filter>Header Files\Audio\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="core\String.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\IField.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Field.h">
-      <Filter>Header Files\Reflection</Filter>
+      <Filter>Header Files\Framework\Audio</Filter>
     </ClInclude>
     <ClInclude Include="input\IInputSystem.h">
-      <Filter>Header Files\Input</Filter>
+      <Filter>Header Files\Framework\Input</Filter>
     </ClInclude>
     <ClInclude Include="input\SDLInputSystem.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\KeyEventMessage.h">
-      <Filter>Header Files\Input</Filter>
+      <Filter>Header Files\Framework\Input</Filter>
     </ClInclude>
     <ClInclude Include="input\KeyState.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\test\InputTests.h">
-      <Filter>Header Files\Input\Test</Filter>
+      <Filter>Header Files\Framework\Input</Filter>
     </ClInclude>
     <ClInclude Include="graphics\SDLRenderSystem.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Framework\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="reflection\IEnum.h">
-      <Filter>Header Files\Reflection</Filter>
+    <ClInclude Include="reflection\Variant.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="serialization\ArrayHelper.h">
+      <Filter>Header Files\Framework\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="serialization\StringHelper.h">
+      <Filter>Header Files\Framework\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Enum.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Types.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="object\Object.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="object\ObjectFactory.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Reflection.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IReflector.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\IReflectionInfo.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\PropertyVariant.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="messaging\Topic.h">
+      <Filter>Header Files\Framework\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="input\KeyEvent.h">
+      <Filter>Header Files\Framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\Reflector.h">
+      <Filter>Header Files\Framework\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\SoundType.h">
+      <Filter>Header Files\Framework\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="serialization\IObjectSerializer.h">
+      <Filter>Header Files\Framework\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="serialization\JSONSerializer.h">
+      <Filter>Header Files\Framework\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Export.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="astares.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="messaging\MessageHub.cpp">
-      <Filter>Source Files\Messaging</Filter>
+      <Filter>Source Files\Framework\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="math\Math.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector2.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector3.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Ray2.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Ray3.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Plane.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Matrix3.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Matrix4.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector4.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="gameplay\GameObject.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files\Framework\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="gameplay\GameComponent.cpp">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Object.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\ObjectFactory.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Framework\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="math\Vector.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Geometry.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Matrix.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Matrix2.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\test\MatrixTests.cpp">
-      <Filter>Source Files\Math\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="core\test\CoreTest.cpp">
-      <Filter>Source Files\Core\Test</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Transform.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Quaternion.cpp">
-      <Filter>Source Files\Math</Filter>
+      <Filter>Source Files\Framework\Math</Filter>
     </ClCompile>
     <ClCompile Include="gameplay\TransformComponent.cpp">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Asset.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Framework\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="graphics\VertexBuffer.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="graphics\IndexBuffer.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="network\test\SocketTest.cpp">
-      <Filter>Source Files\Network\Test</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="network\CoreSocket.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\UDPSocket.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\Packet.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\Address.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\UDPListener.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\NetworkMessage.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="network\UDPSender.cpp">
-      <Filter>Source Files\Network</Filter>
+      <Filter>Source Files\Framework\Network</Filter>
     </ClCompile>
     <ClCompile Include="log\CommonLogger.cpp">
-      <Filter>Source Files\Log</Filter>
+      <Filter>Source Files\Framework\Log</Filter>
     </ClCompile>
     <ClCompile Include="physics\Particle.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\GravityForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\DragForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\BaseForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\SpringForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\AnchoredSpringForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\BungeeSpringForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\BouyancyForceGenerator.cpp">
-      <Filter>Source Files\Physics</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="physics\Contact.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\test\SerializationTests.cpp">
-      <Filter>Source Files\Reflection\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\Class.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\Meta.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\MetaGraph.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\Serialization.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\TypeGraph.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="log\test\LoggerTests.cpp">
-      <Filter>Source Files\Log\Test</Filter>
+      <Filter>Source Files\Framework\Physics</Filter>
     </ClCompile>
     <ClCompile Include="gameplay\Player.cpp">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files\Framework\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="core\Config.cpp">
       <Filter>Source Files\Core</Filter>
@@ -596,65 +467,50 @@
     <ClCompile Include="core\File.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="core\AssetManager.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\Model.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\Material.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\Shader.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\Texture.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="core\System.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="messaging\Message.cpp">
-      <Filter>Source Files\Messaging</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\AudioMessage.cpp">
-      <Filter>Source Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\GraphicsAsset.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="audio\AudioAsset.cpp">
-      <Filter>Source Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\PlayAudioMessage.cpp">
-      <Filter>Source Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\PlayAudioHandler.cpp">
-      <Filter>Source Files\Audio</Filter>
+      <Filter>Source Files\Framework\Audio</Filter>
     </ClCompile>
     <ClCompile Include="audio\SDLWAVAudioSystem.cpp">
-      <Filter>Source Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="audio\test\AudioTests.cpp">
-      <Filter>Source Files\Audio\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="core\String.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\IField.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Array.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Framework\Audio</Filter>
     </ClCompile>
     <ClCompile Include="input\SDLInputSystem.cpp">
-      <Filter>Source Files\Input</Filter>
+      <Filter>Source Files\Framework\Input</Filter>
     </ClCompile>
-    <ClCompile Include="input\KeyEventMessage.cpp">
-      <Filter>Source Files\Input</Filter>
+    <ClCompile Include="reflection\Variant.cpp">
+      <Filter>Source Files\Framework\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="input\test\InputTests.cpp">
-      <Filter>Source Files\Input\Test</Filter>
+    <ClCompile Include="serialization\StringHelper.cpp">
+      <Filter>Source Files\Framework\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="object\Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\ObjectFactory.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\PropertyVariant.cpp">
+      <Filter>Source Files\Framework\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="messaging\Topic.cpp">
+      <Filter>Source Files\Framework\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="input\KeyEvent.cpp">
+      <Filter>Source Files\Framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\Reflector.cpp">
+      <Filter>Source Files\Framework\Reflection</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Types.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="serialization\JSONSerializer.cpp">
+      <Filter>Source Files\Framework\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
