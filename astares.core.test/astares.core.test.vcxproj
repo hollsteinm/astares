@@ -87,6 +87,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math.cpp" />
+    <ClCompile Include="matrix2.cpp" />
+    <ClCompile Include="matrix3.cpp" />
+    <ClCompile Include="UID.cpp" />
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="vector3.cpp" />
     <ClCompile Include="vector4.cpp" />

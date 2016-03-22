@@ -37,7 +37,7 @@ f32 Quaternion::GetDot(const Quaternion& other) const {
 	return x * other[0] + y * other[1] + z * other[2] + w * other[3];
 }
 
-f32 Quaternion::GetLength() const {
+f32 Quaternion::GetMagnitude() const {
 	return Math::SquareRoot(GetLengthSquared());
 }
 
@@ -73,7 +73,7 @@ Quaternion& Quaternion::Normalize() {
 }
 
 f32 Quaternion::GetDistance(const Quaternion& other) const {
-	return Quaternion(x - other[0], y - other[1], z - other[2], w - other[3]).GetLength();
+	return Quaternion(x - other[0], y - other[1], z - other[2], w - other[3]).GetMagnitude();
 }
 
 f32 Quaternion::GetDistanceSquared(const Quaternion& other) const {

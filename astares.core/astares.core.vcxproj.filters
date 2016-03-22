@@ -126,6 +126,9 @@
     <ClInclude Include="log\ILogger.h">
       <Filter>Header Files\Log</Filter>
     </ClInclude>
+    <ClInclude Include="core\UID.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="log\CommonLogger.cpp">
       <Filter>Source Files\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="core\UID.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

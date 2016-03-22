@@ -194,7 +194,7 @@ TEST_CASE("Vector4", "[vectors]") {
 			Vector4 second(12.45f, 30.0f, -123.45f, 8.9f);
 
 			//TODO: start from here on Friday
-			REQUIRE(vec.GetLength() == Approx(10.0777f));
+			REQUIRE(vec.GetMagnitude() == Approx(10.0777f));
 			REQUIRE(vec.GetLengthSquared() == Approx(101.56003729f));
 
 			Vector4 normalized = vec.GetNormalized();
@@ -214,15 +214,15 @@ TEST_CASE("Vector4", "[vectors]") {
 			REQUIRE(first.GetDistanceSquared(second) == Approx(18754.8122222041f));
 
 			second.Normalize();
-			REQUIRE(second[0] == Approx(0.0975312f));
-			REQUIRE(second[1] == Approx(0.235015f));
-			REQUIRE(second[2] == Approx(-0.967086f));
+			REQUIRE(second[0] == Approx(0.097295f));
+			REQUIRE(second[1] == Approx(0.234446f));
+			REQUIRE(second[2] == Approx(-0.964744f));
 			REQUIRE(second[3] == Approx(0.0695522f));
 
 			second.Invert();
-			REQUIRE(second[0] == Approx(-0.0975312f));
-			REQUIRE(second[1] == Approx(-0.235015f));
-			REQUIRE(second[2] == Approx(0.967086f));
+			REQUIRE(second[0] == Approx(-0.097295f));
+			REQUIRE(second[1] == Approx(-0.234446f));
+			REQUIRE(second[2] == Approx(0.964744f));
 			REQUIRE(second[3] == Approx(-0.0695522f));
 		}
 	}

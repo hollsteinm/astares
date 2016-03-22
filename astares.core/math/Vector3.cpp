@@ -53,7 +53,7 @@ f32 Vector3::GetDot(const Vector3& other) const {
 	return data[0] * other[0] + data[1] * other[1] + data[2] * other[2];
 }
 
-f32 Vector3::GetLength() const {
+f32 Vector3::GetMagnitude() const {
 	return Math::SquareRoot(GetLengthSquared());
 }
 
@@ -124,7 +124,7 @@ Vector3& Vector3::OrthonormalBasis(Vector3& b, Vector3& c) {
 }
 
 f32 Vector3::GetDistance(const Vector3& other) const {
-	return Vector3(data[0] - other[0], data[1] - other[1], data[2] - other[2]).GetLength();
+	return Vector3(data[0] - other[0], data[1] - other[1], data[2] - other[2]).GetMagnitude();
 }
 
 f32 Vector3::GetDistanceSquared(const Vector3& other) const {

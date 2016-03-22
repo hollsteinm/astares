@@ -11,5 +11,6 @@
 #include "math\Vector.h"
 #include "math\Math.h"
 #include "math\Matrix.h"
+#include "core\UID.h"
 
 #endif

@@ -102,6 +102,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="core\ISubsystem.h" />
     <ClInclude Include="core\System.h" />
     <ClInclude Include="core\Types.h" />
+    <ClInclude Include="core\UID.h" />
     <ClInclude Include="log\CommonLogger.h" />
     <ClInclude Include="log\ILogger.h" />
     <ClInclude Include="math\Box.h" />
@@ -131,6 +132,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="core\File.cpp" />
     <ClCompile Include="core\System.cpp" />
     <ClCompile Include="core\Types.cpp" />
+    <ClCompile Include="core\UID.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -56,7 +56,7 @@ f32 Vector4::GetDot(const Vector4& other) const {
 	return data[0] * other[0] + data[1] * other[1] + data[2] * other[2] + data[3] * other[3];
 }
 
-f32 Vector4::GetLength() const {
+f32 Vector4::GetMagnitude() const {
 	return Math::SquareRoot(GetLengthSquared());
 }
 
@@ -104,7 +104,7 @@ Vector4& Vector4::Invert() {
 }
 
 f32 Vector4::GetDistance(const Vector4& other) const {
-	return Vector4(data[0] - other[0], data[1] - other[1], data[2] - other[2], data[3] - other[3]).GetLength();
+	return Vector4(data[0] - other[0], data[1] - other[1], data[2] - other[2], data[3] - other[3]).GetMagnitude();
 }
 
 f32 Vector4::GetDistanceSquared(const Vector4& other) const {

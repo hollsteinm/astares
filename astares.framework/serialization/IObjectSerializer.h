@@ -1,9 +1,10 @@
 #ifndef IOBJECTSERIALIZER_H
 #define IOBJECTSERIALIZER_H
 
-#include "../core/Types.h"
+#include <core/Types.h>
+#include "../astares.framework.h"
 
-struct IObjectSerializer
+struct ASTARESFRAMEWORK_API IObjectSerializer
 {
 	virtual ~IObjectSerializer(){}
 	virtual void Serialize(const class Object* input, std::ostream& output) const = 0;

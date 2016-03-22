@@ -5,13 +5,13 @@
 
 class ASTARESFRAMEWORK_API Object {
 private:
-	int64 instanceId;
+	UID instanceId;
 
 public:
 	Object();
 	virtual ~Object();
 
-	const int64 GetInstanceId() const;
+	const UID& GetInstanceId() const;
 
 	virtual Object* CreateDefault() const;
 

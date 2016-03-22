@@ -3,7 +3,7 @@
 
 #include "IObjectSerializer.h"
 
-class JSONSerializer : public IObjectSerializer {
+class ASTARESFRAMEWORK_API JSONSerializer : public IObjectSerializer {
 public:
 	JSONSerializer(gate compact = false, gate includeObjectType = true);
 	~JSONSerializer();

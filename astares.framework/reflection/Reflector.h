@@ -4,7 +4,7 @@
 #include "IReflectionInfo.h"
 #include "IReflector.h"
 
-class Reflector : public IReflector, IReflectionInfo {
+class ASTARESFRAMEWORK_API Reflector : public IReflector, IReflectionInfo {
 public:
 	Reflector();
 	~Reflector();

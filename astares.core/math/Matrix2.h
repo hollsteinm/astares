@@ -38,11 +38,6 @@ struct ASTARESCORE_API Matrix2 {
 
 	Vector2 operator*(const Vector2& vec) const;
 
-	friend Vector2& operator*=(Vector2& vec, const Matrix2& mat);
-
-	friend Vector2 operator*(const Vector2& vec, const Matrix2& mat);
-	friend Matrix2 operator*(const f32 f, const Matrix2& mat);
-
 	Matrix2& operator+=(const Matrix2& other);
 	Matrix2& operator-=(const Matrix2& other);
 	Matrix2& operator*=(f32 a);

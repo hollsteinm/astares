@@ -27,8 +27,9 @@ Matrix2::Matrix2(const Vector2& col0, const Vector2& col1) :
 }
 
 Matrix2& Matrix2::Transpose() {
+	f32 negative = m[0][1];
 	m[0] = Vector2(m[0][0], m[1][0]);
-	m[1] = Vector2(m[0][1], m[1][1]);
+	m[1] = Vector2(negative, m[1][1]);
 	return *this;
 }
 
@@ -85,7 +86,7 @@ Matrix2 Matrix2::operator+(const Matrix2& other) const {
 }
 
 Matrix2 Matrix2::operator-(const Matrix2& other) const {
-	return Matrix2(m[0] + other[0], m[1] + other[1]);
+	return Matrix2(m[0] - other[0], m[1] - other[1]);
 }
 
 Matrix2 Matrix2::operator*(f32 a) const {
@@ -93,12 +94,11 @@ Matrix2 Matrix2::operator*(f32 a) const {
 }
 
 Matrix2 Matrix2::operator*(const Matrix2& other) const {
-	Vector2 row0 = Vector2(m[0][0], m[1][0]);
-	Vector2 row1 = Vector2(m[0][1], m[1][1]);
-
-	return Matrix2(
-		Vector2(row0.GetDot(other[0]), row0.GetDot(other[1])),
-		Vector2(row1.GetDot(other[0]), row1.GetDot(other[1])));
+	return
+	{
+		{ m[0][0] * other[0][0] + m[0][1] * other[1][0], m[0][0] * other[0][1] + m[0][1] * other[1][1] },
+		{ m[1][0] * other[0][0] + m[1][1] * other[1][0], m[1][0] * other[0][1] + m[1][1] * other[1][1] }
+	};
 }
 
 Matrix2 Matrix2::operator/(f32 b) const {
@@ -130,20 +130,12 @@ Matrix2& Matrix2::operator/=(f32 b) {
 }
 
 Vector2 Matrix2::operator*(const Vector2& vec) const {
-	return Vector2(m[0][0] * vec[0] + m[1][0] * vec[1],	m[0][1] * vec[0] + m[1][1] * vec[1]);
-}
-
-Vector2& operator*=(Vector2& vec, const Matrix2& mat) {
-	vec = mat * vec;
-	return vec;
-}
-
-Vector2 operator*(const Vector2& vec, const Matrix2& mat) {
-	return mat * vec;
-}
-
-Matrix2 operator*(const f32 f, const Matrix2& mat) {
-	return mat * f;
+	return Vector2(
+		m[0][0] * vec[0] + 
+		m[0][1] * vec[1],	
+		m[1][0] * vec[0] + 
+		m[1][1] * vec[1]
+		);
 }
 
 bool Matrix2::operator==(const Matrix2& other) const {

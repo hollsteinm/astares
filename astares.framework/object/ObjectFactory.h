@@ -1,7 +1,8 @@
 #ifndef OBJECTFACTORY_H
 #define OBJECTFACTORY_H
 
-#include "../core/Types.h"
+#include <core/Types.h>
+#include <core/UID.h>
 
 class ObjectFactory {
 public:
@@ -14,7 +15,7 @@ public:
 
 	template<typename T>
 	std::shared_ptr<T> CreateNew() {
-		return CreateNew(Variant(T()).GetCustomType());
+		return CreateNew(VariantTypeId<T>::GetCustomType());
 	}
 
 	void Add(string name, int64 typeId, class Object* defaultObject);
@@ -27,10 +28,10 @@ public:
 	void Register(class Object* obj);
 	void Unregister(class Object* obj);
 
-	std::weak_ptr<class Object> GetLive(int64 id) const;
-	bool TryGetLive(int64 id, std::weak_ptr<class Object>& obj) const;
+	std::weak_ptr<class Object> GetLive(const UID& id) const;
+	gate TryGetLive(const UID& id, std::weak_ptr<class Object>& obj) const;
 
-	std::string ToString() const;
+	string ToString() const;
 
 private:
 	ObjectFactory();
@@ -38,7 +39,7 @@ private:
 	static std::shared_ptr<ObjectFactory> __instance;
 	std::map<string, int64> NameIdGraph;
 	std::map<int64, std::shared_ptr<class Object>> Graph;
-	std::map<int64, std::shared_ptr<class Object>> LiveObjectGraph;
+	std::map<UID, std::shared_ptr<class Object>> LiveObjectGraph;
 };
 
 #ifndef DECL_DEFAULT_INSTANCE
@@ -53,12 +54,16 @@ static inline std::weak_ptr<T> NewObject()
 	return res;
 }
 
+#ifndef REGISTER_TYPE
+#define REGISTER_TYPE(type) ObjectFactory::Get().Add(VariantTypeId<type>::GetTypeName(), VariantTypeId<type>::GetCustomType(), new type());
+#endif
+
 #ifndef NEW
-#define NEW(type) NewObject<type>();
+#define NEW(type) NewObject<type>()
 #endif
 
 #ifndef DEL
-#define DEL(obj) ObjectFactory::Get().Unregister(obj);
+#define DEL(obj) ObjectFactory::Get().Unregister(obj)
 #endif
 
 #endif

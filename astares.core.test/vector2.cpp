@@ -130,7 +130,7 @@ TEST_CASE("Vector2", "[vectors]") {
 			Vector2 first(4.0f, -5.0f);
 			Vector2 second(12.45f, 30.0f);
 
-			REQUIRE(first.GetLength() == Approx(6.40312));
+			REQUIRE(first.GetMagnitude() == Approx(6.40312));
 			REQUIRE(first.GetLengthSquared() == Approx(40.9999457));
 
 			Vector2 normalized = vec.GetNormalized();

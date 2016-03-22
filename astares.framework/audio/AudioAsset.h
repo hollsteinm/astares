@@ -1,10 +1,13 @@
-#ifndef AUDIO_ASSET_H
-#define AUDIO_ASSET_H
+#ifndef AUDIOASSET_H
+#define AUDIOASSET_H
 
 #include "../object/Object.h"
 #include "SoundType.h"
 
-class AudioAsset : public Object {
+DECL_API_STL(ASTARESFRAMEWORK_API, uint8)
+
+class ASTARESFRAMEWORK_API AudioAsset : public Object 
+{
 public:
 	AudioAsset();
 	~AudioAsset();

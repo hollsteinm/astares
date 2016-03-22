@@ -30,10 +30,10 @@ struct ASTARESCORE_API Matrix3 {
 	Matrix3 GetAdjoint() const;
 	Matrix3 GetCofactorMatrix() const;
 
-	Matrix2 GetMinor(int32 col, int32 row) const;
+	Matrix2 GetMinor(int32 row, int32 col) const;
 
 	f32 GetDeterminant() const;
-	f32 GetCofactor(int32 col, int32 row);
+	f32 GetCofactor(int32 row, int32 col);
 
 	Matrix3 operator+(const Matrix3& other) const;
 	Matrix3 operator-(const Matrix3& other) const;
@@ -47,11 +47,6 @@ struct ASTARESCORE_API Matrix3 {
 	Matrix3& operator/=(f32 b);
 
 	Vector3 operator*(const Vector3& vec) const;
-
-	friend Vector3& operator*=(Vector3& vec, const Matrix3& mat);
-
-	friend Vector3 operator*(const Vector3& vec, const Matrix3& mat);
-	friend Matrix3 operator*(const f32 f, const Matrix3& mat);
 
 	bool operator==(const Matrix3& other) const;
 	bool operator!=(const Matrix3& other) const;

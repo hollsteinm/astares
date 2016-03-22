@@ -3,11 +3,11 @@
 
 #include "Variant.h"
 
-class PropertyVariant : public Variant
+
+class ASTARESFRAMEWORK_API PropertyVariant : public Variant
 {
 private:
-
-	struct IPropertyInfo {
+	struct ASTARESFRAMEWORK_API IPropertyInfo {
 
 	};
 
@@ -68,6 +68,8 @@ public:
 	friend WriteStream& operator << (WriteStream& out, const PropertyVariant& variant);
 	friend ReadStream& operator >> (ReadStream& in, PropertyVariant& variant);
 };
+
+DECL_API_STL_PTR(ASTARESFRAMEWORK_API, PropertyVariant::IPropertyInfo)
 
 
 #endif

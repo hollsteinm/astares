@@ -8,19 +8,21 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 					 )
 {
 	ILogger* logger = new CommonLogger();
+	static const char* moduleName = "Framework Module";
+	logger->Info("%s", moduleName);
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		logger->Info("Process Attached");
+		logger->Info("(%s) Process Attached", moduleName);
 		break;
 	case DLL_THREAD_ATTACH:
-		logger->Info("Thread Attached");
+		logger->Info("(%s) Thread Attached", moduleName);
 		break;
 	case DLL_THREAD_DETACH:
-		logger->Info("Thread Detached");
+		logger->Info("(%s) Thread Detached", moduleName);
 		break;
 	case DLL_PROCESS_DETACH:
-		logger->Info("Process Detached");
+		logger->Info("(%s) Process Detached", moduleName);
 		break;
 	}
 	delete logger;

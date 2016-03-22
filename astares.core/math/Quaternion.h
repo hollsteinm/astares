@@ -19,7 +19,7 @@ struct ASTARESCORE_API Quaternion {
 	Quaternion GetNormalized() const;
 
 	f32 GetDot(const Quaternion& other) const;
-	f32 GetLength() const;
+	f32 GetMagnitude() const;
 	f32 GetLengthSquared() const;
 
 	Quaternion& Normalize();

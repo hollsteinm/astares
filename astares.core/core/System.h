@@ -6,9 +6,9 @@
 struct ILogger;
 struct ISubsystem;
 
-DEF_CORE_STL_PTR(ISubsystem)
-DEF_CORE_STL(std::shared_ptr<ISubsystem>)
-DEF_CORE_STL(std::weak_ptr<ISubsystem>)
+DECL_CORE_STL_PTR(ISubsystem)
+DECL_CORE_STL(std::shared_ptr<ISubsystem>)
+DECL_CORE_STL(std::weak_ptr<ISubsystem>)
 
 class ASTARESCORE_API System {
 public:

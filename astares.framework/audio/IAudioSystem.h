@@ -1,10 +1,11 @@
 #ifndef IAUDIO_SYSTEM
 #define IAUDIO_SYSTEM
 
-#include "../core/ISubsystem.h"
+#include "../astares.framework.h"
 #include "SoundType.h"
+#include <core\ISubsystem.h>
 
-struct IAudioSystem : public ISubsystem {
+struct ASTARESFRAMEWORK_API IAudioSystem : public ISubsystem {
 	IAudioSystem(){}
 	virtual ~IAudioSystem(){}
 
@@ -13,10 +14,10 @@ struct IAudioSystem : public ISubsystem {
 	virtual int64 AddAsset(string filename) = 0;
 	virtual void RemoveAsset(int64 id) = 0;
 
-	virtual void PlayAudio(long audioId) = 0;
-	virtual void StopAudio(long audioId) = 0;
-	virtual void PauseAudio(long audioId) = 0;
-	virtual void ResumeAudio(long audioId) = 0;
+	virtual void PlayAudio(int64 audioId) = 0;
+	virtual void StopAudio(int64 audioId) = 0;
+	virtual void PauseAudio(int64 audioId) = 0;
+	virtual void ResumeAudio(int64 audioId) = 0;
 
 	virtual void UpdateVolume(int64 id, float volume) = 0;
 	virtual void UpdateLooping(int64 id, int32 loopcount) = 0;

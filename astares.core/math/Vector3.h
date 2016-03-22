@@ -21,7 +21,7 @@ struct ASTARESCORE_API Vector3 {
 	Vector3 GetOrthonormalBasis(Vector3& b, Vector3& c) const;
 
 	f32 GetDot(const Vector3& other) const;
-	f32 GetLength() const;
+	f32 GetMagnitude() const;
 	f32 GetLengthSquared() const;
 
 	Vector3& Cross(const Vector3& other);

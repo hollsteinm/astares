@@ -3,7 +3,7 @@
 
 #include "Vector3.h"
 
-DEF_CORE_STL(Vector3)
+DECL_CORE_STL(Vector3)
 
 struct ASTARESCORE_API Hull {
 	Hull(const vector<Vector3>& points, int32 count);

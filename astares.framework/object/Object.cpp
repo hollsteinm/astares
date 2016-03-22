@@ -1,9 +1,5 @@
 #include "Object.h"
 #include "../reflection/Reflection.h"
-
-static int64 GInstances = 0;
-
-#include "../reflection/Reflection.h"
 #include <iostream>
 
 void Object::Serialize(WriteStream& out, int32 version) const {
@@ -25,7 +21,7 @@ void Object::Reflect(struct IReflector* reflector) const
 
 Object::Object()
 {
-	instanceId = GInstances++;
+	instanceId = UID::Make();
 }
 
 Object::~Object()
@@ -36,10 +32,10 @@ Object::~Object()
 string Object::ToString() const {
 	return string(Variant(*this).GetName())
 		.append("__")
-		.append(std::to_string(instanceId));
+		.append(instanceId.ToString());
 }
 
-const int64 Object::GetInstanceId() const { return instanceId; }
+const UID& Object::GetInstanceId() const { return instanceId; }
 
 Object* Object::CreateDefault() const
 {

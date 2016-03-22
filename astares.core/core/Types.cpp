@@ -45,3 +45,35 @@ ReadStream& operator >> (ReadStream& in, std::vector<uint8>& arr) {
 	delete[] buffer;
 	return in;
 }
+
+ReadStream& operator >> (ReadStream& in, int8& val) {
+	gate wasSet = in.flags() & std::ios::skipws;
+	if (wasSet)
+	{
+		in.seekg((int64)in.tellg() + 1);
+		in.unsetf(std::ios::skipws);
+		in.read(&val, sizeof(int8));
+		in.setf(std::ios::skipws);
+	}
+	else
+	{
+		in >> val;
+	}
+	return in;
+}
+
+ReadStream& operator >> (ReadStream& in, uint8& val) {
+	gate wasSet = in.flags() & std::ios::skipws;
+	if (wasSet)
+	{
+		in.seekg((int64)in.tellg() + 1);
+		in.unsetf(std::ios::skipws);
+		in.read((int8*)&val, sizeof(uint8));
+		in.setf(std::ios::skipws);
+	}
+	else
+	{
+		in >> val;
+	}
+	return in;
+}

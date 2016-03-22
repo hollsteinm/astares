@@ -9,7 +9,7 @@ static const Vector3 Right = Vector3(1.0f, 0.0f, 0.0f);
 static const Vector3 Forward = Vector3(0.0f, 0.0f, 1.0f);
 
 class ASTARESCORE_API Transform;
-DEF_CORE_STL_PTR(Transform)
+DECL_CORE_STL_PTR(Transform)
 
 class Transform{
 public:

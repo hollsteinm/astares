@@ -1,12 +1,13 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+#include "../astares.framework.h"
 #include <iosfwd>
 #include <vector>
 #include <functional>
 #include <memory>
 
-struct ArrayHelper {
+struct ASTARESFRAMEWORK_API ArrayHelper {
 	template <typename T>
 	static void Serialize(const std::vector<T>& source, std::ostream& out)
 	{

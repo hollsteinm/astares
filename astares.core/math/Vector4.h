@@ -21,7 +21,7 @@ struct ASTARESCORE_API Vector4 {
 	Vector4 GetInverse() const;
 
 	f32 GetDot(const Vector4& other) const;
-	f32 GetLength() const;
+	f32 GetMagnitude() const;
 	f32 GetLengthSquared() const;
 
 	Vector4& Normalize();

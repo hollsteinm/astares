@@ -1,11 +1,11 @@
 #include "SDLWAVAudioSystem.h"
-#include "../core/Config.h"
-#include "../log/ILogger.h"
+#include <core/Config.h>
+#include <log/ILogger.h>
 #include "AudioAsset.h"
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include <iostream>
-#include "../core/File.h"
+#include <core/File.h>
 
 #define AUDIO_CHANNEL_SETTING "Channels"
 #define AUDIO_SECTION "Audio"
@@ -14,9 +14,9 @@
 
 
 SDLWAVAudioSystem::SDLWAVAudioSystem() :
-Channels(MIX_DEFAULT_CHANNELS),
-DeviceName("Unknown"),
-audioObjects()
+	Channels(MIX_DEFAULT_CHANNELS),
+	DeviceName("Unknown"),
+	audioObjects()
 {
 }
 
@@ -48,8 +48,8 @@ int64 SDLWAVAudioSystem::AddAsset(string filename) {
 			asset.rawData.push_back((uint8)c);
 		}
 	}
-	audioObjects[asset.GetInstanceId()] = asset;
-	return asset.GetInstanceId();
+	audioObjects[asset.GetInstanceId().GetValue()] = asset;
+	return asset.GetInstanceId().GetValue();
 }
 
 void SDLWAVAudioSystem::RemoveAsset(int64 id) {

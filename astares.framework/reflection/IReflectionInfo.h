@@ -3,7 +3,7 @@
 
 #include "PropertyVariant.h"
 
-struct IReflectionInfo {
+struct ASTARESFRAMEWORK_API IReflectionInfo {
 	virtual Variant& GetProperty(string name) = 0;
 	virtual void SetProperty(string name, const Variant& newValue) = 0;
 

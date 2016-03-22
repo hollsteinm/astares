@@ -9,7 +9,7 @@ Matrix3::Matrix3()
 	*this = Matrix3::Identity;
 }
 
-Matrix3::Matrix3(const Matrix3& other) 
+Matrix3::Matrix3(const Matrix3& other)
 {
 	m[0] = other.m[0];
 	m[1] = other.m[1];
@@ -100,10 +100,10 @@ Matrix3 Matrix3::GetCofactorMatrix() const {
 	return Matrix3(*this).CofactorMatrix();
 }
 
-Matrix2 Matrix3::GetMinor(int32 col, int32 row) const {
+Matrix2 Matrix3::GetMinor(int32 row, int32 col) const {
 	int32 col0, col1, row0, row1 = 0;
 
-	switch (col)
+	switch (row)
 	{
 	case 0:
 		col0 = 1;
@@ -119,7 +119,7 @@ Matrix2 Matrix3::GetMinor(int32 col, int32 row) const {
 		break;
 	}
 
-	switch (row)
+	switch (col)
 	{
 	case 0:
 		row0 = 1;
@@ -141,15 +141,15 @@ Matrix2 Matrix3::GetMinor(int32 col, int32 row) const {
 	return Matrix2(vec0, vec1);
 }
 
-f32 Matrix3::GetCofactor(int32 col, int32 row) {
+f32 Matrix3::GetCofactor(int32 row, int32 col) {
 
 	static const f32 signs[3][3] = {
-		1.0f,	-1.0f,	1.0f,
-		-1.0f,	1.0f,	-1.0f,
-		1.0f,	-1.0f,	1.0f
+		1.0f, -1.0f, 1.0f,
+		-1.0f, 1.0f, -1.0f,
+		1.0f, -1.0f, 1.0f
 	};
 
-	return GetMinor(col, row).GetDeterminant() * signs[row][col];
+	return GetMinor(row, col).GetDeterminant() * signs[col][row];
 }
 
 Matrix3& Matrix3::CofactorMatrix() {
@@ -176,14 +176,24 @@ Matrix3 Matrix3::operator*(f32 a) const {
 }
 
 Matrix3 Matrix3::operator*(const Matrix3& other) const {
-	Vector3 row0 = Vector3(m[0][0], m[1][0], m[2][0]);
-	Vector3 row1 = Vector3(m[0][1], m[1][1], m[2][1]);
-	Vector3 row2 = Vector3(m[0][2], m[1][2], m[2][2]);
-
-	return Matrix3(
-		Vector3(row0.GetDot(other.m[0]), row0.GetDot(other.m[1]), row0.GetDot(other.m[2])),
-		Vector3(row1.GetDot(other.m[0]), row1.GetDot(other.m[1]), row1.GetDot(other.m[2])),
-		Vector3(row2.GetDot(other.m[0]), row2.GetDot(other.m[1]), row2.GetDot(other.m[2])));
+	return
+	{
+		{
+			m[0][0] * other.m[0][0] + m[0][1] * other.m[1][0] + m[0][2] * other.m[2][0],
+			m[0][0] * other.m[0][1] + m[0][1] * other.m[1][1] + m[0][2] * other.m[2][1],
+			m[0][0] * other.m[0][2] + m[0][1] * other.m[1][2] + m[0][2] * other.m[2][2]
+		},
+		{
+			m[1][0] * other.m[0][0] + m[1][1] * other.m[1][0] + m[1][2] * other.m[2][0],
+			m[1][0] * other.m[0][1] + m[1][1] * other.m[1][1] + m[1][2] * other.m[2][1],
+			m[1][0] * other.m[0][2] + m[1][1] * other.m[1][2] + m[1][2] * other.m[2][2]
+		},
+		{
+			m[2][0] * other.m[0][0] + m[2][1] * other.m[1][0] + m[2][2] * other.m[2][0],
+			m[2][0] * other.m[0][1] + m[2][1] * other.m[1][1] + m[2][2] * other.m[2][1],
+			m[2][0] * other.m[0][2] + m[2][1] * other.m[1][2] + m[2][2] * other.m[2][2]
+		}
+	};
 }
 
 Matrix3 Matrix3::operator/(f32 b) const {
@@ -220,24 +230,10 @@ Matrix3& Matrix3::operator/=(f32 b) {
 
 Vector3 Matrix3::operator*(const Vector3& vec) const {
 	return Vector3(
-			m[0][0] * vec[0] + m[1][0] * vec[1] + m[2][0] * vec[2],
-			m[0][1] * vec[0] + m[1][1] * vec[1] + m[2][1] * vec[2],
-			m[0][2] * vec[0] + m[1][2] * vec[1] + m[2][2] * vec[2]
+		m[0][0] * vec[0] + m[0][1] * vec[1] + m[0][2] * vec[2],
+		m[1][0] * vec[0] + m[1][1] * vec[1] + m[1][2] * vec[2],
+		m[2][0] * vec[0] + m[2][1] * vec[1] + m[2][2] * vec[2]
 		);
-}
-
-
-Vector3& operator*=(Vector3& vec, const Matrix3& mat) {
-	vec = mat * vec;
-	return vec;
-}
-
-Vector3 operator*(const Vector3& vec, const Matrix3& mat) {
-	return mat * vec;
-}
-
-Matrix3 operator*(const f32 f, const Matrix3& mat) {
-	return mat * f;
 }
 
 bool Matrix3::operator==(const Matrix3& other) const {
@@ -281,7 +277,7 @@ int32 Matrix3::ToBuffer(f32 Out[3][3], bool transpose) {
 		m[2].ToBuffer(col2);
 	}
 
-	Out[0][0] = col0[0]; 
+	Out[0][0] = col0[0];
 	Out[0][1] = col0[1];
 	Out[0][2] = col0[2];
 

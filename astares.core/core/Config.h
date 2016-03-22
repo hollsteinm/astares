@@ -8,9 +8,9 @@
 #define VIDEO_SECTION "Video"
 #endif
 
-DEF_CORE_STL_MAP(string, string)
+DECL_CORE_STL_MAP(string, string)
 typedef std::map<string, string> stringmap;
-DEF_CORE_STL_MAP(string, stringmap)
+DECL_CORE_STL_MAP(string, stringmap)
 
 class ASTARESCORE_API Config {
 public:

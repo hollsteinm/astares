@@ -1,8 +1,8 @@
 #ifndef STRING_H
 #define STRING_H
-
-#include "../core/Types.h"
-struct StringHelper {
+#include "../astares.framework.h"
+#include <core/Types.h>
+struct  ASTARESFRAMEWORK_API StringHelper {
 	static void MakeEncoded(string& str);
 	static void MakeDecoded(string& str);
 

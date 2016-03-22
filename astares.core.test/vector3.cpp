@@ -162,7 +162,7 @@ TEST_CASE("Vector3", "[vectors]") {
 			Vector3 second(12.45f, 30.0f, -123.45f);
 
 			//TODO: start from here on Friday
-			REQUIRE(vec.GetLength() == Approx(8.7498571416909430590509453489801f));
+			REQUIRE(vec.GetMagnitude() == Approx(8.7498571416909430590509453489801f));
 			REQUIRE(vec.GetLengthSquared() == Approx(76.56f));
 
 			Vector3 normalized = vec.GetNormalized();

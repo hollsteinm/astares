@@ -1,4 +1,3 @@
-
 #include "AudioAsset.h"
 #include "../serialization/ArrayHelper.h"
 #include "../reflection/Reflection.h"
@@ -47,21 +46,7 @@ READ(LoopCount)
 READ(Length)
 READ(Name)
 READ(Type)
-
-gate wasSet = in.flags() & std::ios::skipws;
-if (wasSet)
-{
-	in.seekg((int64)in.tellg() + 1);
-	in.unsetf(std::ios::skipws);
-	READ(Channel)
-	in.setf(std::ios::skipws);
-}
-else
-{
-	READ(Channel)
-}
-
+READ(Channel)
 READ(rawData)
-
 StringHelper::MakeDecoded(Name);
 END_DESERIAL

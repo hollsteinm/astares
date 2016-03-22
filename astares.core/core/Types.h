@@ -29,18 +29,31 @@ typedef std::iostream	Stream;
 typedef std::istream	ReadStream;
 typedef std::ostream	WriteStream;
 
-#ifndef DEF_CORE_STL
-#define DEF_CORE_STL(type) TEMPLATE_EXTERN template class ASTARESCORE_API std::vector<type>;	\
- TEMPLATE_EXTERN template class ASTARESCORE_API std::deque<type>;	\
- TEMPLATE_EXTERN template class ASTARESCORE_API std::queue<type>;
+
+#ifndef DECL_API_STL
+#define DECL_API_STL(api, type) TEMPLATE_EXTERN template class api std::vector<type>;	\
+ TEMPLATE_EXTERN template class api std::deque<type>;	\
+ TEMPLATE_EXTERN template class api std::queue<type>;
 #endif
 
-#ifndef DEF_CORE_STL_MAP
-#define DEF_CORE_STL_MAP(key, value) TEMPLATE_EXTERN template class ASTARESCORE_API std::map<key, value>;
+#ifndef DECL_API_STL_MAP
+#define DECL_API_STL_MAP(api, key, value) TEMPLATE_EXTERN template class api std::map<key, value>;
 #endif
 
-#ifndef DEF_CORE_STL_PTR
-#define DEF_CORE_STL_PTR(type) TEMPLATE_EXTERN template class ASTARESCORE_API std::shared_ptr<type>; TEMPLATE_EXTERN template class ASTARESCORE_API std::weak_ptr<type>; TEMPLATE_EXTERN template class ASTARESCORE_API std::unique_ptr<type>;
+#ifndef DECL_API_STL_PTR
+#define DECL_API_STL_PTR(api, type) TEMPLATE_EXTERN template class api std::shared_ptr<type>; TEMPLATE_EXTERN template class api std::weak_ptr<type>; TEMPLATE_EXTERN template class api std::unique_ptr<type>;
+#endif
+
+#ifndef DECL_CORE_STL
+#define DECL_CORE_STL(type) DECL_API_STL(ASTARESCORE_API, type)
+#endif
+
+#ifndef DECL_CORE_STL_MAP
+#define DECL_CORE_STL_MAP(key, value) DECL_API_STL_MAP(ASTARESCORE_API, key, value)
+#endif
+
+#ifndef DECL_CORE_STL_PTR
+#define DECL_CORE_STL_PTR(type) DECL_API_STL_PTR(ASTARESCORE_API, type)
 #endif
 
 template<typename T>
@@ -59,22 +72,28 @@ template<typename T>
 ReadStream& operator >> (ReadStream& in, vector<T>& arr) {
 	size_t size;
 	in >> size;
-	arr.resize(size);
+	arr.reserve(size);
 	for (size_t i = 0; i < size; ++i) {
 		in >> arr[i];
 	}
 	return in;
 }
 
-template<> ASTARESCORE_API
+ASTARESCORE_API
 WriteStream& operator << (WriteStream& out, const std::vector<int8>& arr);
-template<> ASTARESCORE_API
+ASTARESCORE_API
 ReadStream& operator >> (ReadStream& in, std::vector<int8>& arr);
 
-template<> ASTARESCORE_API
+ASTARESCORE_API
 WriteStream& operator << (WriteStream& out, const std::vector<uint8>& arr);
-template<> ASTARESCORE_API
+ASTARESCORE_API
 ReadStream& operator >> (ReadStream& in, std::vector<uint8>& arr);
+
+ASTARESCORE_API
+ReadStream& operator >> (ReadStream& in, int8& val);
+
+ASTARESCORE_API
+ReadStream& operator >> (ReadStream& in, uint8& val);
 
 template<typename K, typename V>
 using map = std::map<K, V>;
@@ -117,7 +136,6 @@ template<typename T>
 ReadStream& operator >> (ReadStream& in, queue<T>& q) {
 	size_t size;
 	in >> size;
-	q.resize(size);
 	for (size_t i = 0; i < size; ++i) {
 		T t;
 		in >> t;

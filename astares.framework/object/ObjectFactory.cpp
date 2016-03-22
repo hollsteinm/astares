@@ -68,7 +68,7 @@ void ObjectFactory::Add(std::string name, int64 typeId, Object* obj) {
 void ObjectFactory::Register(Object* obj) {
 	if (obj)
 	{
-		long id = obj->GetInstanceId();
+		auto id = obj->GetInstanceId();
 		if (LiveObjectGraph.find(id) == LiveObjectGraph.cend()) {
 			LiveObjectGraph[id] = std::shared_ptr<Object>(obj);
 		}
@@ -78,14 +78,14 @@ void ObjectFactory::Register(Object* obj) {
 void ObjectFactory::Unregister(Object* obj) {
 	if (obj)
 	{
-		long id = obj->GetInstanceId();
+		auto id = obj->GetInstanceId();
 		if (LiveObjectGraph.find(id) != LiveObjectGraph.cend()) {
 			LiveObjectGraph.erase(id);
 		}
 	}
 }
 
-std::weak_ptr<Object> ObjectFactory::GetLive(long id) const {
+std::weak_ptr<Object> ObjectFactory::GetLive(const UID& id) const {
 	if (LiveObjectGraph.find(id) != LiveObjectGraph.cend()) {
 		return LiveObjectGraph.at(id);
 	}
@@ -94,7 +94,7 @@ std::weak_ptr<Object> ObjectFactory::GetLive(long id) const {
 	}
 }
 
-bool ObjectFactory::TryGetLive(long id, std::weak_ptr<Object>& obj) const {
+bool ObjectFactory::TryGetLive(const UID& id, std::weak_ptr<Object>& obj) const {
 	obj = GetLive(id);
 	return obj._Get() != nullptr;
 }
