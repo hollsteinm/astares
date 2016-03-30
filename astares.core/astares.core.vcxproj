@@ -142,7 +142,9 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="log\CommonLogger.cpp" />
+    <ClCompile Include="math\Box.cpp" />
     <ClCompile Include="math\Geometry.cpp" />
+    <ClCompile Include="math\Hull.cpp" />
     <ClCompile Include="math\Math.cpp" />
     <ClCompile Include="math\Matrix.cpp" />
     <ClCompile Include="math\Matrix2.cpp" />
@@ -152,6 +154,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="math\Quaternion.cpp" />
     <ClCompile Include="math\Ray2.cpp" />
     <ClCompile Include="math\Ray3.cpp" />
+    <ClCompile Include="math\Sphere.cpp" />
     <ClCompile Include="math\Transform.cpp" />
     <ClCompile Include="math\Vector.cpp" />
     <ClCompile Include="math\Vector2.cpp" />

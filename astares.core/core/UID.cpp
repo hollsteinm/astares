@@ -16,20 +16,24 @@ UID::~UID() {
 
 }
 
+union LazyConv {
+	int64 lval;
+	int32 ival[2];
+};
+
 UID UID::Make()
 {
+	LazyConv lazy;
 	int32 rand = std::rand();
-	return UID(std::hash<int64>()(std::clock() + rand));
+	lazy.ival[0] = std::hash<int32>()(std::clock() + rand);
+	rand = std::rand();
+	lazy.ival[1] = std::hash<int32>()(std::clock() + rand);
+	return UID(lazy.lval);
 }
 
 int64 UID::GetValue() const {
 	return value;
 }
-
-union LazyConv {
-	int64 lval;
-	int32 ival[2];
-};
 
 string UID::ToString() const {
 	std::stringstream out;

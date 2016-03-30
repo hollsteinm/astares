@@ -1,5 +1,4 @@
 #include "AudioAsset.h"
-#include "../serialization/ArrayHelper.h"
 #include "../reflection/Reflection.h"
 
 AudioAsset::AudioAsset() :

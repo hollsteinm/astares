@@ -43,6 +43,17 @@ public:
 
 	Transform& SetParent(Transform* NewParent);
 
+	Vector3 PositionVector() const;
+	Vector3 RotationVector() const;
+	Vector3 ScaleVector() const;
+
+	Vector3& PositionVector();
+	Vector3& RotationVector();
+	Vector3& ScaleVector();
+
+	friend ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Transform& in);
+	friend ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Transform& out);
+
 private:
 protected:
 	Vector3 Position;

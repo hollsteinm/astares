@@ -96,7 +96,7 @@ int32 Config::AsInt(std::string setting) const {
 	}
 }
 
-bool Config::Load(std::string filename, std::string& content) {
+bool Config::Load(const string& filename, string& content) {
 	return File::Read(File::SafeWriteDir().append(filename), content);
 }
 
@@ -157,6 +157,6 @@ void Config::Parse(std::string content) {
 	}
 }
 
-bool Config::Save(std::string filename, std::string content) {
+bool Config::Save(const string& filename, const string& content) {
 	return File::Write(File::SafeWriteDir().append(filename), content);
 }

@@ -12,5 +12,6 @@
 #include "math\Math.h"
 #include "math\Matrix.h"
 #include "core\UID.h"
+#include "math\Transform.h"
 
 #endif

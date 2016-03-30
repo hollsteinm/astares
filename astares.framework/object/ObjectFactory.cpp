@@ -8,13 +8,13 @@ std::shared_ptr<ObjectFactory> ObjectFactory::__instance;
 #define null_ptr std::weak_ptr < Object >()
 #endif
 
-ObjectFactory& ObjectFactory::Get() {
-	if (__instance) {
+std::shared_ptr<ObjectFactory> ObjectFactory::Get() {
+	if (!__instance) {
 		__instance = std::shared_ptr<ObjectFactory>(new ObjectFactory());
 		auto var = Variant(Object());
-		__instance->Add(var.GetName(), var.GetCustomType(), new Object());
+		__instance->Add(var.GetName(), var.GetCustomType(), std::shared_ptr<Object>(new Object()));
 	}
-	return *__instance;
+	return __instance;
 }
 
 std::weak_ptr<Object> ObjectFactory::GetDefault(std::string name) {
@@ -46,7 +46,7 @@ std::weak_ptr<Object> ObjectFactory::GetDefault(int64 typeId) {
 
 std::shared_ptr<Object> ObjectFactory::CreateNew(int64 typeId) {
 	auto original = std::shared_ptr<Object>(GetDefault(typeId));
-	if (original._Get() != nullptr) {
+	if (original) {
 		return std::shared_ptr<Object>(original->CreateDefault());
 	}
 	else {
@@ -54,8 +54,8 @@ std::shared_ptr<Object> ObjectFactory::CreateNew(int64 typeId) {
 	}
 }
 
-void ObjectFactory::Add(std::string name, int64 typeId, Object* obj) {
-	if (obj)
+void ObjectFactory::Add(std::string name, int64 typeId, std::weak_ptr<Object> obj) {
+	if (obj._Get() != nullptr)
 	{
 		if (Graph.find(typeId) == Graph.end())
 		{

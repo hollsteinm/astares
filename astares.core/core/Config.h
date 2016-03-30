@@ -30,7 +30,7 @@ public:
 	void Parse(string content);
 
 private:
-	map<string, map<string, string>> Configurations;
+	map<string, stringmap> Configurations;
 
 	string CurrentSection;
 
@@ -41,8 +41,8 @@ private:
 	static const char SectionNameEndToken;
 
 protected:
-	bool Load(std::string filename, std::string& outContent);
-	bool Save(std::string filename, std::string content);
+	bool Load(const string& filename, string& outContent);
+	bool Save(const string& filename, const string& content);
 
 };
 

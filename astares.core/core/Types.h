@@ -9,17 +9,18 @@
 #include <map>
 #include <queue>
 #include <iosfwd>
+#include <cstdint>
 
 //TEMPLATE_EXTERN template class ASTARESCORE_API std::basic_string < char, std::char_traits<char>, std::allocator<char> > ;
 
 typedef char			int8;
-typedef short			int16;
-typedef int				int32;
-typedef long			int64;
-typedef unsigned char	uint8;
-typedef unsigned short	uint16;
-typedef unsigned int	uint32;
-typedef unsigned long	uint64;
+typedef int16_t			int16;
+typedef int32_t			int32;
+typedef int64_t			int64;
+typedef uint8_t			uint8;
+typedef uint16_t		uint16;
+typedef uint32_t		uint32;
+typedef uint64_t		uint64;
 typedef float			f32;
 typedef double			f64;
 typedef std::string		string;
@@ -74,7 +75,9 @@ ReadStream& operator >> (ReadStream& in, vector<T>& arr) {
 	in >> size;
 	arr.reserve(size);
 	for (size_t i = 0; i < size; ++i) {
-		in >> arr[i];
+		T temp;
+		in >> temp;
+		arr.push_back(temp);
 	}
 	return in;
 }
@@ -125,10 +128,14 @@ using queue = std::queue<T>;
 
 template<typename T>
 WriteStream& operator << (WriteStream& out, const queue<T>& q) {
-	out << q.size() << ' ';
-	for (auto elem : q) {
-		out << elem << ' ';
+	queue<T> copy(q);
+	vector<T> output;
+	while (!copy.empty())
+	{
+		output.push_back(copy.front());
+		copy.pop();
 	}
+	out << output;
 	return out;
 }
 

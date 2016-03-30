@@ -1,12 +1,21 @@
 #ifndef OBJECTFACTORY_H
 #define OBJECTFACTORY_H
 
-#include <core/Types.h>
+#include "../astares.framework.h"
 #include <core/UID.h>
 
-class ObjectFactory {
+class ObjectFactory;
+class Object;
+DECL_API_STL_PTR(ASTARESFRAMEWORK_API, ObjectFactory)
+DECL_API_STL_MAP(ASTARESFRAMEWORK_API, string, int64)
+DECL_API_STL_PTR(ASTARESFRAMEWORK_API, Object)
+typedef std::shared_ptr<Object> ObjectPtr;
+DECL_API_STL_MAP(ASTARESFRAMEWORK_API, int64, ObjectPtr)
+DECL_API_STL_MAP(ASTARESFRAMEWORK_API, UID, ObjectPtr)
+
+class ASTARESFRAMEWORK_API ObjectFactory {
 public:
-	static ObjectFactory& Get();
+	static std::shared_ptr<ObjectFactory> Get();
 
 	std::weak_ptr<class Object> GetDefault(string name);
 	std::shared_ptr<class Object> CreateNew(string name);
@@ -15,10 +24,10 @@ public:
 
 	template<typename T>
 	std::shared_ptr<T> CreateNew() {
-		return CreateNew(VariantTypeId<T>::GetCustomType());
+		return std::dynamic_pointer_cast<T>(CreateNew(VariantTypeId<T>::GetCustomType()));
 	}
 
-	void Add(string name, int64 typeId, class Object* defaultObject);
+	void Add(string name, int64 typeId, std::weak_ptr<Object> defaultObject);
 
 	~ObjectFactory();
 
@@ -42,20 +51,16 @@ private:
 	std::map<UID, std::shared_ptr<class Object>> LiveObjectGraph;
 };
 
-#ifndef DECL_DEFAULT_INSTANCE
-#define DECL_DEFAULT_INSTANCE(o) auto var = Variant(o()); ObjectFactory::Get().Add(var.GetName(), var.GetCustomType(), new o());
-#endif
-
 template<typename T>
-static inline std::weak_ptr<T> NewObject()
+static inline std::shared_ptr<T> NewObject()
 {
-	auto res = ObjectFactory::Get().CreateNew<T>();
-	ObjectFactory::Get().Register(res);
+	auto res = ObjectFactory::Get()->CreateNew<T>();
+	ObjectFactory::Get()->Register(res.get());
 	return res;
 }
 
 #ifndef REGISTER_TYPE
-#define REGISTER_TYPE(type) ObjectFactory::Get().Add(VariantTypeId<type>::GetTypeName(), VariantTypeId<type>::GetCustomType(), new type());
+#define REGISTER_TYPE(type) ObjectFactory::Get()->Add(#type, VariantTypeId<type>::GetCustomType(), std::make_shared<type>(type()));
 #endif
 
 #ifndef NEW
@@ -63,7 +68,7 @@ static inline std::weak_ptr<T> NewObject()
 #endif
 
 #ifndef DEL
-#define DEL(obj) ObjectFactory::Get().Unregister(obj)
+#define DEL(obj) ObjectFactory::Get()->Unregister(obj.get())
 #endif
 
 #endif

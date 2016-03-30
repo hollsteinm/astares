@@ -37,6 +37,7 @@ enum class VariantType
 	Sphere,
 	Hull,
 	Box,
+	Transform,
 	Object,
 	unknown = ~0
 };
@@ -61,18 +62,40 @@ struct VariantTypeId
 	}
 };
 
+#ifndef DECL_API_TEMPLATE_VARIANT
+#define DECL_API_TEMPLATE_VARIANT(api, type, elem)  TEMPLATE_EXTERN template<> struct api VariantTypeId<type<elem>> { static VariantType GetType() { return VariantType::##type; } static string GetTypeName() { return string(#type).append("[").append(#elem).append("]"); } static int64 GetCustomType() { return (int64)std::hash<string>()(GetTypeName());}};
+#endif
+
+#ifndef DECL_API_MAP_VARIANT
+#define DECL_API_MAP_VARIANT(api, keyType, valueType) TEMPLATE_EXTERN template<> struct api VariantTypeId<map<keyType, valueType>> { static VariantType GetType() { return VariantType::map; } static string GetTypeName() { return string("map[").append(#keyType).append(",").append(#valueType).append("]"); } static int64 GetCustomType() { return (int64)std::hash<string>()(GetTypeName());}};
+#endif
+
 #ifndef DECL_TEMPLATE_VARIANT
-#define DECL_TEMPLATE_VARIANT(type, elem) TEMPLATE_EXTERN template<> struct ASTARESFRAMEWORK_API VariantTypeId<type<elem>> { static VariantType GetType() { return VariantType::##type; } static string GetTypeName() { return string(#type).append("[").append(#elem).append("]"); } static int64 GetCustomType() { return (int64)std::hash<string>()(GetTypeName());}};
+#define DECL_TEMPLATE_VARIANT(type, elem) DECL_API_TEMPLATE_VARIANT(ASTARESFRAMEWORK_API, type, elem) 
 #endif
 
 #ifndef DECL_MAP_VARIANT
-#define DECL_MAP_VARIANT(keyType, valueType) TEMPLATE_EXTERN template<> struct ASTARESFRAMEWORK_API VariantTypeId<map<keyType, valueType>> { static VariantType GetType() { return VariantType::map; } static string GetTypeName() { return string("map[").append(#keyType).append(",").append(#valueType).append("]"); } static int64 GetCustomType() { return (int64)std::hash<string>()(GetTypeName());}};
+#define DECL_MAP_VARIANT(keyType, valueType)  DECL_API_MAP_VARIANT(ASTARESFRAMEWORK_API, keyType, valueType)
+#endif
+
+#ifndef DECL_API_VARIANT
+#define DECL_API_VARIANT(api, type)  TEMPLATE_EXTERN template<> struct api VariantTypeId<type> { static VariantType GetType() { return VariantType::##type; } static std::string GetTypeName() { return #type; } static int64 GetCustomType() {return (int64)std::hash<string>()(GetTypeName());}}; \
+		DECL_API_TEMPLATE_VARIANT(api, vector, type) \
+		DECL_API_TEMPLATE_VARIANT(api, queue, type)
 #endif
 
 #ifndef DECL_VARIANT
-#define DECL_VARIANT(type) TEMPLATE_EXTERN template<> struct ASTARESFRAMEWORK_API VariantTypeId<type> { static VariantType GetType() { return VariantType::##type; } static std::string GetTypeName() { return #type; } static int64 GetCustomType() {return (int64)std::hash<string>()(GetTypeName());}}; \
-	DECL_TEMPLATE_VARIANT(vector, type) \
-	DECL_TEMPLATE_VARIANT(queue, type)
+#define DECL_VARIANT(type) DECL_API_VARIANT(ASTARESFRAMEWORK_API, type)
+#endif
+
+#ifndef DECL_API_OBJECT_VARIANT
+#define DECL_API_OBJECT_VARIANT(api, type) TEMPLATE_EXTERN template<> struct api VariantTypeId<type> { static VariantType GetType() { return VariantType::Object; } static std::string GetTypeName() { return #type; } static int64 GetCustomType() {return (int64)std::hash<string>()(GetTypeName());}}; \
+		DECL_API_TEMPLATE_VARIANT(api, vector, type) \
+		DECL_API_TEMPLATE_VARIANT(api, queue, type)
+#endif
+
+#ifndef DECL_OBJECT_VARIANT
+#define DECL_OBJECT_VARIANT(type) DECL_API_OBJECT_VARIANT(,type)
 #endif
 
 DECL_VARIANT(int8)
@@ -101,6 +124,7 @@ DECL_VARIANT(Ray3)
 DECL_VARIANT(Sphere)
 DECL_VARIANT(Hull)
 DECL_VARIANT(Box)
+DECL_VARIANT(Transform)
 
 #ifndef DECL_OBJ_VARIANT
 #define DECL_OBJ_VARIANT(type) TEMPLATE_EXTERN template<> struct ASTARESFRAMEWORK_API VariantTypeId<type> { static VariantType GetType() { return VariantType::Object; } static std::string GetTypeName() { return #type; } static int64 GetCustomType() {return (int64)std::hash<string>()(GetTypeName());}};
@@ -174,28 +198,30 @@ public:
 	void SetRaw(const string& newValue);
 
 	template<typename T>
-	void Get(T& outValue) {
+	void Get(T& outValue) const {
 		if (VariantTypeId<T>::GetType() == type || type == VariantType::unknown)
 		{
-			buffer >> outValue;
+			std::istream stream(buffer.rdbuf());
+			stream >> outValue;
 		}
 	}
 
 	template<>
-	void Get<string>(string& outValue) {
+	void Get<string>(string& outValue) const {
 		if (VariantTypeId<string>::GetType() == type || type == VariantType::unknown)
 		{
-			buffer >> outValue;
+			std::istream stream(buffer.rdbuf());
+			stream >> outValue;
 		}
 		StringHelper::Decode(outValue);
 	}
 
-	const VariantType GetVariantType() const;
-	const int64 GetType() const;
-	const string GetName() const;
-	const size_t GetSize() const;
-	const int64 GetCustomType() const;
-	const string Value() const;
+	VariantType GetVariantType() const;
+	int64 GetType() const;
+	string GetName() const;
+	size_t GetSize() const;
+	int64 GetCustomType() const;
+	string Value() const;
 
 	friend WriteStream& operator << (WriteStream& out, const Variant& variant);
 	friend ReadStream& operator >> (ReadStream& in, Variant& variant);

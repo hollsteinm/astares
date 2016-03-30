@@ -4,6 +4,7 @@
 #include "Vector.h"
 
 struct ASTARESCORE_API Plane {
+	Plane();
 	~Plane();
 	Plane(const Vector2& normal, const f32& offset);
 	Plane(const Vector3& normal, const f32& offset);

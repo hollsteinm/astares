@@ -1,5 +1,6 @@
 #include <core/UID.h>
 #include "catch.hpp"
+#include <iostream>
 
 TEST_CASE("UID", "[core]") {
 	SECTION("Comparisons & Uniqueness") {

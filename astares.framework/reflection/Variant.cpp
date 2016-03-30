@@ -10,7 +10,7 @@ Variant::Variant(VariantType type)
 {
 }
 
-Variant::Variant(VariantType type, long customType)
+Variant::Variant(VariantType type, int64 customType)
 	: type(type),
 	size(0),
 	name("unknown"),
@@ -33,8 +33,6 @@ Variant::Variant(const Variant& other)
 {
 
 }
-
-
 
 WriteStream& operator << (WriteStream& out, const VariantType& val)
 {
@@ -72,12 +70,12 @@ ReadStream& operator >> (ReadStream& in, Variant& variant)
 	return in;
 }
 
-const VariantType Variant::GetVariantType() const { return type; }
-const int64 Variant::GetType() const { return (int64)((int32)type); }
-const string Variant::GetName() const { return name; }
-const size_t Variant::GetSize() const { return size; }
-const int64 Variant::GetCustomType() const { return customType; }
-const string Variant::Value() const { return buffer.str(); }
+VariantType Variant::GetVariantType() const { return type; }
+int64 Variant::GetType() const { return (int64)((int32)type); }
+string Variant::GetName() const { return name; }
+size_t Variant::GetSize() const { return size; }
+int64 Variant::GetCustomType() const { return customType; }
+string Variant::Value() const { return buffer.str(); }
 
 void Variant::SetRaw(const string& newValue){
 	buffer = std::stringstream(newValue, std::ios::binary | std::ios::in | std::ios::out);

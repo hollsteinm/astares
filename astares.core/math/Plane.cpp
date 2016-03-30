@@ -1,5 +1,12 @@
 #include "Plane.h"
 
+Plane::Plane()
+	:Normal( 1.0f, 1.0f, 1.0f ),
+	Offset(0.0f)
+{
+
+}
+
 Plane::~Plane() {
 }
 

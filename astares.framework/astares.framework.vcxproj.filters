@@ -120,17 +120,14 @@
     <ClInclude Include="FrameworkProvider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="serialization\ArrayHelper.h">
-      <Filter>Header Files\Serialization</Filter>
-    </ClInclude>
     <ClInclude Include="serialization\IObjectSerializer.h">
-      <Filter>Header Files\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="serialization\JSONSerializer.h">
       <Filter>Header Files\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="serialization\StringHelper.h">
       <Filter>Header Files\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\JSONReflector.h">
+      <Filter>Header Files\Reflection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,11 +161,11 @@
     <ClCompile Include="reflection\Variant.cpp">
       <Filter>Source Files\Reflection</Filter>
     </ClCompile>
-    <ClCompile Include="serialization\JSONSerializer.cpp">
-      <Filter>Source Files\Serialization</Filter>
-    </ClCompile>
     <ClCompile Include="serialization\StringHelper.cpp">
       <Filter>Source Files\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="reflection\JSONReflector.cpp">
+      <Filter>Source Files\Reflection</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

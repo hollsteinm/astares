@@ -16,7 +16,7 @@ void Object::Deserialize(ReadStream& in, int32 version) {
 
 void Object::Reflect(struct IReflector* reflector) const
 {
-	InternalReflect(reflector);
+	this->InternalReflect(reflector);
 }
 
 Object::Object()
@@ -60,6 +60,16 @@ void Object::PostDeserialize(ReadStream& in, int32 version)
 void Object::PreDeserialize(ReadStream& in, int32 version)
 {
 
+}
+
+bool Object::operator==(const Object& rhs) const
+{
+	return instanceId == rhs.instanceId;
+}
+
+bool Object::operator!=(const Object& rhs) const
+{
+	return instanceId != rhs.instanceId;
 }
 
 

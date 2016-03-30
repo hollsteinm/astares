@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.framework", "astare
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.core.test", "astares.core.test\astares.core.test.vcxproj", "{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "astares.framework.test", "astares.framework.test\astares.framework.test.vcxproj", "{BE56D8E9-C359-45B4-846D-7E3B728617DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,12 @@ Global
 		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|Win32.ActiveCfg = Release|Win32
 		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|Win32.Build.0 = Release|Win32
 		{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}.Release|x64.ActiveCfg = Release|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Debug|Win32.Build.0 = Debug|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Debug|x64.ActiveCfg = Debug|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Release|Win32.ActiveCfg = Release|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Release|Win32.Build.0 = Release|Win32
+		{BE56D8E9-C359-45B4-846D-7E3B728617DE}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

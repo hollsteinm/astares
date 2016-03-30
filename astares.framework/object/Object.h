@@ -22,8 +22,11 @@ public:
 
 	void Reflect(struct IReflector* reflector) const;
 
-	friend WriteStream& operator << (WriteStream& out, const Object& obj);
-	friend ReadStream& operator >> (ReadStream& in, Object& obj);
+	friend ASTARESFRAMEWORK_API WriteStream& operator << (WriteStream& out, const Object& obj);
+	friend ASTARESFRAMEWORK_API ReadStream& operator >> (ReadStream& in, Object& obj);
+
+	bool operator==(const Object& rhs) const;
+	bool operator!=(const Object& rhs) const;
 
 protected:
 	virtual void PostSerialize(WriteStream& out, int32 version) const;
@@ -46,8 +49,8 @@ DECL_VARIANT(Object)
 #ifndef SERIALIZEABLE
 #define SERIALIZEABLE(type) virtual void InternalDeserialize(ReadStream& in, int32 version) override; \
 	virtual void InternalSerialize(WriteStream& out, int32 version) const override; \
-	friend WriteStream& operator << (WriteStream& out, const type& obj); \
-	friend ReadStream& operator >> (ReadStream& in, type& obj);
+	friend WriteStream& operator<<(WriteStream& out, const type& obj); \
+	friend ReadStream& operator>>(ReadStream& in, type& obj);
 #endif
 
 #ifndef START_SERIAL

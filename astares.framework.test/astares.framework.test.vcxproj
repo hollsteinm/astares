@@ -10,10 +10,26 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="catch.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="jsonreflector.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="reflector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\astares.core\astares.core.vcxproj">
+      <Project>{f80942b0-ee2c-4ba2-838c-8bb4094cd262}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\astares.framework\astares.framework.vcxproj">
+      <Project>{70493f2f-c34c-466b-980e-7b2406adaca0}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{82DEAF6A-CBA7-40E2-9801-55ACE37611FA}</ProjectGuid>
+    <ProjectGuid>{BE56D8E9-C359-45B4-846D-7E3B728617DE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>astarescoretest</RootNamespace>
+    <RootNamespace>astaresframeworktest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,11 +57,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)astares.core;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)astares.core;$(SolutionDir)astares.framework;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)astares.core;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)astares.core;$(SolutionDir)astares.framework;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -77,25 +93,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\astares.core\astares.core.vcxproj">
-      <Project>{f80942b0-ee2c-4ba2-838c-8bb4094cd262}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="math.cpp" />
-    <ClCompile Include="matrix2.cpp" />
-    <ClCompile Include="matrix3.cpp" />
-    <ClCompile Include="matrix4.cpp" />
-    <ClCompile Include="uid.cpp" />
-    <ClCompile Include="vector2.cpp" />
-    <ClCompile Include="vector3.cpp" />
-    <ClCompile Include="vector4.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="catch.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

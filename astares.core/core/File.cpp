@@ -97,26 +97,26 @@ string File::SafeWriteDir(){
 	}
 }
 
-ReadStream& File::ReadStream(string path, FileMode mode) {
-	switch (mode._value)
-	{
-	case FileMode::Binary:
-		return std::ifstream(path, std::ios::in | std::ios::binary);
-	case FileMode::Text:
-	default:
-		return std::ifstream(path);
-		break;
-	}
-}
-
-WriteStream& File::WriteStream(string path, FileMode mode) {
-	switch (mode._value)
-	{
-	case FileMode::Binary:
-		return std::ofstream(path, std::ios::out | std::ios::binary);
-	case FileMode::Text:
-	default:
-		return std::ofstream(path);
-		break;
-	}
-}
+//ReadStream& File::ReadStream(string path, FileMode mode) {
+//	switch (mode._value)
+//	{
+//	case FileMode::Binary:
+//		return std::ifstream(path, std::ios::in | std::ios::binary);
+//	case FileMode::Text:
+//	default:
+//		return std::ifstream(path);
+//		break;
+//	}
+//}
+//
+//WriteStream& File::WriteStream(string path, FileMode mode) {
+//	switch (mode._value)
+//	{
+//	case FileMode::Binary:
+//		return std::ofstream(path, std::ios::out | std::ios::binary);
+//	case FileMode::Text:
+//	default:
+//		return std::ofstream(path);
+//		break;
+//	}
+//}

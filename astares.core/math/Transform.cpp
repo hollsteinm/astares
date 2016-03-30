@@ -1,5 +1,5 @@
 #include "Transform.h"
-
+#include "Vector.h"
 #include <cmath>
 
 Transform::Transform() {
@@ -131,4 +131,22 @@ Transform& Transform::RotateTransform(const Vector3& rotation) {
 Transform& Transform::ScaleTransform(const Vector3& scale) {
 	Scale = ScaleVector(scale);
 	return *this;
+}
+
+Vector3 Transform::PositionVector() const { return Position; }
+Vector3 Transform::RotationVector() const { return Rotation; }
+Vector3 Transform::ScaleVector() const { return Scale; }
+
+Vector3& Transform::PositionVector() { return Position; }
+Vector3& Transform::RotationVector() { return Rotation; }
+Vector3& Transform::ScaleVector() { return Scale; }
+
+WriteStream& operator<<(WriteStream& out, const Transform& in) 
+{
+	return out << in.Position << in.Rotation << in.Scale; //TODO:parent
+}
+
+ReadStream& operator>>(ReadStream& in, Transform& out)
+{
+	return in >> out.Position >> out.Rotation >> out.Scale; //TODO:parent
 }
