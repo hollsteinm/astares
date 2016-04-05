@@ -99,6 +99,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="core\Config.h" />
     <ClInclude Include="core\Enum.h" />
     <ClInclude Include="core\File.h" />
+    <ClInclude Include="core\ISerializable.h" />
     <ClInclude Include="core\ISubsystem.h" />
     <ClInclude Include="core\System.h" />
     <ClInclude Include="core\Types.h" />
@@ -130,6 +131,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="astares.core.cpp" />
     <ClCompile Include="core\Config.cpp" />
     <ClCompile Include="core\File.cpp" />
+    <ClCompile Include="core\ISerializable.cpp" />
     <ClCompile Include="core\System.cpp" />
     <ClCompile Include="core\Types.cpp" />
     <ClCompile Include="core\UID.cpp" />

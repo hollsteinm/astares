@@ -22,8 +22,8 @@ public:
 	static string Expand(string filepath);
 	static string SafeWriteDir();
 
-	//static ReadStream& ReadStream(string path, FileMode mode = FileMode::Binary);
-	//static WriteStream& WriteStream(string path, FileMode mode = FileMode::Binary);
+	static ReadStream& ReadStream(string path, FileMode mode = FileMode::Binary);
+	static WriteStream& WriteStream(string path, FileMode mode = FileMode::Binary);
 
 
 private:

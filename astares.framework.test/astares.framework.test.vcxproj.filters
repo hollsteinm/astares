@@ -24,9 +24,21 @@
     <ClCompile Include="jsonreflector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JSONTestObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONTestObjectContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonTestObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JSONTestObjectContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #define CORE_H
 
 #include "astares.core.h"
-#include "core\Types.h"
+#include "core\ISerializable.h"
 #include "core\Config.h"
 #include "core\File.h"
 #include "core\ISubsystem.h"

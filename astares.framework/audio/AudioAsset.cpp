@@ -1,5 +1,6 @@
 #include "AudioAsset.h"
 #include "../reflection/Reflection.h"
+#include "../serialization/StringHelper.h"
 
 AudioAsset::AudioAsset() :
 	Loops(false),

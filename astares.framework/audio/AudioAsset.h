@@ -26,7 +26,7 @@ protected:
 	SERIALIZEABLE(AudioAsset)
 };
 
-DECL_OBJ_VARIANT(AudioAsset)
+DECL_OBJECT_VARIANT(AudioAsset)
 DECL_MAP_VARIANT(int64, AudioAsset)
 
 #endif

@@ -143,7 +143,7 @@ Vector3& Transform::ScaleVector() { return Scale; }
 
 WriteStream& operator<<(WriteStream& out, const Transform& in) 
 {
-	return out << in.Position << in.Rotation << in.Scale; //TODO:parent
+	return out << in.Position << ' ' << in.Rotation << ' ' << in.Scale; //TODO:parent
 }
 
 ReadStream& operator>>(ReadStream& in, Transform& out)

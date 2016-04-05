@@ -12,9 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="catch.hpp" />
+    <ClInclude Include="JsonTestObject.h" />
+    <ClInclude Include="JSONTestObjectContainer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jsonreflector.cpp" />
+    <ClCompile Include="JSONTestObject.cpp" />
+    <ClCompile Include="JSONTestObjectContainer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reflector.cpp" />
   </ItemGroup>

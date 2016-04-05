@@ -11,20 +11,23 @@ Reflector::~Reflector()
 
 }
 
-void Reflector::SetType(const Variant& variant) {
+void Reflector::SetType(const Variant& variant) 
+{
 	if (Type.GetVariantType() == VariantType::unknown)
 	{
-		Type.Set(variant);
+		Type = variant;
 	}
 }
 
-void Reflector::AddProperty(const PropertyVariant& variant){
+void Reflector::AddProperty(const PropertyVariant& variant)
+{
 	if (Properties.find(variant.GetPropertyName()) == Properties.cend()) {
 		Properties.emplace(std::make_pair(variant.GetPropertyName(), variant));
 	}
 }
 
-std::vector<PropertyVariant> Reflector::GetProperties(){
+std::vector<PropertyVariant> Reflector::GetProperties()
+{
 	std::vector<PropertyVariant> results;
 	for (auto kvp : Properties) {
 		results.push_back(kvp.second);
@@ -33,25 +36,30 @@ std::vector<PropertyVariant> Reflector::GetProperties(){
 }
 
 
-Variant& Reflector::GetProperty(string name){
+Variant& Reflector::GetProperty(string name)
+{
 	return Properties.at(name);
 }
 
-void Reflector::SetProperty(string name, const Variant& newValue) {
+void Reflector::SetProperty(string name, const Variant& newValue)
+{
 	if (Properties.find(name) == Properties.cend()) {
-		Properties[name].Set(newValue);
+		Properties[name] = PropertyVariant(newValue);
 	}
 }
 
 
-int64 Reflector::GetCustomType() const {
+int64 Reflector::GetCustomType() const 
+{
 	return Type.GetCustomType();
 }
 
-int64 Reflector::GetType() const {
+int64 Reflector::GetType() const 
+{
 	return Type.GetType();
 }
 
-string Reflector::GetName() const {
+string Reflector::GetName() const 
+{
 	return Type.GetName();
 }

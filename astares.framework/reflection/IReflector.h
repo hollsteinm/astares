@@ -9,7 +9,7 @@ struct ASTARESFRAMEWORK_API IReflector {
 };
 
 #ifndef START_PROPERTIES
-#define START_PROPERTIES(o) typedef o me; void o::InternalReflect(IReflector* reflector) const { reflector->SetType(Variant(*this));
+#define START_PROPERTIES(o) typedef o me; void o::InternalReflect(IReflector* reflector) const { reflector->SetType(Variant(*this, true));
 #endif
 
 #ifndef PARENT

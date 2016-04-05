@@ -11,7 +11,7 @@ std::shared_ptr<ObjectFactory> ObjectFactory::__instance;
 std::shared_ptr<ObjectFactory> ObjectFactory::Get() {
 	if (!__instance) {
 		__instance = std::shared_ptr<ObjectFactory>(new ObjectFactory());
-		auto var = Variant(Object());
+		auto var = Variant(Object(), true);
 		__instance->Add(var.GetName(), var.GetCustomType(), std::shared_ptr<Object>(new Object()));
 	}
 	return __instance;
@@ -47,7 +47,9 @@ std::weak_ptr<Object> ObjectFactory::GetDefault(int64 typeId) {
 std::shared_ptr<Object> ObjectFactory::CreateNew(int64 typeId) {
 	auto original = std::shared_ptr<Object>(GetDefault(typeId));
 	if (original) {
-		return std::shared_ptr<Object>(original->CreateDefault());
+		auto newObj = std::shared_ptr<Object>(original->CreateDefault());
+		LiveObjectGraph.emplace(std::make_pair(newObj->GetInstanceId(), newObj));
+		return newObj;
 	}
 	else {
 		return nullptr;

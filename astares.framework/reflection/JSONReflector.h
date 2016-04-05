@@ -13,20 +13,21 @@ public:
 private:
 	static string GetVectorContentString(const vector<string>& labels, const vector<f32>& data);
 
-	void WriteNumeric(const Variant& variant);
-	void WriteString(const Variant& variant);
-	void WriteBoolean(const Variant& variant);
-	void WriteArrayType(const Variant& variant);
-	void WriteMapType(const Variant& variant);
-	void WriteObject(const Variant& variant);
-	void WriteHull(const Variant& variant);
-	void WriteSphere(const Variant& variant);
-	void WriteBox(const Variant& variant);
-	void WritePlane(const Variant& variant);
-	void WriteTransform(const Variant& variant);
-	void WriteQuaternion(const Variant& variant);
-	void WriteUID(const Variant& variant);
-	void WriteVariant(const Variant& variant);
+	void WriteNumeric(Variant& variant);
+	void WriteString(Variant& variant);
+	void WriteBoolean(Variant& variant);
+	void WriteArrayType(Variant& variant);
+	void WriteMapType(Variant& variant);
+	void WriteObject(Variant& variant);
+	void WriteHull(Variant& variant);
+	void WriteSphere(Variant& variant);
+	void WriteBox(Variant& variant);
+	void WritePlane(Variant& variant);
+	void WriteTransform(Variant& variant);
+	void WriteQuaternion(Variant& variant);
+	void WriteUID(Variant& variant);
+	void WriteVariant(Variant& variant);
+	void WriteObject(class Object* obj);
 
 	string highestOrderType;
 	vector<string> parents;

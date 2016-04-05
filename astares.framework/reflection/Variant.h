@@ -3,8 +3,6 @@
 
 #include "..\astares.framework.h"
 #include <Core.h>
-#include "..\serialization\StringHelper.h"
-#include <sstream>
 
 enum class VariantType
 {
@@ -98,6 +96,8 @@ struct VariantTypeId
 #define DECL_OBJECT_VARIANT(type) DECL_API_OBJECT_VARIANT(,type)
 #endif
 
+template<typename T> static const VariantTypeId<T> TypeOf() { return VariantTypeId<T>(); }
+
 DECL_VARIANT(int8)
 DECL_VARIANT(int16)
 DECL_VARIANT(int32)
@@ -126,95 +126,191 @@ DECL_VARIANT(Hull)
 DECL_VARIANT(Box)
 DECL_VARIANT(Transform)
 
-#ifndef DECL_OBJ_VARIANT
-#define DECL_OBJ_VARIANT(type) TEMPLATE_EXTERN template<> struct ASTARESFRAMEWORK_API VariantTypeId<type> { static VariantType GetType() { return VariantType::Object; } static std::string GetTypeName() { return #type; } static int64 GetCustomType() {return (int64)std::hash<string>()(GetTypeName());}};
+#ifndef CTOR_VARIANT
+#define CTOR_VARIANT(T) Variant(const T& newValue); void Get(T& value);
 #endif
+
+#ifndef CTOR_VARIANT_VECTOR
+#define CTOR_VARIANT_VECTOR(T) Variant(const vector<T>& newValue); void Get(vector<T>& value);
+#endif
+
+#ifndef CTOR_VARIANT_QUEUE
+#define CTOR_VARIANT_QUEUE(T) Variant(const queue<T>& newValue); void Get(queue<T>& value);
+#endif
+
+//TODO: maps...
 
 class ASTARESFRAMEWORK_API Variant
 {
 protected:
 	string name;
-	size_t size;
+	size_t size = 0;
 	int64 customType;
 	VariantType type;
-	std::stringstream buffer;
+	Stream buffer;
+
+	bool bIsCollection;
+	VariantType collectionType;
+	int64 collectionCustomType;
+	size_t collectionSize;
 
 public:
-	Variant(VariantType type);
-	Variant(VariantType type, int64 customType);
-	virtual ~Variant();
+	Variant(const VariantType& type);
+	Variant(const VariantType& type, const int64& customType);
+	Variant(const VariantType& type, const int64& customType, const string& name);
 	Variant(const Variant& other);
+	virtual ~Variant();
+
+	template<template<typename, typename> class Container, typename T>
+	Variant(const Container<T, std::allocator<T>>& value)
+		: Variant(VariantTypeId<Container<T, std::allocator<T>>::GetType(), 
+		VariantTypeId<Container<T, std::allocator<T>>::GetCustomType(),
+		VariantTypeId<Container<T, std::allocator<T>>::GetTypeName())
+	{
+		bIsCollection = true;
+		collectionType = VariantTypeId<T>::GetType();
+		customType = VariantTypeId<T>::GetCustomType();
+		collectionSize = value.size();
+		buffer << newValue;
+	}
+
+	template<template<typename, typename> class Container, typename T>
+	Variant(const Container<T, std::deque<T>>& value)
+		: Variant(VariantTypeId<Container<T, std::allocator<T>>::GetType(),
+		VariantTypeId<Container<T, std::allocator<T>>::GetCustomType(),
+		VariantTypeId<Container<T, std::allocator<T>>::GetTypeName())
+	{
+		bIsCollection = true;
+		collectionType = VariantTypeId<T>::GetType();
+		customType = VariantTypeId<T>::GetCustomType();
+		collectionSize = value.size();
+		buffer << newValue;
+	}
 
 	template<typename T>
-	Variant(const T& newValue) :
-		buffer(std::ios::binary | std::ios::in | std::ios::out)
+	Variant(const T& serializable, gate compilerHack)
+		: Variant(VariantTypeId<T>::GetType(),
+		VariantTypeId<T>::GetCustomType(),
+		VariantTypeId<T>::GetTypeName())
 	{
-		type = VariantTypeId<T>::GetType();
-		Set(newValue);
+		((ISerializable*)&serializable)->Serialize(buffer, 0);
 	}
 
-	template<typename T> 
-	void Set(const T& newValue){
-		if (VariantTypeId<T>::GetType() == type || type == VariantType::unknown)
-		{
-			if (type == VariantType::unknown)
-			{
-				type = VariantTypeId<T>::GetType();
-			}
-			size = sizeof(T);
-			name = VariantTypeId<T>::GetTypeName();
-			customType = (int64)std::hash<string>()(name);
-			buffer << newValue;
-		}
-	}
+	CTOR_VARIANT(int8)
+	CTOR_VARIANT(int16)
+	CTOR_VARIANT(int32)
+	CTOR_VARIANT(int64)
+	CTOR_VARIANT(uint8)
+	CTOR_VARIANT(uint16)
+	CTOR_VARIANT(uint32)
+	CTOR_VARIANT(uint64)
+	CTOR_VARIANT(f32)
+	CTOR_VARIANT(f64)
+	CTOR_VARIANT(gate)
+	CTOR_VARIANT(string)
+	CTOR_VARIANT(UID)
+	CTOR_VARIANT(Vector2)
+	CTOR_VARIANT(Vector3)
+	CTOR_VARIANT(Vector4)
+	CTOR_VARIANT(Matrix2)
+	CTOR_VARIANT(Matrix3)
+	CTOR_VARIANT(Matrix4)
+	CTOR_VARIANT(Quaternion)
+	CTOR_VARIANT(Plane)
+	CTOR_VARIANT(Ray2)
+	CTOR_VARIANT(Ray3)
+	CTOR_VARIANT(Sphere)
+	CTOR_VARIANT(Hull)
+	CTOR_VARIANT(Box)
+	CTOR_VARIANT(Transform)
 
-	template<>
-	void Set<Variant>(const Variant& newValue){
-		type = newValue.type;
-		size = newValue.size;
-		name = newValue.name;
-		customType = newValue.customType;
-		buffer = std::stringstream(newValue.buffer.str(), std::ios::binary | std::ios::in | std::ios::out);
-	}
+	CTOR_VARIANT_VECTOR(int8)
+	CTOR_VARIANT_VECTOR(int16)
+	CTOR_VARIANT_VECTOR(int32)
+	CTOR_VARIANT_VECTOR(int64)
+	CTOR_VARIANT_VECTOR(uint8)
+	CTOR_VARIANT_VECTOR(uint16)
+	CTOR_VARIANT_VECTOR(uint32)
+	CTOR_VARIANT_VECTOR(uint64)
+	CTOR_VARIANT_VECTOR(f32)
+	CTOR_VARIANT_VECTOR(f64)
+	CTOR_VARIANT_VECTOR(gate)
+	CTOR_VARIANT_VECTOR(string)
+	CTOR_VARIANT_VECTOR(UID)
+	CTOR_VARIANT_VECTOR(Vector2)
+	CTOR_VARIANT_VECTOR(Vector3)
+	CTOR_VARIANT_VECTOR(Vector4)
+	CTOR_VARIANT_VECTOR(Matrix2)
+	CTOR_VARIANT_VECTOR(Matrix3)
+	CTOR_VARIANT_VECTOR(Matrix4)
+	CTOR_VARIANT_VECTOR(Quaternion)
+	CTOR_VARIANT_VECTOR(Plane)
+	CTOR_VARIANT_VECTOR(Ray2)
+	CTOR_VARIANT_VECTOR(Ray3)
+	CTOR_VARIANT_VECTOR(Sphere)
+	CTOR_VARIANT_VECTOR(Hull)
+	CTOR_VARIANT_VECTOR(Box)
+	CTOR_VARIANT_VECTOR(Transform)
 
-	template<>
-	void Set<string>(const string& newValue)
+	CTOR_VARIANT_QUEUE(int8)
+	CTOR_VARIANT_QUEUE(int16)
+	CTOR_VARIANT_QUEUE(int32)
+	CTOR_VARIANT_QUEUE(int64)
+	CTOR_VARIANT_QUEUE(uint8)
+	CTOR_VARIANT_QUEUE(uint16)
+	CTOR_VARIANT_QUEUE(uint32)
+	CTOR_VARIANT_QUEUE(uint64)
+	CTOR_VARIANT_QUEUE(f32)
+	CTOR_VARIANT_QUEUE(f64)
+	CTOR_VARIANT_QUEUE(gate)
+	CTOR_VARIANT_QUEUE(string)
+	CTOR_VARIANT_QUEUE(UID)
+	CTOR_VARIANT_QUEUE(Vector2)
+	CTOR_VARIANT_QUEUE(Vector3)
+	CTOR_VARIANT_QUEUE(Vector4)
+	CTOR_VARIANT_QUEUE(Matrix2)
+	CTOR_VARIANT_QUEUE(Matrix3)
+	CTOR_VARIANT_QUEUE(Matrix4)
+	CTOR_VARIANT_QUEUE(Quaternion)
+	CTOR_VARIANT_QUEUE(Plane)
+	CTOR_VARIANT_QUEUE(Ray2)
+	CTOR_VARIANT_QUEUE(Ray3)
+	CTOR_VARIANT_QUEUE(Sphere)
+	CTOR_VARIANT_QUEUE(Hull)
+	CTOR_VARIANT_QUEUE(Box)
+	CTOR_VARIANT_QUEUE(Transform)
+
+	void Get(ISerializable* value);
+
+	template<template<typename, typename> class Container, typename T>
+	void Get(Container<T, std::allocator<T>>& value)
 	{
-		string writeVal = newValue;
-		StringHelper::Encode(writeVal);
-		if (VariantTypeId<string>::GetType() == type || type == VariantType::unknown)
-		{
-			if (type == VariantType::unknown)
-			{
-				type = VariantTypeId<string>::GetType();
-			}
-			buffer << newValue;
-			size = sizeof(string);
-			name = VariantTypeId<string>::GetTypeName();
-			customType = (long)std::hash<string>()(name);
-		}
+		buffer >> value;
 	}
 
-	void SetRaw(const string& newValue);
-
-	template<typename T>
-	void Get(T& outValue) const {
-		if (VariantTypeId<T>::GetType() == type || type == VariantType::unknown)
-		{
-			std::istream stream(buffer.rdbuf());
-			stream >> outValue;
-		}
+	template<template<typename, typename> class Container, typename T>
+	void Get(Container<T, std::deque<T>>& value)
+	{
+		buffer >> value;
 	}
 
-	template<>
-	void Get<string>(string& outValue) const {
-		if (VariantTypeId<string>::GetType() == type || type == VariantType::unknown)
-		{
-			std::istream stream(buffer.rdbuf());
-			stream >> outValue;
-		}
-		StringHelper::Decode(outValue);
+	template<template<typename, typename> class Container, typename T>
+	void Get(Container<T*, std::allocator<T*>>& value)
+	{
+		buffer >> value;
 	}
+
+	template<template<typename, typename> class Container, typename T>
+	void Get(Container<T*, std::deque<T*>>& value)
+	{
+		buffer >> value;
+	}
+
+
+	bool IsCollection() const;
+	VariantType GetCollectionType() const;
+	int64 GetCollectionCustomType() const;
+	size_t Count() const;
 
 	VariantType GetVariantType() const;
 	int64 GetType() const;
@@ -225,6 +321,10 @@ public:
 
 	friend WriteStream& operator << (WriteStream& out, const Variant& variant);
 	friend ReadStream& operator >> (ReadStream& in, Variant& variant);
+
+	void operator=(const Variant& other);
+	bool operator==(const Variant& other);
+	bool operator!=(const Variant& other);
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "../object/Object.h"
 #include "../object/ObjectFactory.h"
 #include <functional>
+#include <sstream>
 
 #define WRITE_MAT(dim)														\
 		{																	\
@@ -114,36 +115,99 @@ string JSONReflector::ToString() const
 	return result;
 }
 
-void JSONReflector::WriteString(const Variant& variant)
+void JSONReflector::WriteString(Variant& variant)
 {
 	content.append(1, QuoteToken)
 		.append(variant.Value())
 		.append(1, QuoteToken);
 }
 
-void JSONReflector::WriteBoolean(const Variant& variant)
+void JSONReflector::WriteBoolean(Variant& variant)
 {
 	gate g;
 	((Variant&)variant).Get(g);
 	content.append(g ? "true" : "false");
 }
 
-void JSONReflector::WriteNumeric(const Variant& variant)
+void JSONReflector::WriteNumeric(Variant& variant)
 {
-	content.append(variant.Value());
+	string val;
+	switch (variant.GetVariantType())
+	{
+	case VariantType::int16:
+	{
+		int16 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::int32:
+	{
+		int32 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::int64:
+	{
+		int64 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::uint16:
+	{
+		uint16 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::uint32:
+	{
+		uint32 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::uint64:
+	{
+		uint64 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::f32:
+	{
+		f32 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	case VariantType::f64:
+	{
+		f64 var;
+		variant.Get(var);
+		val = std::to_string(var);
+		break;
+	}
+	default:
+		val = variant.Value();
+		break;
+	}
+	content.append(val);
 }
 
-#define ARRAY_STRAT(ElemType, ElemFunc) [this](const Variant& variant){ vector<ElemType> data; variant.Get(data); for(auto elem : data) { ElemFunc(Variant(elem)); content.append(1, SeperatorToken); } if (data.size() > 0) { content.replace(content.find_last_of(SeperatorToken), 1, ""); } }
+#define ARRAY_STRAT(ElemType, ElemFunc) [this](Variant& variant){ vector<ElemType> data; variant.Get(data); for(auto elem : data) { ElemFunc(Variant(elem)); content.append(1, SeperatorToken); } if (data.size() > 0) { content.replace(content.find_last_of(SeperatorToken), 1, ""); } }
 
-#define VECTOR_STRAT(dim, ...) [this](const Variant& var) { vector<Vector##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_VEC(dim, __VA_ARGS__) }}
+#define VECTOR_STRAT(dim, ...) [this](Variant& var) { vector<Vector##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_VEC(dim, __VA_ARGS__) }}
 
-#define MATRIX_STRAT(dim) [this](const Variant& var) { vector<Matrix##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_MAT(dim) }}
+#define MATRIX_STRAT(dim) [this](Variant& var) { vector<Matrix##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_MAT(dim) }}
 
-#define RAY_STRAT(dim, ...) [this](const Variant& var) { vector<Ray##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_RAY(dim, __VA_ARGS__) }}
+#define RAY_STRAT(dim, ...) [this](Variant& var) { vector<Ray##dim> data; for(auto elem : data) { Variant variant(elem); WRITE_RAY(dim, __VA_ARGS__) }}
 
-void JSONReflector::WriteArrayType(const Variant& variant)
+void JSONReflector::WriteArrayType(Variant& variant)
 {
-	static const map<int64, std::function<void(const Variant&)>> strategy =
+	const map<int64, std::function<void(Variant&)>> strategy =
 	{
 		{ VariantTypeId<vector<int8>>::GetCustomType(),	ARRAY_STRAT(int8, WriteString)},
 		{ VariantTypeId<vector<int16>>::GetCustomType(), ARRAY_STRAT(int16, WriteNumeric) },
@@ -172,7 +236,21 @@ void JSONReflector::WriteArrayType(const Variant& variant)
 		{ VariantTypeId<vector<Hull>>::GetCustomType(), ARRAY_STRAT(Hull, WriteHull) },
 		{ VariantTypeId<vector<Box>>::GetCustomType(), ARRAY_STRAT(Box, WriteBox) },
 		{ VariantTypeId<vector<Transform>>::GetCustomType(), ARRAY_STRAT(Transform, WriteTransform) },
-		{ VariantTypeId<vector<Object>>::GetCustomType(), ARRAY_STRAT(Object, WriteObject) },
+		{ VariantTypeId<vector<Object>>::GetCustomType(), [this](Variant& variant)
+			{
+				vector<Object> data;
+				variant.Get(data);
+				for (auto elem : data) 
+				{ 
+					WriteObject(&elem);
+					content.append(1, SeperatorToken);
+				}
+				if (data.size() > 0)
+				{ 
+					content.replace(content.find_last_of(SeperatorToken), 1, "");
+				} 
+			}
+		},
 		{ VariantTypeId<queue<int8>>::GetCustomType(), ARRAY_STRAT(int8, WriteString) },
 		{ VariantTypeId<queue<int16>>::GetCustomType(), ARRAY_STRAT(int16, WriteNumeric) },
 		{ VariantTypeId<queue<int32>>::GetCustomType(), ARRAY_STRAT(int32, WriteNumeric) },
@@ -200,33 +278,75 @@ void JSONReflector::WriteArrayType(const Variant& variant)
 		{ VariantTypeId<queue<Hull>>::GetCustomType(), ARRAY_STRAT(Hull, WriteHull) },
 		{ VariantTypeId<queue<Box>>::GetCustomType(), ARRAY_STRAT(Box, WriteBox) },
 		{ VariantTypeId<queue<Transform>>::GetCustomType(), ARRAY_STRAT(Transform, WriteTransform) },
-		{ VariantTypeId<queue<Object>>::GetCustomType(), ARRAY_STRAT(Object, WriteObject) }
+		{ VariantTypeId<queue<Object>>::GetCustomType(), [this](Variant& variant)
+			{
+				vector<Object> data;
+				variant.Get(data);
+				for (auto elem : data)
+				{
+					WriteObject(&elem);
+					content.append(1, SeperatorToken);
+				}
+				if (data.size() > 0)
+				{
+					content.replace(content.find_last_of(SeperatorToken), 1, "");
+				}
+			} 
+		}
 	};
 
 	content.append(1, ArrayStartToken);
-	strategy.at(variant.GetCustomType())(variant);
+	if (strategy.find(variant.GetCustomType()) != strategy.cend())
+	{
+		strategy.at(variant.GetCustomType())(variant);
+	}
+	else if (variant.GetCollectionType() == VariantType::Object)
+	{
+		vector<Object*> objList;
+		auto size = variant.Count();
+		objList.reserve(size);
+		for (size_t i = 0; i < size; ++i)
+		{
+			auto ptr = ObjectFactory::Get()->CreateNew(variant.GetCollectionCustomType());
+			objList.push_back(ptr.get());
+		}
+		variant.Get(objList);
+		for (auto obj : objList)
+		{
+			WriteObject(obj);
+			content.append(1, SeperatorToken);
+			ObjectFactory::Get()->Unregister(obj);
+		}
+		if (size > 0)
+		{
+			content.replace(content.find_last_of(SeperatorToken), 1, "");
+		}
+	}
 	content.append(1, ArrayEndToken);
 }
 
-void JSONReflector::WriteMapType(const Variant& variant)
+void JSONReflector::WriteMapType(Variant& variant)
 {
 	throw std::exception("not implemented");
 }
 
-void JSONReflector::WriteObject(const Variant& variant)
+void JSONReflector::WriteObject(Variant& variant)
+{
+	auto obj = ObjectFactory::Get()->CreateNew(variant.GetCustomType());
+	variant.Get(obj.get());
+	WriteObject(obj.get());
+	ObjectFactory::Get()->Unregister(obj.get());
+}
+
+void JSONReflector::WriteObject(Object* obj)
 {
 	JSONReflector* objectReflector = new JSONReflector();
-	auto obj = ObjectFactory::Get()->CreateNew(variant.GetCustomType());
-	std::stringstream stream;
-	stream << variant.Value();
-	obj->Deserialize(stream, 0);
 	obj->Reflect(objectReflector);
 	content.append(objectReflector->ToString());
-	ObjectFactory::Get()->Unregister(obj.get());
 	delete objectReflector;
 }
 
-void JSONReflector::WriteHull(const Variant& variant)
+void JSONReflector::WriteHull(Variant& variant)
 {
 	Hull hull;
 	variant.Get(hull);
@@ -250,7 +370,7 @@ void JSONReflector::WriteHull(const Variant& variant)
 	content.append(1, CloseToken);
 }
 
-void JSONReflector::WriteSphere(const Variant& variant)
+void JSONReflector::WriteSphere(Variant& variant)
 {
 	Sphere sphere;
 	variant.Get(sphere);
@@ -266,7 +386,7 @@ void JSONReflector::WriteSphere(const Variant& variant)
 		.append(1, CloseToken);
 }
 
-void JSONReflector::WriteBox(const Variant& variant)
+void JSONReflector::WriteBox(Variant& variant)
 {
 	Box box;
 	variant.Get(box);
@@ -283,7 +403,7 @@ void JSONReflector::WriteBox(const Variant& variant)
 		.append(1, CloseToken);
 }
 
-void JSONReflector::WritePlane(const Variant& variant)
+void JSONReflector::WritePlane(Variant& variant)
 {
 	Plane plane;
 	variant.Get(plane);
@@ -299,7 +419,7 @@ void JSONReflector::WritePlane(const Variant& variant)
 		.append(1, CloseToken);
 }
 
-void JSONReflector::WriteTransform(const Variant& variant)
+void JSONReflector::WriteTransform(Variant& variant)
 {
 	Transform transform = Transform();
 	variant.Get(transform);
@@ -321,7 +441,7 @@ void JSONReflector::WriteTransform(const Variant& variant)
 		.append(1, CloseToken);
 }
 
-void JSONReflector::WriteUID(const Variant& variant)
+void JSONReflector::WriteUID(Variant& variant)
 {
 	UID id;
 	variant.Get(id);
@@ -330,14 +450,14 @@ void JSONReflector::WriteUID(const Variant& variant)
 		.append(1, QuoteToken);
 }
 
-void JSONReflector::WriteQuaternion(const Variant& variant)
+void JSONReflector::WriteQuaternion(Variant& variant)
 {
 	Quaternion quat = Quaternion();
 	variant.Get(quat);
 	content.append(GetVectorContentString({ "X", "Y", "Z", "W" }, { quat.x, quat.y, quat.z, quat.w }));
 }
 
-void JSONReflector::WriteVariant(const Variant& variant)
+void JSONReflector::WriteVariant(Variant& variant)
 {
 	switch (variant.GetVariantType())
 	{
@@ -443,11 +563,12 @@ void JSONReflector::WriteVariant(const Variant& variant)
 
 void JSONReflector::AddProperty(const PropertyVariant& variant)
 {
+	Variant copy(variant);
 	content.append(1, QuoteToken)
 		.append(variant.GetPropertyName())
 		.append(1, QuoteToken)
 		.append(1, PropertyToken);
-	WriteVariant(variant);
+	WriteVariant(copy);
 	content.append(1, SeperatorToken);
 }
 

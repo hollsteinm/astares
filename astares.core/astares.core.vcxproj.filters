@@ -129,6 +129,9 @@
     <ClInclude Include="core\UID.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="core\ISerializable.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="math\Hull.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="core\ISerializable.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

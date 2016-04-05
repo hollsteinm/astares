@@ -71,8 +71,9 @@ WriteStream& operator << (WriteStream& out, const vector<T>& arr) {
 
 template<typename T>
 ReadStream& operator >> (ReadStream& in, vector<T>& arr) {
-	size_t size;
+	size_t size = 0;
 	in >> size;
+	arr.clear();
 	arr.reserve(size);
 	for (size_t i = 0; i < size; ++i) {
 		T temp;
@@ -112,7 +113,7 @@ WriteStream& operator << (WriteStream& out, const map<T, V>& m) {
 
 template<typename T, typename V>
 ReadStream& operator >> (ReadStream& in, map<T, V>& m) {
-	size_t size;
+	size_t size = 0;
 	in >> size;
 	for (size_t i = 0; i < size; ++i) {
 		T t;
@@ -141,8 +142,12 @@ WriteStream& operator << (WriteStream& out, const queue<T>& q) {
 
 template<typename T>
 ReadStream& operator >> (ReadStream& in, queue<T>& q) {
-	size_t size;
+	size_t size = 0;
 	in >> size;
+	while (!q.empty())
+	{
+		q.pop();
+	}
 	for (size_t i = 0; i < size; ++i) {
 		T t;
 		in >> t;
