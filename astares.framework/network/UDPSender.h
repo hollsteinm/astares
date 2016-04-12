@@ -1,18 +1,18 @@
 #ifndef UDPSENDER_H
 #define UDPSENDER_H
 
-#include <string>
-#include "NetworkMessage.h"
+#include "../astares.framework.h"
+#include <core/Types.h>
 
-class UDPSender {
+class ASTARESFRAMEWORK_API UDPSender {
 public:
-	UDPSender(std::string host, std::string port);
+	UDPSender(string host, string port);
 	~UDPSender();
 
-	void Send(NetworkMessage* NetMessage);
+	void Send(const string& data);
 
 private:
-	struct ISocket* Sock;
+	std::unique_ptr<struct ISocket> Sock;
 };
 
 

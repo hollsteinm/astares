@@ -13,7 +13,7 @@ struct ASTARESCORE_API ISubsystem {
 	virtual std::string GetName() const = 0;
 
 	virtual void Configure(class Config& config) = 0;
-	virtual bool Initialize(struct ILogger* logger) = 0;
+	virtual bool Initialize(std::shared_ptr<struct ILogger> logger) = 0;
 	virtual bool Run() = 0;
 	virtual void Shutdown() = 0;
 };

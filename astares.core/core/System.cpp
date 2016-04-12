@@ -12,11 +12,11 @@ static const char* CompanyId = "Company";
 static const char* ProjectId = "Project";
 static const char* NameId = "Name";
 
-System::System(ILogger* logger, const std::vector<std::weak_ptr<ISubsystem>>& subSystems) {
+System::System(std::shared_ptr<ILogger> logger, const std::vector<std::shared_ptr<ISubsystem>>& subSystems) {
 	this->logger = logger;
 
 	for (auto sys : subSystems) {
-		Subsystems.push_back(std::shared_ptr<ISubsystem>(sys));
+		Subsystems.push_back(sys);
 	}
 
 	if (!SDL_Init(SDL_INIT_VIDEO ) == 0) {

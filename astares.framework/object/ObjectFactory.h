@@ -17,9 +17,9 @@ class ASTARESFRAMEWORK_API ObjectFactory {
 public:
 	static std::shared_ptr<ObjectFactory> Get();
 
-	std::weak_ptr<class Object> GetDefault(string name);
+	std::shared_ptr<class Object> GetDefault(string name);
 	std::shared_ptr<class Object> CreateNew(string name);
-	std::weak_ptr<class Object> GetDefault(int64 typeId);
+	std::shared_ptr<class Object> GetDefault(int64 typeId);
 	std::shared_ptr<class Object> CreateNew(int64 typeId);
 
 	template<typename T>
@@ -27,18 +27,18 @@ public:
 		return std::dynamic_pointer_cast<T>(CreateNew(VariantTypeId<T>::GetCustomType()));
 	}
 
-	void Add(string name, int64 typeId, std::weak_ptr<Object> defaultObject);
+	void Add(string name, int64 typeId, std::shared_ptr<Object> defaultObject);
 
 	~ObjectFactory();
 
 	ObjectFactory(const ObjectFactory& rhs) = delete;
 	ObjectFactory& operator = (const ObjectFactory & rhs) = delete;
 
-	void Register(class Object* obj);
-	void Unregister(class Object* obj);
+	void Register(std::shared_ptr<class Object> obj);
+	void Unregister(std::shared_ptr<class Object> obj);
 
-	std::weak_ptr<class Object> GetLive(const UID& id) const;
-	gate TryGetLive(const UID& id, std::weak_ptr<class Object>& obj) const;
+	std::shared_ptr<class Object> GetLive(const UID& id) const;
+	gate TryGetLive(const UID& id, std::shared_ptr<class Object>& obj) const;
 
 	string ToString() const;
 
@@ -68,7 +68,7 @@ static inline std::shared_ptr<T> NewObject()
 #endif
 
 #ifndef DEL
-#define DEL(obj) ObjectFactory::Get()->Unregister(obj.get())
+#define DEL(obj) ObjectFactory::Get()->Unregister(obj)
 #endif
 
 #endif

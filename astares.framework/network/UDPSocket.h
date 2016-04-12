@@ -5,12 +5,12 @@
 #include "Address.h"
 
 
-class UDPSocket : public CoreSocket {
+class ASTARESFRAMEWORK_API UDPSocket : public CoreSocket {
 public:
-	virtual bool Open(const Address& address) override;
+	virtual gate Open(const Address& address) override;
 
-	virtual int32 Send(std::string data) override;
-	virtual int32 Read(std::string& outData, int32 size) override;
+	virtual int32 Send(const string& data) override;
+	virtual int32 Read(string& outData, int32 size) override;
 };
 
 

@@ -1,19 +1,20 @@
 #ifndef UDPLISTENER_H
 #define UDPLISTENER_H
 
-#include <string>
-#include "../messaging/MessageHub.h"
+#include "ISocket.h"
 
 
-class UDPListener : public MessageHub {
+class ASTARESFRAMEWORK_API UDPListener {
 public:
-	UDPListener(std::string port);
+	UDPListener(string port);
 	~UDPListener();
 
-	void Digest();
+	gate Ready();
+	struct Packet GetPacket();
 
 private:
-	struct ISocket* Sock;
+	gate isAvailable;
+	std::unique_ptr<struct ISocket> Sock;
 };
 
 

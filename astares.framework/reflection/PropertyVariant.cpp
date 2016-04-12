@@ -24,7 +24,6 @@ PropertyVariant::PropertyVariant(const PropertyVariant& other)
 	customType = other.customType;
 	buffer.clear();
 	copy_stream(buffer, other.buffer);
-	info = other.info;
 	propName = other.propName;
 }
 

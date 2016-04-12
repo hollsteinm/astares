@@ -27,7 +27,7 @@ private:
 	void WriteQuaternion(Variant& variant);
 	void WriteUID(Variant& variant);
 	void WriteVariant(Variant& variant);
-	void WriteObject(class Object* obj);
+	void WriteObject(std::shared_ptr<class Object> obj);
 
 	string highestOrderType;
 	vector<string> parents;

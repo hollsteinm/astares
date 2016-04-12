@@ -5,19 +5,19 @@
 std::shared_ptr<ObjectFactory> ObjectFactory::__instance;
 
 #ifndef null_ptr
-#define null_ptr std::weak_ptr < Object >()
+#define null_ptr std::shared_ptr < Object >()
 #endif
 
 std::shared_ptr<ObjectFactory> ObjectFactory::Get() {
 	if (!__instance) {
 		__instance = std::shared_ptr<ObjectFactory>(new ObjectFactory());
 		auto var = Variant(Object(), true);
-		__instance->Add(var.GetName(), var.GetCustomType(), std::shared_ptr<Object>(new Object()));
+		__instance->Add(var.GetName(), var.GetCustomType(), std::make_shared<Object>());
 	}
 	return __instance;
 }
 
-std::weak_ptr<Object> ObjectFactory::GetDefault(std::string name) {
+std::shared_ptr<Object> ObjectFactory::GetDefault(std::string name) {
 	if (NameIdGraph.find(name) != NameIdGraph.end()) {
 		return GetDefault(NameIdGraph[name]);
 	}
@@ -35,7 +35,7 @@ std::shared_ptr<Object> ObjectFactory::CreateNew(std::string name) {
 	}
 }
 
-std::weak_ptr<Object> ObjectFactory::GetDefault(int64 typeId) {
+std::shared_ptr<Object> ObjectFactory::GetDefault(int64 typeId) {
 	if (Graph.find(typeId) != Graph.end()) {
 		return Graph.at(typeId);
 	}
@@ -56,28 +56,28 @@ std::shared_ptr<Object> ObjectFactory::CreateNew(int64 typeId) {
 	}
 }
 
-void ObjectFactory::Add(std::string name, int64 typeId, std::weak_ptr<Object> obj) {
+void ObjectFactory::Add(std::string name, int64 typeId, std::shared_ptr<Object> obj) {
 	if (obj._Get() != nullptr)
 	{
 		if (Graph.find(typeId) == Graph.end())
 		{
-			Graph[typeId] = std::shared_ptr<Object>(obj);
+			Graph[typeId] = obj;
 			NameIdGraph[name] = typeId;
 		}
 	}
 }
 
-void ObjectFactory::Register(Object* obj) {
+void ObjectFactory::Register(std::shared_ptr<Object> obj) {
 	if (obj)
 	{
 		auto id = obj->GetInstanceId();
 		if (LiveObjectGraph.find(id) == LiveObjectGraph.cend()) {
-			LiveObjectGraph[id] = std::shared_ptr<Object>(obj);
+			LiveObjectGraph[id] = obj;
 		}
 	}
 }
 
-void ObjectFactory::Unregister(Object* obj) {
+void ObjectFactory::Unregister(std::shared_ptr<Object> obj) {
 	if (obj)
 	{
 		auto id = obj->GetInstanceId();
@@ -87,7 +87,7 @@ void ObjectFactory::Unregister(Object* obj) {
 	}
 }
 
-std::weak_ptr<Object> ObjectFactory::GetLive(const UID& id) const {
+std::shared_ptr<Object> ObjectFactory::GetLive(const UID& id) const {
 	if (LiveObjectGraph.find(id) != LiveObjectGraph.cend()) {
 		return LiveObjectGraph.at(id);
 	}
@@ -96,9 +96,9 @@ std::weak_ptr<Object> ObjectFactory::GetLive(const UID& id) const {
 	}
 }
 
-bool ObjectFactory::TryGetLive(const UID& id, std::weak_ptr<Object>& obj) const {
+bool ObjectFactory::TryGetLive(const UID& id, std::shared_ptr<Object>& obj) const {
 	obj = GetLive(id);
-	return obj._Get() != nullptr;
+	return obj ? true : false;
 }
 
 ObjectFactory::~ObjectFactory() {

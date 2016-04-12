@@ -3,7 +3,10 @@
 
 #include "IAudioSystem.h"
 
-class SDLWAVAudioSystem : public IAudioSystem {
+class ASTARESCORE_API Config;
+class ASTARESCORE_API ILogger;
+
+class ASTARESFRAMEWORK_API SDLWAVAudioSystem : public IAudioSystem {
 public:
 	SDLWAVAudioSystem();
 	~SDLWAVAudioSystem();
@@ -20,8 +23,8 @@ public:
 
 	virtual string GetName() const override;
 
-	virtual void Configure(class Config& config) override;
-	virtual bool Initialize(struct ILogger* logger) override;
+	virtual void Configure(Config& config) override;
+	virtual bool Initialize(std::shared_ptr<ILogger> logger) override;
 	virtual bool Run() override;
 	virtual void Shutdown() override;
 

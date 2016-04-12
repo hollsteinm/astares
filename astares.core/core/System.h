@@ -12,7 +12,7 @@ DECL_CORE_STL(std::weak_ptr<ISubsystem>)
 
 class ASTARESCORE_API System {
 public:
-	System(ILogger* logger, const vector<std::weak_ptr<ISubsystem>>& subSystems);
+	System(std::shared_ptr<ILogger> logger, const std::vector<std::shared_ptr<ISubsystem>>& subSystems);
 	virtual ~System();
 
 	virtual void Configure(class Config& config);
@@ -22,7 +22,7 @@ public:
 private:
 protected:
 	vector<std::shared_ptr<ISubsystem>> Subsystems;
-	ILogger* logger;
+	std::shared_ptr<ILogger> logger;
 };
 
 

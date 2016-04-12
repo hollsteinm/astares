@@ -14,9 +14,9 @@
 
 
 SDLWAVAudioSystem::SDLWAVAudioSystem() :
-	Channels(MIX_DEFAULT_CHANNELS),
-	DeviceName("Unknown"),
-	audioObjects()
+Channels(MIX_DEFAULT_CHANNELS),
+DeviceName("Unknown"),
+audioObjects()
 {
 }
 
@@ -47,9 +47,13 @@ int64 SDLWAVAudioSystem::AddAsset(string filename) {
 		for (auto c : contents) {
 			asset.rawData.push_back((uint8)c);
 		}
+		audioObjects[asset.GetInstanceId().GetValue()] = asset;
+		return asset.GetInstanceId().GetValue();
 	}
-	audioObjects[asset.GetInstanceId().GetValue()] = asset;
-	return asset.GetInstanceId().GetValue();
+	else
+	{
+		return -1;
+	}
 }
 
 void SDLWAVAudioSystem::RemoveAsset(int64 id) {
@@ -66,8 +70,7 @@ void SDLWAVAudioSystem::PlayAudio(int64 audioId) {
 			{
 			case SoundType::SFX:
 				if (!LoadedChunk(audioId)) {
-					SDL_RWops* memoryBuffer = SDL_RWFromMem(obj.rawData.data(), obj.rawData.size());
-
+					auto memoryBuffer = SDL_RWFromMem(obj.rawData.data(), obj.rawData.size());
 					if (memoryBuffer != nullptr) {
 						std::shared_ptr<Mix_Chunk> mixData(Mix_LoadWAV_RW(memoryBuffer, 1), Mix_FreeChunk);
 						if (mixData) {
@@ -82,9 +85,8 @@ void SDLWAVAudioSystem::PlayAudio(int64 audioId) {
 					Mix_HaltMusic();
 				}
 				if (!LoadedMusic(audioId)) {
-					SDL_RWops* memoryBuffer = SDL_RWFromMem(obj.rawData.data(), obj.rawData.size());
-
-					if(memoryBuffer != nullptr) {
+					auto memoryBuffer = SDL_RWFromMem(obj.rawData.data(), obj.rawData.size());
+					if (memoryBuffer != nullptr) {
 						std::shared_ptr<Mix_Music> musicData(Mix_LoadMUS_RW(memoryBuffer, 1), Mix_FreeMusic);
 						if (musicData) {
 							LoadedMusics.emplace(std::make_pair(audioId, musicData));
@@ -163,7 +165,7 @@ void SDLWAVAudioSystem::Configure(Config& config) {
 	}
 }
 
-bool SDLWAVAudioSystem::Initialize(ILogger* logger) {
+bool SDLWAVAudioSystem::Initialize(std::shared_ptr<ILogger> logger) {
 	if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
 		if (logger != nullptr) {
 			logger->Error("Could not initialize audio: %s", SDL_GetError());
@@ -178,14 +180,12 @@ bool SDLWAVAudioSystem::Initialize(ILogger* logger) {
 	}
 	else {
 		int32 length = SDL_GetNumAudioDevices(AUDIO_TYPES);
-		if (length > 0) {
-			for (int32 i = 0; i < length; ++i) {
-				const int8* name = SDL_GetAudioDeviceName(i, AUDIO_TYPES);
-				if (name != nullptr) {
-					AllAudioDevices.push_back(string(name, strlen(name)));
-					if (logger != nullptr) {
-						logger->Info("Found %s audio device.", name);
-					}
+		for (int32 i = 0; i < length; ++i) {
+			auto name = SDL_GetAudioDeviceName(i, AUDIO_TYPES);
+			if (name != nullptr) {
+				AllAudioDevices.push_back(string(name, strlen(name)));
+				if (logger != nullptr) {
+					logger->Info("Found %s audio device.", name);
 				}
 			}
 		}

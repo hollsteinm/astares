@@ -8,16 +8,17 @@
 typedef SOCKET Socket;
 #endif
 
-class CoreSocket : public ISocket {
+class ASTARESFRAMEWORK_API CoreSocket : public ISocket {
 public:
 	CoreSocket();
 	virtual ~CoreSocket();
 
 	virtual void Close() override;
-	virtual bool Bind(const Address& address) override;
+	virtual gate Bind(const Address& address) override;
+	virtual gate Ready() override;
 
 protected:
-	bool TryResolve(const class Address& address);
+	gate TryResolve(const class Address& address);
 
 	Socket Sock;
 

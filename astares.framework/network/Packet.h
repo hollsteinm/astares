@@ -9,8 +9,8 @@
 #define PACKET_SIZE_SIZE	8
 #endif
 
-#include <iosfwd>
-#include "../core/Types.h"
+#include "../astares.framework.h"
+#include <core/Types.h>
 
 union PacketSize {
 	int8	c[PACKET_SIZE_SIZE];
@@ -18,22 +18,22 @@ union PacketSize {
 	int64	l;
 };
 
-struct Packet {
-	int8 Header;
+struct ASTARESFRAMEWORK_API Packet {
+	static const int8 Header;
 	PacketSize Size;
 
-	std::string data;
+	string data;
 
 	Packet();
-	Packet(const std::string& in, long size);
+	Packet(const string& in, long size);
 	Packet(const Packet& other);
 	~Packet();
 
 	int64 RawSize() const;
-	int64 ToRaw(std::string& outData) const;
+	int64 ToRaw(string& outData) const;
 
-	friend std::ostream& operator<<(std::ostream& out, Packet& packet);
-	friend std::istream& operator>>(std::istream& in, Packet& packet);
+	friend ASTARESFRAMEWORK_API WriteStream& operator<<(WriteStream& out, Packet& packet);
+	friend ASTARESFRAMEWORK_API ReadStream& operator>>(ReadStream& in, Packet& packet);
 };
 
 #endif

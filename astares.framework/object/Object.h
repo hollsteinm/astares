@@ -14,14 +14,14 @@ public:
 
 	const UID& GetInstanceId() const;
 
-	virtual Object* CreateDefault() const;
+	virtual std::unique_ptr<Object> CreateDefault() const;
 
 	virtual string ToString() const;
 
 	void Serialize(WriteStream& out, const int32& version) const override;
 	void Deserialize(ReadStream& in, const int32& version) override;
 
-	void Reflect(struct IReflector* reflector) const;
+	void Reflect(std::shared_ptr<struct IReflector> reflector) const;
 
 	friend ASTARESFRAMEWORK_API WriteStream& operator << (WriteStream& out, const Object& obj);
 	friend ASTARESFRAMEWORK_API ReadStream& operator >> (ReadStream& in, Object& obj);
@@ -38,21 +38,21 @@ protected:
 	virtual void PostDeserialize(ReadStream& in, const int32& version);
 	virtual void PreDeserialize(ReadStream& in, const int32& version);
 
-	virtual void InternalReflect(struct IReflector* reflector) const;
+	virtual void InternalReflect(std::shared_ptr<struct IReflector> reflector) const;
 };
 
 DECL_VARIANT(Object)
 
 #ifndef PRODUCTABLE
-#define PRODUCTABLE virtual Object* CreateDefault() const override;
+#define PRODUCTABLE virtual std::unique_ptr<Object> CreateDefault() const override;
 #endif
 
 #ifndef PRODUCE
-#define PRODUCE(type) Object* type::CreateDefault() const { return new type(); }
+#define PRODUCE(type) std::unique_ptr<Object> type::CreateDefault() const { return std::make_unique<type>(type()); }
 #endif
 
 #ifndef REFLECTABLE
-#define REFLECTABLE virtual void InternalReflect(struct IReflector* reflector) const override;
+#define REFLECTABLE virtual void InternalReflect(std::shared_ptr<struct IReflector> reflector) const override;
 #endif
 
 #ifndef SERIALIZEABLE

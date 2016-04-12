@@ -8,8 +8,8 @@
 #endif
 
 CoreSocket::CoreSocket() :
-	Sock(0),
-	AddressInfo(nullptr)
+Sock(0),
+AddressInfo(nullptr)
 {
 }
 
@@ -22,7 +22,7 @@ void CoreSocket::Close() {
 	freeaddrinfo(AddressInfo);
 }
 
-bool CoreSocket::Bind(const Address& address) {
+gate CoreSocket::Bind(const Address& address) {
 	if (TryResolve(address)) {
 		for (addrinfo* ptr = AddressInfo; ptr != nullptr; ptr = ptr->ai_next) {
 			if (bind(Sock, ptr->ai_addr, ptr->ai_addrlen) != SOCKET_ERROR) {
@@ -36,7 +36,7 @@ bool CoreSocket::Bind(const Address& address) {
 	}
 }
 
-bool CoreSocket::TryResolve(const Address& desired) {
+gate CoreSocket::TryResolve(const Address& desired) {
 	addrinfo hints;
 	char port[128];
 	char host[128];
@@ -58,5 +58,16 @@ bool CoreSocket::TryResolve(const Address& desired) {
 		phost = &host[0];
 	}
 
-	return getaddrinfo(phost, &port[0], &hints, &AddressInfo) == 0;
+	return getaddrinfo(desired.GetHostname().empty() ? nullptr : host, &port[0], &hints, &AddressInfo) == 0;
+}
+
+gate CoreSocket::Ready()
+{
+	static const struct timeval tv { 5, 0 };
+
+	fd_set readfds;
+	FD_ZERO(&readfds);
+	FD_SET(Sock, &readfds);
+
+	return select(Sock + 1, &readfds, NULL, NULL, &tv) > 0;
 }

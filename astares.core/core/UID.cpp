@@ -1,6 +1,7 @@
 #include "UID.h"
 #include <sstream>
 #include <ctime>
+#include <iomanip>
 
 UID::UID() :
 	value(0)
@@ -39,7 +40,7 @@ string UID::ToString() const {
 	std::stringstream out;
 	LazyConv val;
 	val.lval = value;
-	out << std::hex << val.ival[0] << "-" << val.ival[1];
+	out << std::setfill('0') << std::setw(8) << std::hex << val.ival[0] << "-" << std::setw(8) << val.ival[1];
 	return out.str();
 }
 

@@ -7,10 +7,9 @@ TEST_CASE("JSONReflector", "[reflection]") {
 	SECTION("Validate JSON") {
 		REGISTER_TYPE(JSONTestObject)
 		REGISTER_TYPE(JSONTestObjectContainer)
-		JSONReflector reflector;
+		auto reflector = std::shared_ptr<JSONReflector>(new JSONReflector());
 		JSONTestObjectContainer obj;
-		obj.Reflect(&reflector);
-		string wouldLike = reflector.ToString();
-		REQUIRE(reflector.ToString() == "");
+		obj.Reflect(reflector);
+		REQUIRE(reflector->ToString().size() == 30470);
 	}
 }

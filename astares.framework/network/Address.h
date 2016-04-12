@@ -1,15 +1,16 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 
-#include <string>
+#include "../astares.framework.h"
+#include <core/Types.h>
 
-enum class Family {
+enum  class Family {
 	IPv4 = 0,
 	IPv6,
 	Unknown = ~0
 };
 
-class Address {
+class ASTARESFRAMEWORK_API Address {
 private:
 	std::string Hostname;
 	std::string Port;
@@ -19,9 +20,9 @@ public:
 	Address(std::string hostname, std::string port, Family family);
 	Address(const Address& other);
 
-	inline std::string GetHostname() const { return Hostname; }
-	inline std::string GetPort() const { return Port; }
-	inline Family GetFamily() const { return Fam; }
+	std::string GetHostname() const;
+	std::string GetPort() const;
+	Family GetFamily() const;
 };
 
 

@@ -15,7 +15,7 @@ void Object::Deserialize(ReadStream& in, const int32& version) {
 	PostDeserialize(in, version);
 }
 
-void Object::Reflect(struct IReflector* reflector) const
+void Object::Reflect(std::shared_ptr<struct IReflector> reflector) const
 {
 	this->InternalReflect(reflector);
 }
@@ -38,9 +38,9 @@ string Object::ToString() const {
 
 const UID& Object::GetInstanceId() const { return instanceId; }
 
-Object* Object::CreateDefault() const
+std::unique_ptr<Object> Object::CreateDefault() const
 {
-	return new Object();
+	return std::make_unique<Object>();
 }
 
 void Object::PostSerialize(WriteStream& out, const int32& version) const

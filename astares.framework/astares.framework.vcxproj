@@ -107,6 +107,14 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="audio\SDLWAVAudioSystem.h" />
     <ClInclude Include="audio\SoundType.h" />
     <ClInclude Include="FrameworkProvider.h" />
+    <ClInclude Include="network\Address.h" />
+    <ClInclude Include="network\CoreSocket.h" />
+    <ClInclude Include="network\ISocket.h" />
+    <ClInclude Include="network\Packet.h" />
+    <ClInclude Include="network\Session.h" />
+    <ClInclude Include="network\UDPListener.h" />
+    <ClInclude Include="network\UDPSender.h" />
+    <ClInclude Include="network\UDPSocket.h" />
     <ClInclude Include="object\Object.h" />
     <ClInclude Include="object\ObjectFactory.h" />
     <ClInclude Include="reflection\IReflectionInfo.h" />
@@ -133,6 +141,13 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="network\Address.cpp" />
+    <ClCompile Include="network\CoreSocket.cpp" />
+    <ClCompile Include="network\Packet.cpp" />
+    <ClCompile Include="network\Session.cpp" />
+    <ClCompile Include="network\UDPListener.cpp" />
+    <ClCompile Include="network\UDPSender.cpp" />
+    <ClCompile Include="network\UDPSocket.cpp" />
     <ClCompile Include="object\Object.cpp" />
     <ClCompile Include="object\ObjectFactory.cpp" />
     <ClCompile Include="reflection\JSONReflector.cpp" />

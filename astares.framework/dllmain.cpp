@@ -1,13 +1,14 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
 #include "log\CommonLogger.h"
+#include <memory>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
 					 )
 {
-	ILogger* logger = new CommonLogger();
+	std::unique_ptr<ILogger> logger = std::make_unique<CommonLogger>(CommonLogger());
 	static const char* moduleName = "Framework Module";
 	logger->Info("%s", moduleName);
 	switch (ul_reason_for_call)
@@ -25,7 +26,5 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 		logger->Info("(%s) Process Detached", moduleName);
 		break;
 	}
-	delete logger;
 	return TRUE;
 }
-

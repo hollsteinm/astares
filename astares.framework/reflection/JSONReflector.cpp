@@ -4,60 +4,57 @@
 #include <functional>
 #include <sstream>
 
-#define WRITE_MAT(dim)														\
-		{																	\
-			Matrix##dim* mat = new Matrix##dim();							\
-			((Variant&)variant).Get(*mat);									\
-			content.append(1, OpenToken);									\
-			for (int32 i = 0; i < dim; ++i)									\
-			{																\
-				for (int32 j = 0; j < dim; ++j)								\
-				{															\
-					content.append("\"M")									\
-						.append(std::to_string(i))							\
-						.append(std::to_string(j))							\
-						.append(1, QuoteToken)								\
-						.append(1, PropertyToken)							\
-						.append(std::to_string(mat->m[i][j]))				\
-						.append(1, SeperatorToken);							\
-				}															\
-			}																\
-			content.replace(content.find_last_of(SeperatorToken), 1, "");	\
-			content.append(1, CloseToken);									\
-			delete mat;														\
+#define WRITE_MAT(dim)															\
+		{																		\
+			std::unique_ptr<Matrix##dim> mat = std::make_unique<Matrix##dim>();	\
+			((Variant&)variant).Get(*mat);										\
+			content.append(1, OpenToken);										\
+			for (int32 i = 0; i < dim; ++i)										\
+			{																	\
+				for (int32 j = 0; j < dim; ++j)									\
+				{																\
+					content.append("\"M")										\
+						.append(std::to_string(i))								\
+						.append(std::to_string(j))								\
+						.append(1, QuoteToken)									\
+						.append(1, PropertyToken)								\
+						.append(std::to_string(mat->m[i][j]))					\
+						.append(1, SeperatorToken);								\
+				}																\
+			}																	\
+			content.replace(content.find_last_of(SeperatorToken), 1, "");		\
+			content.append(1, CloseToken);										\
 		}
 
-#define WRITE_VEC(dim, ...)													\
-		{																	\
-			Vector##dim* vec = new Vector##dim();							\
-			((Variant&)variant).Get(*vec);									\
-			float data[dim] = {};											\
-			vec->ToBuffer(data);											\
-			content.append(GetVectorContentString({ __VA_ARGS__ },			\
-				vector<f32>(&data[0], &data[0] + dim)));					\
-			delete vec;														\
+#define WRITE_VEC(dim, ...)														\
+		{																		\
+			std::unique_ptr<Vector##dim> vec = std::make_unique<Vector##dim>();	\
+			((Variant&)variant).Get(*vec);										\
+			float data[dim] = {};												\
+			vec->ToBuffer(data);												\
+			content.append(GetVectorContentString({ __VA_ARGS__ },				\
+				vector<f32>(&data[0], &data[0] + dim)));						\
 		}
 
-#define WRITE_RAY(dim, ...)										\
-		{														\
-			Ray##dim* ray = new Ray##dim();						\
-			((Variant&)variant).Get(*ray);						\
-			float dir[dim] = {};								\
-			float org[dim] = {};								\
-			ray->Direction.ToBuffer(dir);						\
-			ray->Origin.ToBuffer(org);							\
-			content.append(1, OpenToken)						\
-				.append("\"Direction\"")						\
-				.append(1, PropertyToken)						\
-				.append(GetVectorContentString({ __VA_ARGS__ },	\
-				vector<f32>(&dir[0], &dir[0] + dim)))			\
-				.append(1, SeperatorToken)						\
-				.append("\"Origin\"")							\
-				.append(1, PropertyToken)						\
-				.append(GetVectorContentString({ __VA_ARGS__ },	\
-				vector<f32>(&org[0], &org[0] + dim)))			\
-				.append(1, CloseToken);							\
-			delete ray;											\
+#define WRITE_RAY(dim, ...)													\
+		{																	\
+			std::unique_ptr<Ray##dim> ray = std::make_unique<Ray##dim>();	\
+			((Variant&)variant).Get(*ray);									\
+			float dir[dim] = {};											\
+			float org[dim] = {};											\
+			ray->Direction.ToBuffer(dir);									\
+			ray->Origin.ToBuffer(org);										\
+			content.append(1, OpenToken)									\
+				.append("\"Direction\"")									\
+				.append(1, PropertyToken)									\
+				.append(GetVectorContentString({ __VA_ARGS__ },				\
+				vector<f32>(&dir[0], &dir[0] + dim)))						\
+				.append(1, SeperatorToken)									\
+				.append("\"Origin\"")										\
+				.append(1, PropertyToken)									\
+				.append(GetVectorContentString({ __VA_ARGS__ },				\
+				vector<f32>(&org[0], &org[0] + dim)))						\
+				.append(1, CloseToken);										\
 		}
 
 
@@ -240,15 +237,15 @@ void JSONReflector::WriteArrayType(Variant& variant)
 			{
 				vector<Object> data;
 				variant.Get(data);
-				for (auto elem : data) 
-				{ 
-					WriteObject(&elem);
+				for (auto elem : data)
+				{
+					WriteObject(std::make_shared<Object>(elem));
 					content.append(1, SeperatorToken);
 				}
 				if (data.size() > 0)
-				{ 
+				{
 					content.replace(content.find_last_of(SeperatorToken), 1, "");
-				} 
+				}
 			}
 		},
 		{ VariantTypeId<queue<int8>>::GetCustomType(), ARRAY_STRAT(int8, WriteString) },
@@ -284,7 +281,7 @@ void JSONReflector::WriteArrayType(Variant& variant)
 				variant.Get(data);
 				for (auto elem : data)
 				{
-					WriteObject(&elem);
+					WriteObject(std::make_shared<Object>(elem));
 					content.append(1, SeperatorToken);
 				}
 				if (data.size() > 0)
@@ -307,15 +304,15 @@ void JSONReflector::WriteArrayType(Variant& variant)
 		objList.reserve(size);
 		for (size_t i = 0; i < size; ++i)
 		{
-			auto ptr = ObjectFactory::Get()->CreateNew(variant.GetCollectionCustomType());
-			objList.push_back(ptr.get());
+			objList.push_back(ObjectFactory::Get()->CreateNew(variant.GetCollectionCustomType()).get());
 		}
 		variant.Get(objList);
 		for (auto obj : objList)
 		{
-			WriteObject(obj);
+			auto asShared = std::shared_ptr<Object>(obj);
+			WriteObject(asShared);
 			content.append(1, SeperatorToken);
-			ObjectFactory::Get()->Unregister(obj);
+			ObjectFactory::Get()->Unregister(asShared);
 		}
 		if (size > 0)
 		{
@@ -334,16 +331,15 @@ void JSONReflector::WriteObject(Variant& variant)
 {
 	auto obj = ObjectFactory::Get()->CreateNew(variant.GetCustomType());
 	variant.Get(obj.get());
-	WriteObject(obj.get());
-	ObjectFactory::Get()->Unregister(obj.get());
+	WriteObject(obj);
+	ObjectFactory::Get()->Unregister(obj);
 }
 
-void JSONReflector::WriteObject(Object* obj)
+void JSONReflector::WriteObject(std::shared_ptr<Object> obj)
 {
-	JSONReflector* objectReflector = new JSONReflector();
+	std::shared_ptr<JSONReflector> objectReflector = std::make_shared<JSONReflector>();
 	obj->Reflect(objectReflector);
 	content.append(objectReflector->ToString());
-	delete objectReflector;
 }
 
 void JSONReflector::WriteHull(Variant& variant)
