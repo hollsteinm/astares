@@ -5,12 +5,11 @@
 #include <core\Types.h>
 #include <core\UID.h>
 
-enum class SessionRole {
+BETTER_ENUM(SessionRole, int8,
 	Server = 0,
 	Client,
 	Both,
-	Unknown = ~0
-};
+	Unknown = ~0)
 
 class ASTARESFRAMEWORK_API Session {
 public:

@@ -306,7 +306,6 @@ public:
 		buffer >> value;
 	}
 
-
 	bool IsCollection() const;
 	VariantType GetCollectionType() const;
 	int64 GetCollectionCustomType() const;
