@@ -1,13 +1,13 @@
-		 /*
-		 *  Catch v1.4.0
-		 *  Generated: 2016-03-15 07:23:12.623111
-		 *  ----------------------------------------------------------
-		 *  This file has been merged from multiple headers. Please don't edit it directly
-		 *  Copyright (c) 2012 Two Blue Cubes Ltd. All rights reserved.
-		 *
-		 *  Distributed under the Boost Software License, Version 1.0. (See accompanying
-		 *  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-		 */
+/*
+*  Catch v1.5.6
+*  Generated: 2016-06-09 19:20:41.460328
+*  ----------------------------------------------------------
+*  This file has been merged from multiple headers. Please don't edit it directly
+*  Copyright (c) 2012 Two Blue Cubes Ltd. All rights reserved.
+*
+*  Distributed under the Boost Software License, Version 1.0. (See accompanying
+*  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+*/
 #ifndef TWOBLUECUBES_SINGLE_INCLUDE_CATCH_HPP_INCLUDED
 #define TWOBLUECUBES_SINGLE_INCLUDE_CATCH_HPP_INCLUDED
 
@@ -19,7 +19,7 @@
 #    pragma GCC system_header
 #endif
 
-		 // #included from: internal/catch_suppress_warnings.h
+// #included from: internal/catch_suppress_warnings.h
 
 #ifdef __clang__
 #   ifdef __ICC // icpc defines the __clang__ macro
@@ -54,10 +54,10 @@
 #  endif
 #endif
 
-		 // #included from: internal/catch_notimplemented_exception.h
+// #included from: internal/catch_notimplemented_exception.h
 #define TWOBLUECUBES_CATCH_NOTIMPLEMENTED_EXCEPTION_H_INCLUDED
 
-		 // #included from: catch_common.h
+// #included from: catch_common.h
 #define TWOBLUECUBES_CATCH_COMMON_H_INCLUDED
 
 #define INTERNAL_CATCH_UNIQUE_NAME_LINE2( name, line ) name##line
@@ -75,39 +75,47 @@
 #include <stdexcept>
 #include <algorithm>
 
-		 // #included from: catch_compiler_capabilities.h
+// #included from: catch_compiler_capabilities.h
 #define TWOBLUECUBES_CATCH_COMPILER_CAPABILITIES_HPP_INCLUDED
 
-		 // Detect a number of compiler features - mostly C++11/14 conformance - by compiler
-		 // The following features are defined:
-		 //
-		 // CATCH_CONFIG_CPP11_NULLPTR : is nullptr supported?
-		 // CATCH_CONFIG_CPP11_NOEXCEPT : is noexcept supported?
-		 // CATCH_CONFIG_CPP11_GENERATED_METHODS : The delete and default keywords for compiler generated methods
-		 // CATCH_CONFIG_CPP11_IS_ENUM : std::is_enum is supported?
-		 // CATCH_CONFIG_CPP11_TUPLE : std::tuple is supported
-		 // CATCH_CONFIG_CPP11_LONG_LONG : is long long supported?
-		 // CATCH_CONFIG_CPP11_OVERRIDE : is override supported?
-		 // CATCH_CONFIG_CPP11_UNIQUE_PTR : is unique_ptr supported (otherwise use auto_ptr)
+// Detect a number of compiler features - mostly C++11/14 conformance - by compiler
+// The following features are defined:
+//
+// CATCH_CONFIG_CPP11_NULLPTR : is nullptr supported?
+// CATCH_CONFIG_CPP11_NOEXCEPT : is noexcept supported?
+// CATCH_CONFIG_CPP11_GENERATED_METHODS : The delete and default keywords for compiler generated methods
+// CATCH_CONFIG_CPP11_IS_ENUM : std::is_enum is supported?
+// CATCH_CONFIG_CPP11_TUPLE : std::tuple is supported
+// CATCH_CONFIG_CPP11_LONG_LONG : is long long supported?
+// CATCH_CONFIG_CPP11_OVERRIDE : is override supported?
+// CATCH_CONFIG_CPP11_UNIQUE_PTR : is unique_ptr supported (otherwise use auto_ptr)
 
-		 // CATCH_CONFIG_CPP11_OR_GREATER : Is C++11 supported?
+// CATCH_CONFIG_CPP11_OR_GREATER : Is C++11 supported?
 
-		 // CATCH_CONFIG_VARIADIC_MACROS : are variadic macros supported?
-		 // CATCH_CONFIG_COUNTER : is the __COUNTER__ macro supported?
-		 // ****************
-		 // Note to maintainers: if new toggles are added please document them
-		 // in configuration.md, too
-		 // ****************
+// CATCH_CONFIG_VARIADIC_MACROS : are variadic macros supported?
+// CATCH_CONFIG_COUNTER : is the __COUNTER__ macro supported?
+// ****************
+// Note to maintainers: if new toggles are added please document them
+// in configuration.md, too
+// ****************
 
-		 // In general each macro has a _NO_<feature name> form
-		 // (e.g. CATCH_CONFIG_CPP11_NO_NULLPTR) which disables the feature.
-		 // Many features, at point of detection, define an _INTERNAL_ macro, so they
-		 // can be combined, en-mass, with the _NO_ forms later.
+// In general each macro has a _NO_<feature name> form
+// (e.g. CATCH_CONFIG_CPP11_NO_NULLPTR) which disables the feature.
+// Many features, at point of detection, define an _INTERNAL_ macro, so they
+// can be combined, en-mass, with the _NO_ forms later.
 
-		 // All the C++11 features can be disabled with CATCH_CONFIG_NO_CPP11
+// All the C++11 features can be disabled with CATCH_CONFIG_NO_CPP11
 
-#if defined(__cplusplus) && __cplusplus >= 201103L
-#  define CATCH_CPP11_OR_GREATER
+#ifdef __cplusplus
+
+#  if __cplusplus >= 201103L
+#    define CATCH_CPP11_OR_GREATER
+#  endif
+
+#  if __cplusplus >= 201402L
+#    define CATCH_CPP14_OR_GREATER
+#  endif
+
 #endif
 
 #ifdef __clang__
@@ -126,26 +134,26 @@
 
 #endif // __clang__
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // Borland
+////////////////////////////////////////////////////////////////////////////////
+// Borland
 #ifdef __BORLANDC__
 
 #endif // __BORLANDC__
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // EDG
+////////////////////////////////////////////////////////////////////////////////
+// EDG
 #ifdef __EDG_VERSION__
 
 #endif // __EDG_VERSION__
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // Digital Mars
+////////////////////////////////////////////////////////////////////////////////
+// Digital Mars
 #ifdef __DMC__
 
 #endif // __DMC__
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // GCC
+////////////////////////////////////////////////////////////////////////////////
+// GCC
 #ifdef __GNUC__
 
 #   if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && defined(__GXX_EXPERIMENTAL_CXX0X__)
@@ -156,13 +164,13 @@
 #       define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS _Pragma( "GCC diagnostic ignored \"-Wparentheses\"" )
 #   endif
 
-		 // - otherwise more recent versions define __cplusplus >= 201103L
-		 // and will get picked up below
+// - otherwise more recent versions define __cplusplus >= 201103L
+// and will get picked up below
 
 #endif // __GNUC__
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // Visual C++
+////////////////////////////////////////////////////////////////////////////////
+// Visual C++
 #ifdef _MSC_VER
 
 #if (_MSC_VER >= 1600)
@@ -177,9 +185,9 @@
 
 #endif // _MSC_VER
 
-		 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-		 // Use variadic macros if the compiler supports them
+// Use variadic macros if the compiler supports them
 #if ( defined _MSC_VER && _MSC_VER > 1400 && !defined __EDGE__) || \
     ( defined __WAVE__ && __WAVE_HAS_VARIADICS ) || \
     ( defined __GNUC__ && __GNUC__ >= 3 ) || \
@@ -189,7 +197,7 @@
 
 #endif
 
-		 // Use __COUNTER__ if the compiler supports it
+// Use __COUNTER__ if the compiler supports it
 #if ( defined _MSC_VER && _MSC_VER >= 1300 ) || \
     ( defined __GNUC__  && __GNUC__ >= 4 && __GNUC_MINOR__ >= 3 ) || \
     ( defined __clang__ && __clang_major__ >= 3 )
@@ -198,10 +206,10 @@
 
 #endif
 
-		 ////////////////////////////////////////////////////////////////////////////////
-		 // C++ language feature support
+////////////////////////////////////////////////////////////////////////////////
+// C++ language feature support
 
-		 // catch all support for C++11
+// catch all support for C++11
 #if defined(CATCH_CPP11_OR_GREATER)
 
 #  if !defined(CATCH_INTERNAL_CONFIG_CPP11_NULLPTR)
@@ -241,7 +249,7 @@
 
 #endif // __cplusplus >= 201103L
 
-		 // Now set the actual defines based on the above + anything the user has configured
+// Now set the actual defines based on the above + anything the user has configured
 #if defined(CATCH_INTERNAL_CONFIG_CPP11_NULLPTR) && !defined(CATCH_CONFIG_CPP11_NO_NULLPTR) && !defined(CATCH_CONFIG_CPP11_NULLPTR) && !defined(CATCH_CONFIG_NO_CPP11)
 #   define CATCH_CONFIG_CPP11_NULLPTR
 #endif
@@ -277,7 +285,7 @@
 #   define CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS
 #endif
 
-		 // noexcept support:
+// noexcept support:
 #if defined(CATCH_CONFIG_CPP11_NOEXCEPT) && !defined(CATCH_NOEXCEPT)
 #  define CATCH_NOEXCEPT noexcept
 #  define CATCH_NOEXCEPT_IS(x) noexcept(x)
@@ -286,21 +294,21 @@
 #  define CATCH_NOEXCEPT_IS(x)
 #endif
 
-		 // nullptr support
+// nullptr support
 #ifdef CATCH_CONFIG_CPP11_NULLPTR
 #   define CATCH_NULL nullptr
 #else
 #   define CATCH_NULL NULL
 #endif
 
-		 // override support
+// override support
 #ifdef CATCH_CONFIG_CPP11_OVERRIDE
 #   define CATCH_OVERRIDE override
 #else
 #   define CATCH_OVERRIDE
 #endif
 
-		 // unique_ptr support
+// unique_ptr support
 #ifdef CATCH_CONFIG_CPP11_UNIQUE_PTR
 #   define CATCH_AUTO_PTR( T ) std::unique_ptr<T>
 #else
@@ -2071,7 +2079,7 @@ namespace Catch {
             __catchResult.useActiveException( Catch::ResultDisposition::Normal ); \
         } \
         INTERNAL_CATCH_REACT( __catchResult ) \
-	    } while( Catch::isTrue( false && static_cast<bool>(expr) ) ) // expr here is never evaluated at runtime but it forces the compiler to give it a look
+	    } while( Catch::isTrue( false && !!(expr) ) ) // expr here is never evaluated at runtime but it forces the compiler to give it a look
 
 ///////////////////////////////////////////////////////////////////////////////
 #define INTERNAL_CATCH_IF( expr, resultDisposition, macroName ) \
@@ -3466,7 +3474,7 @@ namespace Catch {
 	};
 
 	class DebugOutStream : public IStream {
-		std::auto_ptr<StreamBufBase> m_streamBuf;
+		CATCH_AUTO_PTR(StreamBufBase) m_streamBuf;
 		mutable std::ostream m_os;
 	public:
 		DebugOutStream();
@@ -3614,7 +3622,7 @@ namespace Catch {
 		}
 		ConfigData m_data;
 
-		std::auto_ptr<IStream const> m_stream;
+		CATCH_AUTO_PTR(IStream const) m_stream;
 		TestSpec m_testSpec;
 	};
 
@@ -3634,7 +3642,7 @@ namespace Catch {
 #define STITCH_CLARA_OPEN_NAMESPACE namespace Catch {
 // #included from: ../external/clara.h
 
-// Version 0.0.1.1
+// Version 0.0.2.4
 
 // Only use header guard if we are not using an outer namespace
 #if !defined(TWOBLUECUBES_CLARA_H_INCLUDED) || defined(STITCH_CLARA_OPEN_NAMESPACE)
@@ -3950,6 +3958,10 @@ namespace STITCH_TBC_TEXT_FORMAT_OUTER_NAMESPACE {
 #include <stdexcept>
 #include <memory>
 
+#if defined(WIN32) || defined(__WIN32__) || defined(_WIN32) || defined(_MSC_VER)
+#define CLARA_PLATFORM_WINDOWS
+#endif
+
 // Use optional outer namespace
 #ifdef STITCH_CLARA_OPEN_NAMESPACE
 STITCH_CLARA_OPEN_NAMESPACE
@@ -3972,9 +3984,6 @@ namespace Clara {
 #else
 		const unsigned int consoleWidth = 80;
 #endif
-
-		// Use this to try and stop compiler from warning about unreachable code
-		inline bool isTrue(bool value) { return value; }
 
 		using namespace Tbc;
 
@@ -4011,14 +4020,6 @@ namespace Clara {
 			else
 				throw std::runtime_error("Expected a boolean value but did not recognise:\n  '" + _source + "'");
 		}
-		inline void convertInto(bool _source, bool& _dest) {
-			_dest = _source;
-		}
-		template<typename T>
-		inline void convertInto(bool, T&) {
-			if (isTrue(true))
-				throw std::runtime_error("Invalid conversion");
-		}
 
 		template<typename ConfigT>
 		struct IArgFunction {
@@ -4028,7 +4029,6 @@ namespace Clara {
 			IArgFunction(IArgFunction const&) = default;
 #endif
 			virtual void set(ConfigT& config, std::string const& value) const = 0;
-			virtual void setFlag(ConfigT& config) const = 0;
 			virtual bool takesArg() const = 0;
 			virtual IArgFunction* clone() const = 0;
 		};
@@ -4050,9 +4050,6 @@ namespace Clara {
 			void set(ConfigT& config, std::string const& value) const {
 				functionObj->set(config, value);
 			}
-			void setFlag(ConfigT& config) const {
-				functionObj->setFlag(config);
-			}
 			bool takesArg() const { return functionObj->takesArg(); }
 
 			bool isSet() const {
@@ -4065,7 +4062,6 @@ namespace Clara {
 		template<typename C>
 		struct NullBinder : IArgFunction<C>{
 			virtual void set(C&, std::string const&) const {}
-			virtual void setFlag(C&) const {}
 			virtual bool takesArg() const { return true; }
 			virtual IArgFunction<C>* clone() const { return new NullBinder(*this); }
 		};
@@ -4075,9 +4071,6 @@ namespace Clara {
 			BoundDataMember(M C::* _member) : member(_member) {}
 			virtual void set(C& p, std::string const& stringValue) const {
 				convertInto(stringValue, p.*member);
-			}
-			virtual void setFlag(C& p) const {
-				convertInto(true, p.*member);
 			}
 			virtual bool takesArg() const { return !IsBool<M>::value; }
 			virtual IArgFunction<C>* clone() const { return new BoundDataMember(*this); }
@@ -4089,11 +4082,6 @@ namespace Clara {
 			virtual void set(C& p, std::string const& stringValue) const {
 				typename RemoveConstRef<M>::type value;
 				convertInto(stringValue, value);
-				(p.*member)(value);
-			}
-			virtual void setFlag(C& p) const {
-				typename RemoveConstRef<M>::type value;
-				convertInto(true, value);
 				(p.*member)(value);
 			}
 			virtual bool takesArg() const { return !IsBool<M>::value; }
@@ -4109,9 +4097,6 @@ namespace Clara {
 				if (value)
 					(p.*member)();
 			}
-			virtual void setFlag(C& p) const {
-				(p.*member)();
-			}
 			virtual bool takesArg() const { return false; }
 			virtual IArgFunction<C>* clone() const { return new BoundNullaryMethod(*this); }
 			void (C::*member)();
@@ -4126,9 +4111,6 @@ namespace Clara {
 				if (value)
 					function(obj);
 			}
-			virtual void setFlag(C& p) const {
-				function(p);
-			}
 			virtual bool takesArg() const { return false; }
 			virtual IArgFunction<C>* clone() const { return new BoundUnaryFunction(*this); }
 			void(*function)(C&);
@@ -4142,11 +4124,6 @@ namespace Clara {
 				convertInto(stringValue, value);
 				function(obj, value);
 			}
-			virtual void setFlag(C& obj) const {
-				typename RemoveConstRef<T>::type value;
-				convertInto(true, value);
-				function(obj, value);
-			}
 			virtual bool takesArg() const { return !IsBool<T>::value; }
 			virtual IArgFunction<C>* clone() const { return new BoundBinaryFunction(*this); }
 			void(*function)(C&, T);
@@ -4154,8 +4131,20 @@ namespace Clara {
 
 	} // namespace Detail
 
-	struct Parser {
-		Parser() : separators(" \t=:") {}
+	inline std::vector<std::string> argsToVector(int argc, char const* const* const argv) {
+		std::vector<std::string> args(static_cast<std::size_t>(argc));
+		for (std::size_t i = 0; i < static_cast<std::size_t>(argc); ++i)
+			args[i] = argv[i];
+
+		return args;
+	}
+
+	class Parser {
+		enum Mode { None, MaybeShortOpt, SlashOpt, ShortOpt, LongOpt, Positional };
+		Mode mode;
+		std::size_t from;
+		bool inQuotes;
+	public:
 
 		struct Token {
 			enum Type { Positional, ShortOpt, LongOpt };
@@ -4164,38 +4153,75 @@ namespace Clara {
 			std::string data;
 		};
 
-		void parseIntoTokens(int argc, char const* const argv[], std::vector<Parser::Token>& tokens) const {
+		Parser() : mode(None), from(0), inQuotes(false){}
+
+		void parseIntoTokens(std::vector<std::string> const& args, std::vector<Token>& tokens) {
 			const std::string doubleDash = "--";
-			for (int i = 1; i < argc && argv[i] != doubleDash; ++i)
-				parseIntoTokens(argv[i], tokens);
+			for (std::size_t i = 1; i < args.size() && args[i] != doubleDash; ++i)
+				parseIntoTokens(args[i], tokens);
 		}
-		void parseIntoTokens(std::string arg, std::vector<Parser::Token>& tokens) const {
-			while (!arg.empty()) {
-				Parser::Token token(Parser::Token::Positional, arg);
-				arg = "";
-				if (token.data[0] == '-') {
-					if (token.data.size() > 1 && token.data[1] == '-') {
-						token = Parser::Token(Parser::Token::LongOpt, token.data.substr(2));
-					}
-					else {
-						token = Parser::Token(Parser::Token::ShortOpt, token.data.substr(1));
-						if (token.data.size() > 1 && separators.find(token.data[1]) == std::string::npos) {
-							arg = "-" + token.data.substr(1);
-							token.data = token.data.substr(0, 1);
-						}
-					}
-				}
-				if (token.type != Parser::Token::Positional) {
-					std::size_t pos = token.data.find_first_of(separators);
-					if (pos != std::string::npos) {
-						arg = token.data.substr(pos + 1);
-						token.data = token.data.substr(0, pos);
-					}
-				}
-				tokens.push_back(token);
+
+		void parseIntoTokens(std::string const& arg, std::vector<Token>& tokens) {
+			for (std::size_t i = 0; i <= arg.size(); ++i) {
+				char c = arg[i];
+				if (c == '"')
+					inQuotes = !inQuotes;
+				mode = handleMode(i, c, arg, tokens);
 			}
 		}
-		std::string separators;
+		Mode handleMode(std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens) {
+			switch (mode) {
+			case None: return handleNone(i, c);
+			case MaybeShortOpt: return handleMaybeShortOpt(i, c);
+			case ShortOpt:
+			case LongOpt:
+			case SlashOpt: return handleOpt(i, c, arg, tokens);
+			case Positional: return handlePositional(i, c, arg, tokens);
+			default: throw std::logic_error("Unknown mode");
+			}
+		}
+
+		Mode handleNone(std::size_t i, char c) {
+			if (inQuotes) {
+				from = i;
+				return Positional;
+			}
+			switch (c) {
+			case '-': return MaybeShortOpt;
+#ifdef CLARA_PLATFORM_WINDOWS
+			case '/': from = i + 1; return SlashOpt;
+#endif
+			default: from = i; return Positional;
+			}
+		}
+		Mode handleMaybeShortOpt(std::size_t i, char c) {
+			switch (c) {
+			case '-': from = i + 1; return LongOpt;
+			default: from = i; return ShortOpt;
+			}
+		}
+		Mode handleOpt(std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens) {
+			if (std::string(":=\0", 3).find(c) == std::string::npos)
+				return mode;
+
+			std::string optName = arg.substr(from, i - from);
+			if (mode == ShortOpt)
+				for (std::size_t j = 0; j < optName.size(); ++j)
+					tokens.push_back(Token(Token::ShortOpt, optName.substr(j, 1)));
+			else if (mode == SlashOpt && optName.size() == 1)
+				tokens.push_back(Token(Token::ShortOpt, optName));
+			else
+				tokens.push_back(Token(Token::LongOpt, optName));
+			return None;
+		}
+		Mode handlePositional(std::size_t i, char c, std::string const& arg, std::vector<Token>& tokens) {
+			if (inQuotes || std::string("\0", 1).find(c) == std::string::npos)
+				return mode;
+
+			std::string data = arg.substr(from, i - from);
+			tokens.push_back(Token(Token::Positional, data));
+			return None;
+		}
 	};
 
 	template<typename ConfigT>
@@ -4498,21 +4524,21 @@ namespace Clara {
 			return oss.str();
 		}
 
-		ConfigT parse(int argc, char const* const argv[]) const {
+		ConfigT parse(std::vector<std::string> const& args) const {
 			ConfigT config;
-			parseInto(argc, argv, config);
+			parseInto(args, config);
 			return config;
 		}
 
-		std::vector<Parser::Token> parseInto(int argc, char const* argv[], ConfigT& config) const {
-			std::string processName = argv[0];
+		std::vector<Parser::Token> parseInto(std::vector<std::string> const& args, ConfigT& config) const {
+			std::string processName = args[0];
 			std::size_t lastSlash = processName.find_last_of("/\\");
 			if (lastSlash != std::string::npos)
 				processName = processName.substr(lastSlash + 1);
 			m_boundProcessName.set(config, processName);
 			std::vector<Parser::Token> tokens;
 			Parser parser;
-			parser.parseIntoTokens(argc, argv, tokens);
+			parser.parseIntoTokens(args, tokens);
 			return populate(tokens, config);
 		}
 
@@ -4543,7 +4569,7 @@ namespace Clara {
 									arg.boundField.set(config, tokens[++i].data);
 							}
 							else {
-								arg.boundField.setFlag(config);
+								arg.boundField.set(config, "true");
 							}
 							break;
 						}
@@ -5251,6 +5277,8 @@ namespace Catch
 		bool aborting;
 	};
 
+	class MultipleReporters;
+
 	struct IStreamingReporter : IShared {
 		virtual ~IStreamingReporter();
 
@@ -5278,6 +5306,8 @@ namespace Catch
 		virtual void testRunEnded(TestRunStats const& testRunStats) = 0;
 
 		virtual void skipTest(TestCaseInfo const& testInfo) = 0;
+
+		virtual MultipleReporters* tryAsMulti() { return CATCH_NULL; }
 	};
 
 	struct IReporterFactory : IShared {
@@ -5495,6 +5525,10 @@ namespace Catch {
 			virtual void addChild(Ptr<ITracker> const& child) = 0;
 			virtual ITracker* findChild(std::string const& name) = 0;
 			virtual void openChild() = 0;
+
+			// Debug/ checking
+			virtual bool isSectionTracker() const = 0;
+			virtual bool isIndexTracker() const = 0;
 		};
 
 		class TrackerContext {
@@ -5619,6 +5653,10 @@ namespace Catch {
 						m_parent->openChild();
 				}
 			}
+
+			virtual bool isSectionTracker() const CATCH_OVERRIDE{ return false; }
+			virtual bool isIndexTracker() const CATCH_OVERRIDE{ return false; }
+
 				void open() {
 				m_runState = Executing;
 				moveToThis();
@@ -5682,13 +5720,16 @@ namespace Catch {
 			{}
 			virtual ~SectionTracker();
 
-			static SectionTracker& acquire(TrackerContext& ctx, std::string const& name) {
+			virtual bool isSectionTracker() const CATCH_OVERRIDE{ return true; }
+
+				static SectionTracker& acquire(TrackerContext& ctx, std::string const& name) {
 				SectionTracker* section = CATCH_NULL;
 
 				ITracker& currentTracker = ctx.currentTracker();
 				if (ITracker* childTracker = currentTracker.findChild(name)) {
-					section = dynamic_cast<SectionTracker*>(childTracker);
-					assert(section);
+					assert(childTracker);
+					assert(childTracker->isSectionTracker());
+					section = static_cast<SectionTracker*>(childTracker);
 				}
 				else {
 					section = new SectionTracker(name, ctx, &currentTracker);
@@ -5713,13 +5754,16 @@ namespace Catch {
 			{}
 			virtual ~IndexTracker();
 
-			static IndexTracker& acquire(TrackerContext& ctx, std::string const& name, int size) {
+			virtual bool isIndexTracker() const CATCH_OVERRIDE{ return true; }
+
+				static IndexTracker& acquire(TrackerContext& ctx, std::string const& name, int size) {
 				IndexTracker* tracker = CATCH_NULL;
 
 				ITracker& currentTracker = ctx.currentTracker();
 				if (ITracker* childTracker = currentTracker.findChild(name)) {
-					tracker = dynamic_cast<IndexTracker*>(childTracker);
-					assert(tracker);
+					assert(childTracker);
+					assert(childTracker->isIndexTracker());
+					tracker = static_cast<IndexTracker*>(childTracker);
 				}
 				else {
 					tracker = new IndexTracker(name, ctx, &currentTracker, size);
@@ -6321,10 +6365,10 @@ namespace Catch {
 			Catch::cout() << "For more detail usage please see the project docs\n" << std::endl;
 		}
 
-		int applyCommandLine(int argc, char const* argv[], OnUnusedOptions::DoWhat unusedOptionBehaviour = OnUnusedOptions::Fail) {
+		int applyCommandLine(int argc, char const* const* const argv, OnUnusedOptions::DoWhat unusedOptionBehaviour = OnUnusedOptions::Fail) {
 			try {
 				m_cli.setThrowOnUnrecognisedTokens(unusedOptionBehaviour == OnUnusedOptions::Fail);
-				m_unusedTokens = m_cli.parseInto(argc, argv, m_configData);
+				m_unusedTokens = m_cli.parseInto(Clara::argsToVector(argc, argv), m_configData);
 				if (m_configData.showHelp)
 					showHelp(m_configData.processName);
 				m_config.reset();
@@ -6348,15 +6392,12 @@ namespace Catch {
 			m_config.reset();
 		}
 
-		int run(int argc, char const* argv[]) {
+		int run(int argc, char const* const* const argv) {
 
 			int returnCode = applyCommandLine(argc, argv);
 			if (returnCode == 0)
 				returnCode = run();
 			return returnCode;
-		}
-		int run(int argc, char* argv[]) {
-			return run(argc, const_cast<char const**>(argv));
 		}
 
 		int run() {
@@ -6421,13 +6462,31 @@ namespace Catch {
 #include <iostream>
 #include <algorithm>
 
+#ifdef CATCH_CPP14_OR_GREATER
+#include <random>
+#endif
+
 namespace Catch {
 
-	struct LexSort {
-		bool operator() (TestCase i, TestCase j) const { return (i<j); }
-	};
 	struct RandomNumberGenerator {
-		int operator()(int n) const { return std::rand() % n; }
+		typedef int result_type;
+
+		result_type operator()(result_type n) const { return std::rand() % n; }
+
+#ifdef CATCH_CPP14_OR_GREATER
+		static constexpr result_type min() { return 0; }
+		static constexpr result_type max() { return 1000000; }
+		result_type operator()() const { return std::rand() % max(); }
+#endif
+		template<typename V>
+		static void shuffle(V& vector) {
+			RandomNumberGenerator rng;
+#ifdef CATCH_CPP14_OR_GREATER
+			std::shuffle(vector.begin(), vector.end(), rng);
+#else
+			std::random_shuffle(vector.begin(), vector.end(), rng);
+#endif
+		}
 	};
 
 	inline std::vector<TestCase> sortTests(IConfig const& config, std::vector<TestCase> const& unsortedTestCases) {
@@ -6436,14 +6495,12 @@ namespace Catch {
 
 		switch (config.runOrder()) {
 		case RunTests::InLexicographicalOrder:
-			std::sort(sorted.begin(), sorted.end(), LexSort());
+			std::sort(sorted.begin(), sorted.end());
 			break;
 		case RunTests::InRandomOrder:
 		{
 			seedRng(config);
-
-			RandomNumberGenerator rng;
-			std::random_shuffle(sorted.begin(), sorted.end(), rng);
+			RandomNumberGenerator::shuffle(sorted);
 		}
 		break;
 		case RunTests::InDeclarationOrder:
@@ -6462,13 +6519,15 @@ namespace Catch {
 			it != itEnd;
 			++it) {
 			std::pair<std::set<TestCase>::const_iterator, bool> prev = seenFunctions.insert(*it);
-			if (!prev.second){
-				Catch::cerr()
-					<< Colour(Colour::Red)
+			if (!prev.second) {
+				std::ostringstream ss;
+
+				ss << Colour(Colour::Red)
 					<< "error: TEST_CASE( \"" << it->name << "\" ) already defined.\n"
 					<< "\tFirst seen at " << prev.first->getTestCaseInfo().lineInfo << "\n"
 					<< "\tRedefined at " << it->getTestCaseInfo().lineInfo << std::endl;
-				exit(1);
+
+				throw std::runtime_error(ss.str());
 			}
 		}
 	}
@@ -7527,7 +7586,7 @@ namespace Catch {
 		return os;
 	}
 
-	Version libraryVersion(1, 4, 0, "", 0);
+	Version libraryVersion(1, 5, 6, "", 0);
 
 }
 
@@ -8506,13 +8565,18 @@ namespace Catch {
 			++it)
 			(*it)->skipTest(testInfo);
 		}
+
+			virtual MultipleReporters* tryAsMulti() CATCH_OVERRIDE{
+			return this;
+		}
+
 	};
 
 	Ptr<IStreamingReporter> addReporter(Ptr<IStreamingReporter> const& existingReporter, Ptr<IStreamingReporter> const& additionalReporter) {
 		Ptr<IStreamingReporter> resultingReporter;
 
 		if (existingReporter) {
-			MultipleReporters* multi = dynamic_cast<MultipleReporters*>(existingReporter.get());
+			MultipleReporters* multi = existingReporter->tryAsMulti();
 			if (!multi) {
 				multi = new MultipleReporters;
 				resultingReporter = Ptr<IStreamingReporter>(multi);
@@ -8692,13 +8756,13 @@ namespace Catch {
 
 			virtual void assertionStarting(AssertionInfo const&) CATCH_OVERRIDE{}
 
-			virtual bool assertionEnded(AssertionStats const& assertionStats) {
+			virtual bool assertionEnded(AssertionStats const& assertionStats) CATCH_OVERRIDE{
 			assert(!m_sectionStack.empty());
 			SectionNode& sectionNode = *m_sectionStack.back();
 			sectionNode.assertions.push_back(assertionStats);
 			return true;
 		}
-		virtual void sectionEnded(SectionStats const& sectionStats) CATCH_OVERRIDE{
+			virtual void sectionEnded(SectionStats const& sectionStats) CATCH_OVERRIDE{
 			assert(!m_sectionStack.empty());
 			SectionNode& node = *m_sectionStack.back();
 			node.stats = sectionStats;

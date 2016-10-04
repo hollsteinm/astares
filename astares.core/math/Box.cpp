@@ -1,5 +1,6 @@
 #include "Box.h"
 
+using namespace astares;
 
 Box::Box(const Vector3& center, const Vector3& halfSize) :
 	Center(center),

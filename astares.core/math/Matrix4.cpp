@@ -1,6 +1,8 @@
 #include "Matrix4.h"
 #include "Math.h"
 
+using namespace astares;
+
 const Matrix4 Matrix4::Identity = Matrix4(	Vector4(1.0f, 0.0f, 0.0f, 0.0f),
 											Vector4(0.0f, 1.0f, 0.0f, 0.0f),
 											Vector4(0.0f, 0.0f, 1.0f, 0.0f),
@@ -369,12 +371,12 @@ int32 Matrix4::ToBuffer(f32 Out[4][4], bool transpose) {
 	return 16;
 }
 
-const std::string Matrix4::ToString() const {
+const astares::cstring Matrix4::ToString() const {
 	char buffer[256];
 	size_t size = sprintf_s(buffer, "[%f, %f, %f, %f]\n[%f, %f, %f, %f]\n[%f, %f, %f, %f]\n[%f, %f, %f, %f]",
 		m[0][0], m[1][0], m[2][0], m[3][0],
 		m[0][1], m[1][1], m[2][1], m[3][1],
 		m[0][2], m[1][2], m[2][2], m[3][2],
 		m[0][3], m[1][3], m[2][3], m[3][3]);
-	return std::string(buffer, size);
+	return buffer;
 }

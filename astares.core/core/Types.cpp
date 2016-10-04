@@ -1,91 +1,33 @@
 #include "Types.h"
 
-WriteStream& operator << (WriteStream& out, const std::vector<int8>& arr) {
-	out << arr.size() << ' ';
-	if (arr.size() > 0)
-	{
-		out.write((char*)arr.data(), arr.size() * sizeof(int8));
-		out << ' ';
-	}
-	return out;
+using namespace astares;
+
+const char* TypeQuery::GetName() const 
+{ 
+	return name; 
 }
 
-ReadStream& operator >> (ReadStream& in, std::vector<int8>& arr) {
-	size_t size = 0;
-	in >> size;
-	if (size > 0)
-	{
-		char* buffer = new char[size];
-
-		if (in.flags() & std::ios::skipws) { in.seekg((int64)in.tellg() + 1); }
-
-		in.read(buffer, size * sizeof(int8));
-		arr.reserve(size);
-		for (size_t i = 0; i < size; ++i) {
-			arr.push_back(buffer[i]);
-		}
-		delete[] buffer;
-	}
-	return in;
+int64 TypeQuery::GetTypeId() const 
+{ 
+	return typeId; 
 }
 
-WriteStream& operator << (WriteStream& out, const std::vector<uint8>& arr) {
-	out << arr.size() << ' ';
-	if (arr.size() > 0)
-	{
-		out.write((char*)arr.data(), arr.size() * sizeof(uint8));
-		out << ' ';
-	}
-	return out;
+int64 TypeQuery::GetSize() const 
+{ 
+	return size; 
 }
 
-ReadStream& operator >> (ReadStream& in, std::vector<uint8>& arr) {
-	size_t size = 0;
-	in >> size;
-	if (size > 0)
-	{
-		char* buffer = new char[size];
-
-		if (in.flags() & std::ios::skipws) { in.seekg((int64)in.tellg() + 1); }
-
-		in.read(buffer, size * sizeof(uint8));
-		arr.reserve(size);
-		for (size_t i = 0; i < size; ++i) {
-			arr.push_back(buffer[i]);
-		}
-		delete[] buffer;
-	}
-	return in;
+bool TypeQuery::GetIsCollection() const 
+{ 
+	return isCollection; 
 }
 
-ReadStream& operator >> (ReadStream& in, int8& val) {
-	gate wasSet = in.flags() & std::ios::skipws;
-	if (wasSet)
-	{
-		in.seekg((int64)in.tellg() + 1);
-		in.unsetf(std::ios::skipws);
-		in.read(&val, sizeof(int8));
-		in.setf(std::ios::skipws);
-	}
-	else
-	{
-		in >> val;
-	}
-	return in;
+bool TypeQuery::GetIsPointer() const 
+{ 
+	return isPointer; 
 }
 
-ReadStream& operator >> (ReadStream& in, uint8& val) {
-	gate wasSet = in.flags() & std::ios::skipws;
-	if (wasSet)
-	{
-		in.seekg((int64)in.tellg() + 1);
-		in.unsetf(std::ios::skipws);
-		in.read((int8*)&val, sizeof(uint8));
-		in.setf(std::ios::skipws);
-	}
-	else
-	{
-		in >> val;
-	}
-	return in;
+bool TypeQuery::GetIsPrimitive() const 
+{ 
+	return isPrimitive; 
 }

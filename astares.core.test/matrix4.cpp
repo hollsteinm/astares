@@ -1,13 +1,13 @@
 #include "catch.hpp"
 #include <math\Matrix.h>
 
-TEST_CASE("Matrix4", "[matrix]") {
+TEST_CASE("astares::Matrix4", "[matrix]") {
 	SECTION("Constructors") {
-		SECTION("Vector3") {
-			Matrix4 mat = Matrix4(Vector3(1.0f, 4.5f, 3.4f));
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
-			REQUIRE(mat[0][2] == Approx(0.0f));
+		SECTION("astares::Vector3") {
+			astares::Matrix4 mat = astares::Matrix4(astares::Vector3(1.0f, 4.5f, 3.4f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
+			REQUIRE(mat[0][2] == Approx(3.4f));
 			REQUIRE(mat[0][3] == Approx(0.0f));
 			REQUIRE(mat[1][0] == Approx(0.0f));
 			REQUIRE(mat[1][1] == Approx(0.0f));
@@ -23,13 +23,56 @@ TEST_CASE("Matrix4", "[matrix]") {
 			REQUIRE(mat[3][3] == Approx(0.0f));
 		}
 
-		SECTION("Vector3 * 2") {
-			Matrix4 mat = Matrix4(
-				Vector3(1.0f, 4.5f, 3.4f),
-				Vector3(4.5f, 6.7f, 8.7f)
+		SECTION("astares::Vector3 * 2") {
+			astares::Matrix4 mat = astares::Matrix4(
+				astares::Vector3(1.0f, 4.5f, 3.4f),
+				astares::Vector3(4.5f, 6.7f, 8.7f)
 				);
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
+			REQUIRE(mat[0][2] == Approx(3.4f));
+			REQUIRE(mat[0][3] == Approx(0.0f));
+			REQUIRE(mat[1][0] == Approx(4.5f));
+			REQUIRE(mat[1][1] == Approx(6.7f));
+			REQUIRE(mat[1][2] == Approx(8.7f));
+			REQUIRE(mat[1][3] == Approx(0.0f));
+			REQUIRE(mat[2][0] == Approx(0.0f));
+			REQUIRE(mat[2][1] == Approx(0.0f));
+			REQUIRE(mat[2][2] == Approx(0.0f));
+			REQUIRE(mat[2][3] == Approx(0.0f));
+			REQUIRE(mat[3][0] == Approx(0.0f));
+			REQUIRE(mat[3][1] == Approx(0.0f));
+			REQUIRE(mat[3][2] == Approx(0.0f));
+			REQUIRE(mat[3][3] == Approx(0.0f));
+		}
+
+		SECTION("astares::Vector3 * 3") {
+			astares::Matrix4 mat = astares::Matrix4(
+				astares::Vector3(1.0f, 4.5f, 3.4f),
+				astares::Vector3(4.5f, 6.7f, 8.7f),
+				astares::Vector3(4.5f, 7.7f, 8.7f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
+			REQUIRE(mat[0][2] == Approx(3.4f));
+			REQUIRE(mat[0][3] == Approx(0.0f));
+			REQUIRE(mat[1][0] == Approx(4.5f));
+			REQUIRE(mat[1][1] == Approx(6.7f));
+			REQUIRE(mat[1][2] == Approx(8.7f));
+			REQUIRE(mat[1][3] == Approx(0.0f));
+			REQUIRE(mat[2][0] == Approx(4.5f));
+			REQUIRE(mat[2][1] == Approx(7.7f));
+			REQUIRE(mat[2][2] == Approx(8.7f));
+			REQUIRE(mat[2][3] == Approx(0.0f));
+			REQUIRE(mat[3][0] == Approx(0.0f));
+			REQUIRE(mat[3][1] == Approx(0.0f));
+			REQUIRE(mat[3][2] == Approx(0.0f));
+			REQUIRE(mat[3][3] == Approx(0.0f));
+		}
+
+		SECTION("astares::Vector2") {
+			astares::Matrix4 mat = astares::Matrix4(astares::Vector2(1.0f, 4.5f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
 			REQUIRE(mat[0][2] == Approx(0.0f));
 			REQUIRE(mat[0][3] == Approx(0.0f));
 			REQUIRE(mat[1][0] == Approx(0.0f));
@@ -46,60 +89,17 @@ TEST_CASE("Matrix4", "[matrix]") {
 			REQUIRE(mat[3][3] == Approx(0.0f));
 		}
 
-		SECTION("Vector3 * 3") {
-			Matrix4 mat = Matrix4(
-				Vector3(1.0f, 4.5f, 3.4f),
-				Vector3(4.5f, 6.7f, 8.7f),
-				Vector3(4.5f, 7.7f, 8.7f));
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
-			REQUIRE(mat[0][2] == Approx(0.0f));
-			REQUIRE(mat[0][3] == Approx(0.0f));
-			REQUIRE(mat[1][0] == Approx(0.0f));
-			REQUIRE(mat[1][1] == Approx(0.0f));
-			REQUIRE(mat[1][2] == Approx(0.0f));
-			REQUIRE(mat[1][3] == Approx(0.0f));
-			REQUIRE(mat[2][0] == Approx(0.0f));
-			REQUIRE(mat[2][1] == Approx(0.0f));
-			REQUIRE(mat[2][2] == Approx(0.0f));
-			REQUIRE(mat[2][3] == Approx(0.0f));
-			REQUIRE(mat[3][0] == Approx(0.0f));
-			REQUIRE(mat[3][1] == Approx(0.0f));
-			REQUIRE(mat[3][2] == Approx(0.0f));
-			REQUIRE(mat[3][3] == Approx(0.0f));
-		}
-
-		SECTION("Vector2") {
-			Matrix4 mat = Matrix4(Vector2(1.0f, 4.5f));
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
-			REQUIRE(mat[0][2] == Approx(0.0f));
-			REQUIRE(mat[0][3] == Approx(0.0f));
-			REQUIRE(mat[1][0] == Approx(0.0f));
-			REQUIRE(mat[1][1] == Approx(0.0f));
-			REQUIRE(mat[1][2] == Approx(0.0f));
-			REQUIRE(mat[1][3] == Approx(0.0f));
-			REQUIRE(mat[2][0] == Approx(0.0f));
-			REQUIRE(mat[2][1] == Approx(0.0f));
-			REQUIRE(mat[2][2] == Approx(0.0f));
-			REQUIRE(mat[2][3] == Approx(0.0f));
-			REQUIRE(mat[3][0] == Approx(0.0f));
-			REQUIRE(mat[3][1] == Approx(0.0f));
-			REQUIRE(mat[3][2] == Approx(0.0f));
-			REQUIRE(mat[3][3] == Approx(0.0f));
-		}
-
-		SECTION("Vector2 * 2") {
-			Matrix4 mat = Matrix4(
-				Vector2(1.0f, 4.5f),
-				Vector2(4.5f, 6.7f)
+		SECTION("astares::Vector2 * 2") {
+			astares::Matrix4 mat = astares::Matrix4(
+				astares::Vector2(1.0f, 4.5f),
+				astares::Vector2(4.5f, 6.7f)
 				);
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
 			REQUIRE(mat[0][2] == Approx(0.0f));
 			REQUIRE(mat[0][3] == Approx(0.0f));
-			REQUIRE(mat[1][0] == Approx(0.0f));
-			REQUIRE(mat[1][1] == Approx(0.0f));
+			REQUIRE(mat[1][0] == Approx(4.5f));
+			REQUIRE(mat[1][1] == Approx(6.7f));
 			REQUIRE(mat[1][2] == Approx(0.0f));
 			REQUIRE(mat[1][3] == Approx(0.0f));
 			REQUIRE(mat[2][0] == Approx(0.0f));
@@ -112,22 +112,22 @@ TEST_CASE("Matrix4", "[matrix]") {
 			REQUIRE(mat[3][3] == Approx(0.0f));
 		}
 
-		SECTION("Vector2 * 3") {
-			Matrix4 mat = Matrix4(
-				Vector2(1.0f, 4.5f),
-				Vector2(3.4f, 8.5f),
-				Vector2(1.2f, 5.6f)
+		SECTION("astares::Vector2 * 3") {
+			astares::Matrix4 mat = astares::Matrix4(
+				astares::Vector2(1.0f, 4.5f),
+				astares::Vector2(3.4f, 8.5f),
+				astares::Vector2(1.2f, 5.6f)
 				);
-			REQUIRE(mat[0][0] == Approx(0.0f));
-			REQUIRE(mat[0][1] == Approx(0.0f));
+			REQUIRE(mat[0][0] == Approx(1.0f));
+			REQUIRE(mat[0][1] == Approx(4.5f));
 			REQUIRE(mat[0][2] == Approx(0.0f));
 			REQUIRE(mat[0][3] == Approx(0.0f));
-			REQUIRE(mat[1][0] == Approx(0.0f));
-			REQUIRE(mat[1][1] == Approx(0.0f));
+			REQUIRE(mat[1][0] == Approx(3.4f));
+			REQUIRE(mat[1][1] == Approx(8.5f));
 			REQUIRE(mat[1][2] == Approx(0.0f));
 			REQUIRE(mat[1][3] == Approx(0.0f));
-			REQUIRE(mat[2][0] == Approx(0.0f));
-			REQUIRE(mat[2][1] == Approx(0.0f));
+			REQUIRE(mat[2][0] == Approx(1.2f));
+			REQUIRE(mat[2][1] == Approx(5.6f));
 			REQUIRE(mat[2][2] == Approx(0.0f));
 			REQUIRE(mat[2][3] == Approx(0.0f));
 			REQUIRE(mat[3][0] == Approx(0.0f));
@@ -137,52 +137,52 @@ TEST_CASE("Matrix4", "[matrix]") {
 		}
 	}
 
-	SECTION("Identity Matrix") {
-		const auto identity = Matrix4::Identity;
-		REQUIRE(identity[0][0] == Approx(0.0f));
+	SECTION("Identity astares::Matrix") {
+		const auto identity = astares::Matrix4::Identity;
+		REQUIRE(identity[0][0] == Approx(1.0f));
 		REQUIRE(identity[0][1] == Approx(0.0f));
 		REQUIRE(identity[0][2] == Approx(0.0f));
 		REQUIRE(identity[0][3] == Approx(0.0f));
 		REQUIRE(identity[1][0] == Approx(0.0f));
-		REQUIRE(identity[1][1] == Approx(0.0f));
+		REQUIRE(identity[1][1] == Approx(1.0f));
 		REQUIRE(identity[1][2] == Approx(0.0f));
 		REQUIRE(identity[1][3] == Approx(0.0f));
 		REQUIRE(identity[2][0] == Approx(0.0f));
 		REQUIRE(identity[2][1] == Approx(0.0f));
-		REQUIRE(identity[2][2] == Approx(0.0f));
+		REQUIRE(identity[2][2] == Approx(1.0f));
 		REQUIRE(identity[2][3] == Approx(0.0f));
 		REQUIRE(identity[3][0] == Approx(0.0f));
 		REQUIRE(identity[3][1] == Approx(0.0f));
 		REQUIRE(identity[3][2] == Approx(0.0f));
-		REQUIRE(identity[3][3] == Approx(0.0f));
+		REQUIRE(identity[3][3] == Approx(1.0f));
 	}
 
-	Matrix4 mat = {
+	astares::Matrix4 mat = {
 		{ 1.5f, 1.6f, 1.7f, 5.6f },
 		{ -5.6f, 7.8f, 0.9f, 1.2f },
 		{ 0.0f, 45.6f, -1.0f, -6.7f },
 		{ 1.4f, 5.6f, 7.8f, 0.9f }
 	};
 
-	SECTION("Matrix functions") {
+	SECTION("astares::Matrix functions") {
 		SECTION("Inverse") {
 			auto inverse = mat.GetInverse();
-			REQUIRE(inverse[0][0] == Approx(0.0f));
-			REQUIRE(inverse[0][1] == Approx(0.0f));
-			REQUIRE(inverse[0][2] == Approx(0.0f));
-			REQUIRE(inverse[0][3] == Approx(0.0f));
-			REQUIRE(inverse[1][0] == Approx(0.0f));
-			REQUIRE(inverse[1][1] == Approx(0.0f));
-			REQUIRE(inverse[1][2] == Approx(0.0f));
-			REQUIRE(inverse[1][3] == Approx(0.0f));
-			REQUIRE(inverse[2][0] == Approx(0.0f));
-			REQUIRE(inverse[2][1] == Approx(0.0f));
-			REQUIRE(inverse[2][2] == Approx(0.0f));
-			REQUIRE(inverse[2][3] == Approx(0.0f));
-			REQUIRE(inverse[3][0] == Approx(0.0f));
-			REQUIRE(inverse[3][1] == Approx(0.0f));
-			REQUIRE(inverse[3][2] == Approx(0.0f));
-			REQUIRE(inverse[3][3] == Approx(0.0f));
+			REQUIRE(inverse[0][0] == Approx(0.0619358f));
+			REQUIRE(inverse[0][1] == Approx(-0.159966f));
+			REQUIRE(inverse[0][2] == Approx(0.0241995f));
+			REQUIRE(inverse[0][3] == Approx(0.00806129f));
+			REQUIRE(inverse[1][0] == Approx(0.0238821f));
+			REQUIRE(inverse[1][1] == Approx(0.00559243f));
+			REQUIRE(inverse[1][2] == Approx(0.0205305f));
+			REQUIRE(inverse[1][3] == Approx(-0.00321824f));
+			REQUIRE(inverse[2][0] == Approx(-0.0478414f));
+			REQUIRE(inverse[2][1] == Approx(0.0206609f));
+			REQUIRE(inverse[2][2] == Approx(-0.0182996f));
+			REQUIRE(inverse[2][3] == Approx(0.133902f));
+			REQUIRE(inverse[3][0] == Approx(0.169681f));
+			REQUIRE(inverse[3][1] == Approx(0.0349782f));
+			REQUIRE(inverse[3][2] == Approx(-0.00679263f));
+			REQUIRE(inverse[3][3] == Approx(-0.0418886f));
 		}
 
 		SECTION("Transpose") {
@@ -246,7 +246,7 @@ TEST_CASE("Matrix4", "[matrix]") {
 			REQUIRE(cofactor[3][3] == Approx(0.0f));
 		}
 
-		SECTION("Minor Matrix") {
+		SECTION("Minor astares::Matrix") {
 			auto minor00 = mat.GetMinor(0, 0);
 			REQUIRE(minor00[0][0] == Approx(7.8f));
 			REQUIRE(minor00[0][1] == Approx(0.9f));
@@ -266,10 +266,10 @@ TEST_CASE("Matrix4", "[matrix]") {
 		}
 	}
 
-	SECTION("Matrix Operators") {
+	SECTION("astares::Matrix Operators") {
 		SECTION("Addition") {
-			SECTION("Matrix") {
-				auto result = mat + Matrix4({
+			SECTION("astares::Matrix") {
+				auto result = mat + astares::Matrix4({
 					{ 4.5f, 6.7f, 8.9f, 1.2f },
 					{ -4.5f, 3.4f, 128.0f, 4.5f },
 					{ 98.4567f, 34.5f, 67.5f, 6.7f },
@@ -296,8 +296,8 @@ TEST_CASE("Matrix4", "[matrix]") {
 		}
 
 		SECTION("Subtraction") {
-			SECTION("Matrix") {
-				auto result = mat - Matrix4({
+			SECTION("astares::Matrix") {
+				auto result = mat - astares::Matrix4({
 					{ 4.5f, 6.7f, 8.9f },
 					{ -4.5f, 3.4f, 128.0f },
 					{ 98.4567f, 34.5f, 67.5f }, 
@@ -324,8 +324,8 @@ TEST_CASE("Matrix4", "[matrix]") {
 		}
 
 		SECTION("Multiplication") {
-			SECTION("Matrix") {
-				auto result = mat * Matrix4({
+			SECTION("astares::Matrix") {
+				auto result = mat * astares::Matrix4({
 					{ 4.5f, 6.7f, 8.9f },
 					{ -4.5f, 3.4f, 128.0f },
 					{ 98.4567f, 34.5f, 67.5f },
@@ -370,8 +370,8 @@ TEST_CASE("Matrix4", "[matrix]") {
 				REQUIRE(result[3][3] == Approx(0.0f));
 			}
 
-			SECTION("Vector as matrix") {
-				auto result = mat * Vector4(4.5f, 6.7f, 8.9f, 5.6f);
+			SECTION("astares::Vector as matrix") {
+				auto result = mat * astares::Vector4(4.5f, 6.7f, 8.9f, 5.6f);
 				REQUIRE(result[0] == Approx(32.6f));
 				REQUIRE(result[1] == Approx(35.07f));
 				REQUIRE(result[2] == Approx(296.62f));

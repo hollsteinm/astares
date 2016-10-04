@@ -1,111 +1,67 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "../reflection/Variant.h"
-#include <functional>
+#include "../astares.framework.h"
+#include <Core.h>
 
-class ASTARESFRAMEWORK_API Object : public ISerializable{
-private:
-	UID instanceId;
-
-public:
-	Object();
-	virtual ~Object();
-
-	const UID& GetInstanceId() const;
-
-	virtual std::unique_ptr<Object> CreateDefault() const;
-
-	virtual string ToString() const;
-
-	void Serialize(WriteStream& out, const int32& version) const override;
-	void Deserialize(ReadStream& in, const int32& version) override;
-
-	void Reflect(std::shared_ptr<struct IReflector> reflector) const;
-
-	friend ASTARESFRAMEWORK_API WriteStream& operator << (WriteStream& out, const Object& obj);
-	friend ASTARESFRAMEWORK_API ReadStream& operator >> (ReadStream& in, Object& obj);
-
-	bool operator==(const Object& rhs) const;
-	bool operator!=(const Object& rhs) const;
-
-protected:
-	virtual void PostSerialize(WriteStream& out, const int32& version) const;
-	virtual void PreSerialize(WriteStream& out, const int32& version) const;
-	virtual void InternalSerialize(WriteStream& out, const int32& version) const;
-
-	virtual void InternalDeserialize(ReadStream& in, const int32& version);
-	virtual void PostDeserialize(ReadStream& in, const int32& version);
-	virtual void PreDeserialize(ReadStream& in, const int32& version);
-
-	virtual void InternalReflect(std::shared_ptr<struct IReflector> reflector) const;
-};
-
-DECL_VARIANT(Object)
-
-#ifndef PRODUCTABLE
-#define PRODUCTABLE virtual std::unique_ptr<Object> CreateDefault() const override;
+#ifndef API_TYPE
+#define API_TYPE(api, type) \
+DECL_API_TYPE(api, type) \
+DECL_API_STL_PTR(api, type) \
+DECL_API_STL(api, type)
 #endif
 
-#ifndef PRODUCE
-#define PRODUCE(type) std::unique_ptr<Object> type::CreateDefault() const { return std::make_unique<type>(type()); }
+#ifndef TYPE
+#define TYPE(type) namespace astares { API_TYPE(,type) }
 #endif
 
-#ifndef REFLECTABLE
-#define REFLECTABLE virtual void InternalReflect(std::shared_ptr<struct IReflector> reflector) const override;
+#ifndef BIND
+#define BIND(self) TypeQuery self::GetType() const { return TypeQuery::Query(self); } \
+typedef Self self; \
+void self::InternalBind(std::shared_ptr<IBinder> binder) const {
 #endif
 
-#ifndef SERIALIZEABLE
-#define SERIALIZEABLE(type) virtual void InternalDeserialize(ReadStream& in, const int32& version) override; \
-	virtual void InternalSerialize(WriteStream& out, const int32& version) const override; \
-	friend WriteStream& operator<<(WriteStream& out, const type& obj); \
-	friend ReadStream& operator>>(ReadStream& in, type& obj);
+#ifndef BIND_PARENT
+#define BIND_PARENT(parent) parent::InternalBind(binder);
 #endif
 
-#ifndef START_SERIAL
-#define START_SERIAL(type) WriteStream& operator <<(WriteStream& out, const type& obj) { obj.Serialize(out, 0); return out; } \
-	void type::InternalSerialize(WriteStream& out, const int32& version) const { out << VariantTypeId<type>().GetCustomType() << ' ';
+#ifndef PROPERTY
+#define PROPERTY(Property) binder->Apply(#Property, this, &self::Property);
 #endif
 
-#ifndef PARENT_SERIAL
-#define PARENT_SERIAL(o) o::InternalSerialize(out, version);
+#ifndef END_BIND
+#define END_BIND binder->Apply(GetType()); }
 #endif
 
-#ifndef WRITE
-#define WRITE(prop) out << prop << ' ';
+#ifndef BINDABLE
+#define BINDABLE protected: virtual void InternalBind(std::shared_ptr<struct IBinder> binder) override; public: virtual TypeQuery GetType() const override;
 #endif
 
-#ifndef END_SERIAL
-#define END_SERIAL }
-#endif
+namespace astares
+{
+	class ASTARESFRAMEWORK_API Object : public IBindable {
+	private:
+		UID instanceId;
 
-#ifndef START_DESERIAL
-#define START_DESERIAL(type) ReadStream& operator >> (ReadStream& in, type& obj) { obj.Deserialize(in, 0); return in; } \
-	void type::InternalDeserialize(ReadStream& in, const int32& version) { int64 whattoDo; in >> whattoDo;
-#endif
+	public:
+		Object();
+		virtual ~Object();
 
-#ifndef PARENT_DESERIAL
-#define PARENT_DESERIAL(o) o::InternalDeserialize(in, version);
-#endif
+		const UID& GetInstanceId() const;
+		virtual string ToString() const;
+		virtual TypeQuery GetType() const;
 
-#ifndef READ
-#define READ(prop) in >> prop;
-#endif
+		bool operator==(const Object& rhs) const;
+		bool operator!=(const Object& rhs) const;
 
-#ifndef END_DESERIAL
-#define END_DESERIAL }
-#endif
+		void BindTo(std::shared_ptr<struct IBinder> binder) const override;
+		virtual TypeQuery GetType() const override;
 
-ASTARESFRAMEWORK_API
-WriteStream& operator << (WriteStream& out, const vector<Object*>& arr);
+	protected:
+		virtual void InternalBind(std::shared_ptr<struct IBinder> binder);
+	};
 
-ASTARESFRAMEWORK_API
-ReadStream& operator >> (ReadStream& in, vector<Object*>& arr);
-
-ASTARESFRAMEWORK_API
-WriteStream& operator << (WriteStream& out, const string& arr);
-
-ASTARESFRAMEWORK_API
-ReadStream& operator >> (ReadStream& in, string& arr);
+	API_TYPE(ASTARESFRAMEWORK_API, Object)
+}
 
 #endif

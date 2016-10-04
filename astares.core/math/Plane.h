@@ -2,15 +2,15 @@
 #define PLANE_H
 
 #include "Vector.h"
+namespace astares {
+	struct ASTARESCORE_API Plane {
+		Plane();
+		~Plane();
+		Plane(const Vector2& normal, const f32& offset);
+		Plane(const Vector3& normal, const f32& offset);
 
-struct ASTARESCORE_API Plane {
-	Plane();
-	~Plane();
-	Plane(const Vector2& normal, const f32& offset);
-	Plane(const Vector3& normal, const f32& offset);
-
-	Vector3 Normal;
-	f32 Offset;
-};
-
+		Vector3 Normal;
+		f32 Offset;
+	};
+}
 #endif

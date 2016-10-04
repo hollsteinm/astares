@@ -2,60 +2,59 @@
 #define MATRIX2_H
 
 #include "Vector.h"
-#include <string>
 
-//col-major
+namespace astares {
 
-struct ASTARESCORE_API Matrix2 {
-	Matrix2();
-	Matrix2(const Matrix2& other);
+	struct ASTARESCORE_API Matrix2 {
+		Matrix2();
+		Matrix2(const Matrix2& other);
 
-	~Matrix2();
+		~Matrix2();
 
-	Matrix2(const Vector2& col0);
-	Matrix2(const Vector2& col0, const Vector2& col1);
+		Matrix2(const Vector2& col0);
+		Matrix2(const Vector2& col0, const Vector2& col1);
 
-	Matrix2& Transpose();
-	Matrix2& Inverse();
-	Matrix2& Adjoint();
-	Matrix2& CofactorMatrix();
+		Matrix2& Transpose();
+		Matrix2& Inverse();
+		Matrix2& Adjoint();
+		Matrix2& CofactorMatrix();
 
-	Matrix2 GetTranspose() const;
-	Matrix2 GetInverse() const;
-	Matrix2 GetAdjoint() const;
-	Matrix2 GetCofactorMatrix() const;
+		Matrix2 GetTranspose() const;
+		Matrix2 GetInverse() const;
+		Matrix2 GetAdjoint() const;
+		Matrix2 GetCofactorMatrix() const;
 
-	f32 GetDeterminant() const;
+		f32 GetDeterminant() const;
 
-	Vector2& operator[](int32 index);
-	const Vector2& operator[](int32 index) const;
+		Vector2& operator[](int32 index);
+		const Vector2& operator[](int32 index) const;
 
-	Matrix2 operator+(const Matrix2& other) const;
-	Matrix2 operator-(const Matrix2& other) const;
-	Matrix2 operator*(f32 a) const;
-	Matrix2 operator*(const Matrix2& other) const;
-	Matrix2 operator/(f32 b) const;
+		Matrix2 operator+(const Matrix2& other) const;
+		Matrix2 operator-(const Matrix2& other) const;
+		Matrix2 operator*(f32 a) const;
+		Matrix2 operator*(const Matrix2& other) const;
+		Matrix2 operator/(f32 b) const;
 
-	Vector2 operator*(const Vector2& vec) const;
+		Vector2 operator*(const Vector2& vec) const;
 
-	Matrix2& operator+=(const Matrix2& other);
-	Matrix2& operator-=(const Matrix2& other);
-	Matrix2& operator*=(f32 a);
-	Matrix2& operator/=(f32 b);
+		Matrix2& operator+=(const Matrix2& other);
+		Matrix2& operator-=(const Matrix2& other);
+		Matrix2& operator*=(f32 a);
+		Matrix2& operator/=(f32 b);
 
-	bool operator==(const Matrix2& other) const;
-	bool operator!=(const Matrix2& other) const;
+		bool operator==(const Matrix2& other) const;
+		bool operator!=(const Matrix2& other) const;
 
-	int32 ToBuffer(f32 Out[2][2], bool transpose = false);
-	const std::string ToString() const;
+		int32 ToBuffer(f32 Out[2][2], bool transpose = false);
+		const cstring ToString() const;
 
-	f32& operator()(int32 row, int32 col);
-	const f32& operator()(int32 row, int32 col) const;
+		f32& operator()(int32 row, int32 col);
+		const f32& operator()(int32 row, int32 col) const;
 
-	Vector2 m[2];
+		Vector2 m[2];
 
-	static const Matrix2 Identity;
-};
-
+		static const Matrix2 Identity;
+	};
+}
 
 #endif

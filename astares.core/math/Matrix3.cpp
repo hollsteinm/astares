@@ -2,6 +2,8 @@
 #include "Matrix2.h"
 #include "Math.h"
 
+using namespace astares;
+
 const Matrix3 Matrix3::Identity = Matrix3(Vector3(1.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 
 Matrix3::Matrix3()

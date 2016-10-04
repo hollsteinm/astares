@@ -408,16 +408,16 @@ namespace Catch {
 	unsigned int rngSeed();
 
 	// Use this in variadic streaming macros to allow
-	//    >> +StreamEndStop
+	//    >> +std::iostreamEndStop
 	// as well as
-	//    >> stuff +StreamEndStop
-	struct StreamEndStop {
+	//    >> stuff +std::iostreamEndStop
+	struct std::iostreamEndStop {
 		std::string operator+() {
 			return std::string();
 		}
 	};
 	template<typename T>
-	T const& operator + (T const& value, StreamEndStop) {
+	T const& operator + (T const& value, std::iostreamEndStop) {
 		return value;
 	}
 }
@@ -566,7 +566,7 @@ namespace Catch {
 namespace Catch {
 
 	class TestCase;
-	class Stream;
+	class std::iostream;
 	struct IResultCapture;
 	struct IRunner;
 	struct IGeneratorsForTest;
@@ -594,7 +594,7 @@ namespace Catch {
 	IContext& getCurrentContext();
 	IMutableContext& getCurrentMutableContext();
 	void cleanUpContext();
-	Stream createStream(std::string const& streamName);
+	std::iostream createstd::iostream(std::string const& streamName);
 
 }
 
@@ -1210,12 +1210,12 @@ namespace Catch {
 
 	struct STATIC_ASSERT_Expression_Too_Complex_Please_Rewrite_As_Binary_Comparison;
 
-	struct CopyableStream {
-		CopyableStream() {}
-		CopyableStream(CopyableStream const& other) {
+	struct Copyablestd::iostream {
+		Copyablestd::iostream() {}
+		Copyablestd::iostream(Copyablestd::iostream const& other) {
 			oss << other.oss.str();
 		}
-		CopyableStream& operator=(CopyableStream const& other) {
+		Copyablestd::iostream& operator=(Copyablestd::iostream const& other) {
 			oss.str("");
 			oss << other.oss.str();
 			return *this;
@@ -1273,7 +1273,7 @@ namespace Catch {
 			bool testFalse;
 			std::string lhs, rhs, op;
 		} m_exprComponents;
-		CopyableStream m_stream;
+		Copyablestd::iostream m_stream;
 
 		bool m_shouldDebugBreak;
 		bool m_shouldThrow;
@@ -1607,16 +1607,16 @@ namespace Catch {
 		struct TrueType { char sizer[1]; };
 		struct FalseType { char sizer[2]; };
 
-		TrueType& testStreamable(std::ostream&);
-		FalseType testStreamable(FalseType);
+		TrueType& teststd::iostreamable(std::ostream&);
+		FalseType teststd::iostreamable(FalseType);
 
 		FalseType operator<<(std::ostream const&, BorgType const&);
 
 		template<typename T>
-		struct IsStreamInsertable {
+		struct Isstd::iostreamInsertable {
 			static std::ostream &s;
 			static T  const&t;
-			enum { value = sizeof(testStreamable(s << t)) == sizeof(TrueType) };
+			enum { value = sizeof(teststd::iostreamable(s << t)) == sizeof(TrueType) };
 		};
 
 #if defined(CATCH_CONFIG_CPP11_IS_ENUM)
@@ -1674,7 +1674,7 @@ namespace Catch {
 
 	template<typename T>
 	struct StringMaker :
-		Detail::StringMakerBase<Detail::IsStreamInsertable<T>::value> {};
+		Detail::StringMakerBase<Detail::Isstd::iostreamInsertable<T>::value> {};
 
 	template<typename T>
 	struct StringMaker<T*> {
@@ -2139,7 +2139,7 @@ namespace Catch {
 #define INTERNAL_CATCH_MSG( messageType, resultDisposition, macroName, ... ) \
         do { \
             Catch::ResultBuilder __catchResult( macroName, CATCH_INTERNAL_LINEINFO, "", resultDisposition ); \
-            __catchResult << __VA_ARGS__ + ::Catch::StreamEndStop(); \
+            __catchResult << __VA_ARGS__ + ::Catch::std::iostreamEndStop(); \
             __catchResult.captureResult( messageType ); \
             INTERNAL_CATCH_REACT( __catchResult ) \
 		        } while( Catch::alwaysFalse() )
@@ -2147,7 +2147,7 @@ namespace Catch {
 #define INTERNAL_CATCH_MSG( messageType, resultDisposition, macroName, log ) \
         do { \
             Catch::ResultBuilder __catchResult( macroName, CATCH_INTERNAL_LINEINFO, "", resultDisposition ); \
-            __catchResult << log + ::Catch::StreamEndStop(); \
+            __catchResult << log + ::Catch::std::iostreamEndStop(); \
             __catchResult.captureResult( messageType ); \
             INTERNAL_CATCH_REACT( __catchResult ) \
 		        } while( Catch::alwaysFalse() )
@@ -3426,9 +3426,9 @@ namespace Catch {
 
 namespace Catch {
 
-	class StreamBufBase : public std::streambuf {
+	class std::iostreamBufBase : public std::streambuf {
 	public:
-		virtual ~StreamBufBase() CATCH_NOEXCEPT;
+		virtual ~std::iostreamBufBase() CATCH_NOEXCEPT;
 	};
 }
 
@@ -3441,38 +3441,38 @@ namespace Catch {
 	std::ostream& cout();
 	std::ostream& cerr();
 
-	struct IStream {
-		virtual ~IStream() CATCH_NOEXCEPT;
+	struct Istd::iostream {
+		virtual ~Istd::iostream() CATCH_NOEXCEPT;
 		virtual std::ostream& stream() const = 0;
 	};
 
-	class FileStream : public IStream {
+	class Filestd::iostream : public Istd::iostream {
 		mutable std::ofstream m_ofs;
 	public:
-		FileStream(std::string const& filename);
-		virtual ~FileStream() CATCH_NOEXCEPT;
-	public: // IStream
+		Filestd::iostream(std::string const& filename);
+		virtual ~Filestd::iostream() CATCH_NOEXCEPT;
+	public: // Istd::iostream
 		virtual std::ostream& stream() const CATCH_OVERRIDE;
 	};
 
-	class CoutStream : public IStream {
+	class Coutstd::iostream : public Istd::iostream {
 		mutable std::ostream m_os;
 	public:
-		CoutStream();
-		virtual ~CoutStream() CATCH_NOEXCEPT;
+		Coutstd::iostream();
+		virtual ~Coutstd::iostream() CATCH_NOEXCEPT;
 
-	public: // IStream
+	public: // Istd::iostream
 		virtual std::ostream& stream() const CATCH_OVERRIDE;
 	};
 
-	class DebugOutStream : public IStream {
-		std::auto_ptr<StreamBufBase> m_streamBuf;
+	class DebugOutstd::iostream : public Istd::iostream {
+		std::auto_ptr<std::iostreamBufBase> m_streamBuf;
 		mutable std::ostream m_os;
 	public:
-		DebugOutStream();
-		virtual ~DebugOutStream() CATCH_NOEXCEPT;
+		DebugOutstd::iostream();
+		virtual ~DebugOutstd::iostream() CATCH_NOEXCEPT;
 
-	public: // IStream
+	public: // Istd::iostream
 		virtual std::ostream& stream() const CATCH_OVERRIDE;
 	};
 }
@@ -3552,7 +3552,7 @@ namespace Catch {
 
 		Config(ConfigData const& data)
 			: m_data(data),
-			m_stream(openStream())
+			m_stream(openstd::iostream())
 		{
 			if (!data.testsOrTags.empty()) {
 				TestSpecParser parser(ITagAliasRegistry::get());
@@ -3600,21 +3600,21 @@ namespace Catch {
 
 	private:
 
-		IStream const* openStream() {
+		Istd::iostream const* openstd::iostream() {
 			if (m_data.outputFilename.empty())
-				return new CoutStream();
+				return new Coutstd::iostream();
 			else if (m_data.outputFilename[0] == '%') {
 				if (m_data.outputFilename == "%debug")
-					return new DebugOutStream();
+					return new DebugOutstd::iostream();
 				else
 					throw std::domain_error("Unrecognised stream: " + m_data.outputFilename);
 			}
 			else
-				return new FileStream(m_data.outputFilename);
+				return new Filestd::iostream(m_data.outputFilename);
 		}
 		ConfigData m_data;
 
-		std::auto_ptr<IStream const> m_stream;
+		std::auto_ptr<Istd::iostream const> m_stream;
 		TestSpec m_testSpec;
 	};
 
@@ -5251,8 +5251,8 @@ namespace Catch
 		bool aborting;
 	};
 
-	struct IStreamingReporter : IShared {
-		virtual ~IStreamingReporter();
+	struct Istd::iostreamingReporter : IShared {
+		virtual ~Istd::iostreamingReporter();
 
 		// Implementing class must also provide the following static method:
 		// static std::string getDescription();
@@ -5282,7 +5282,7 @@ namespace Catch
 
 	struct IReporterFactory : IShared {
 		virtual ~IReporterFactory();
-		virtual IStreamingReporter* create(ReporterConfig const& config) const = 0;
+		virtual Istd::iostreamingReporter* create(ReporterConfig const& config) const = 0;
 		virtual std::string getDescription() const = 0;
 	};
 
@@ -5291,12 +5291,12 @@ namespace Catch
 		typedef std::vector<Ptr<IReporterFactory> > Listeners;
 
 		virtual ~IReporterRegistry();
-		virtual IStreamingReporter* create(std::string const& name, Ptr<IConfig const> const& config) const = 0;
+		virtual Istd::iostreamingReporter* create(std::string const& name, Ptr<IConfig const> const& config) const = 0;
 		virtual FactoryMap const& getFactories() const = 0;
 		virtual Listeners const& getListeners() const = 0;
 	};
 
-	Ptr<IStreamingReporter> addReporter(Ptr<IStreamingReporter> const& existingReporter, Ptr<IStreamingReporter> const& additionalReporter);
+	Ptr<Istd::iostreamingReporter> addReporter(Ptr<Istd::iostreamingReporter> const& existingReporter, Ptr<Istd::iostreamingReporter> const& additionalReporter);
 
 }
 
@@ -5845,10 +5845,10 @@ namespace Catch {
 
 namespace Catch {
 
-	class StreamRedirect {
+	class std::iostreamRedirect {
 
 	public:
-		StreamRedirect(std::ostream& stream, std::string& targetString)
+		std::iostreamRedirect(std::ostream& stream, std::string& targetString)
 			: m_stream(stream),
 			m_prevBuf(stream.rdbuf()),
 			m_targetString(targetString)
@@ -5856,7 +5856,7 @@ namespace Catch {
 			stream.rdbuf(m_oss.rdbuf());
 		}
 
-		~StreamRedirect() {
+		~std::iostreamRedirect() {
 			m_targetString += m_oss.str();
 			m_stream.rdbuf(m_prevBuf);
 		}
@@ -5877,7 +5877,7 @@ namespace Catch {
 
 	public:
 
-		explicit RunContext(Ptr<IConfig const> const& _config, Ptr<IStreamingReporter> const& reporter)
+		explicit RunContext(Ptr<IConfig const> const& _config, Ptr<Istd::iostreamingReporter> const& reporter)
 			: m_runInfo(_config->name()),
 			m_context(getCurrentMutableContext()),
 			m_activeTestCase(CATCH_NULL),
@@ -6092,8 +6092,8 @@ namespace Catch {
 				Timer timer;
 				timer.start();
 				if (m_reporter->getPreferences().shouldRedirectStdOut) {
-					StreamRedirect coutRedir(Catch::cout(), redirectedCout);
-					StreamRedirect cerrRedir(Catch::cerr(), redirectedCerr);
+					std::iostreamRedirect coutRedir(Catch::cout(), redirectedCout);
+					std::iostreamRedirect cerrRedir(Catch::cerr(), redirectedCerr);
 					invokeActiveTestCase();
 				}
 				else {
@@ -6159,7 +6159,7 @@ namespace Catch {
 
 		Ptr<IConfig const> m_config;
 		Totals m_totals;
-		Ptr<IStreamingReporter> m_reporter;
+		Ptr<Istd::iostreamingReporter> m_reporter;
 		std::vector<MessageInfo> m_messages;
 		AssertionInfo m_lastAssertionInfo;
 		std::vector<SectionEndInfo> m_unfinishedSections;
@@ -6212,8 +6212,8 @@ namespace Catch {
 
 namespace Catch {
 
-	Ptr<IStreamingReporter> createReporter(std::string const& reporterName, Ptr<Config> const& config) {
-		Ptr<IStreamingReporter> reporter = getRegistryHub().getReporterRegistry().create(reporterName, config.get());
+	Ptr<Istd::iostreamingReporter> createReporter(std::string const& reporterName, Ptr<Config> const& config) {
+		Ptr<Istd::iostreamingReporter> reporter = getRegistryHub().getReporterRegistry().create(reporterName, config.get());
 		if (!reporter) {
 			std::ostringstream oss;
 			oss << "No reporter registered with name: '" << reporterName << "'";
@@ -6222,19 +6222,19 @@ namespace Catch {
 		return reporter;
 	}
 
-	Ptr<IStreamingReporter> makeReporter(Ptr<Config> const& config) {
+	Ptr<Istd::iostreamingReporter> makeReporter(Ptr<Config> const& config) {
 		std::vector<std::string> reporters = config->getReporterNames();
 		if (reporters.empty())
 			reporters.push_back("console");
 
-		Ptr<IStreamingReporter> reporter;
+		Ptr<Istd::iostreamingReporter> reporter;
 		for (std::vector<std::string>::const_iterator it = reporters.begin(), itEnd = reporters.end();
 			it != itEnd;
 			++it)
 			reporter = addReporter(reporter, createReporter(*it, config));
 		return reporter;
 	}
-	Ptr<IStreamingReporter> addListeners(Ptr<IConfig const> const& config, Ptr<IStreamingReporter> reporters) {
+	Ptr<Istd::iostreamingReporter> addListeners(Ptr<IConfig const> const& config, Ptr<Istd::iostreamingReporter> reporters) {
 		IReporterRegistry::Listeners listeners = getRegistryHub().getReporterRegistry().getListeners();
 		for (IReporterRegistry::Listeners::const_iterator it = listeners.begin(), itEnd = listeners.end();
 			it != itEnd;
@@ -6247,7 +6247,7 @@ namespace Catch {
 
 		Ptr<IConfig const> iconfig = config.get();
 
-		Ptr<IStreamingReporter> reporter = makeReporter(config);
+		Ptr<Istd::iostreamingReporter> reporter = makeReporter(config);
 		reporter = addListeners(iconfig, reporter);
 
 		RunContext context(iconfig, reporter);
@@ -6604,7 +6604,7 @@ namespace Catch {
 
 		virtual ~ReporterRegistry() CATCH_OVERRIDE{}
 
-			virtual IStreamingReporter* create(std::string const& name, Ptr<IConfig const> const& config) const CATCH_OVERRIDE{
+			virtual Istd::iostreamingReporter* create(std::string const& name, Ptr<IConfig const> const& config) const CATCH_OVERRIDE{
 			FactoryMap::const_iterator it = m_factories.find(name);
 			if (it == m_factories.end())
 				return CATCH_NULL;
@@ -6795,16 +6795,16 @@ namespace Catch {
 namespace Catch {
 
 	template<typename WriterF, size_t bufferSize = 256>
-	class StreamBufImpl : public StreamBufBase {
+	class std::iostreamBufImpl : public std::iostreamBufBase {
 		char data[bufferSize];
 		WriterF m_writer;
 
 	public:
-		StreamBufImpl() {
+		std::iostreamBufImpl() {
 			setp(data, data + sizeof(data));
 		}
 
-		~StreamBufImpl() CATCH_NOEXCEPT{
+		~std::iostreamBufImpl() CATCH_NOEXCEPT{
 			sync();
 		}
 
@@ -6832,7 +6832,7 @@ namespace Catch {
 
 	///////////////////////////////////////////////////////////////////////////
 
-	FileStream::FileStream(std::string const& filename) {
+	Filestd::iostream::Filestd::iostream(std::string const& filename) {
 		m_ofs.open(filename.c_str());
 		if (m_ofs.fail()) {
 			std::ostringstream oss;
@@ -6841,7 +6841,7 @@ namespace Catch {
 		}
 	}
 
-	std::ostream& FileStream::stream() const {
+	std::ostream& Filestd::iostream::stream() const {
 		return m_ofs;
 	}
 
@@ -6852,22 +6852,22 @@ namespace Catch {
 		}
 	};
 
-	DebugOutStream::DebugOutStream()
-		: m_streamBuf(new StreamBufImpl<OutputDebugWriter>()),
+	DebugOutstd::iostream::DebugOutstd::iostream()
+		: m_streamBuf(new std::iostreamBufImpl<OutputDebugWriter>()),
 		m_os(m_streamBuf.get())
 	{}
 
-	std::ostream& DebugOutStream::stream() const {
+	std::ostream& DebugOutstd::iostream::stream() const {
 		return m_os;
 	}
 
 	// Store the streambuf from cout up-front because
 	// cout may get redirected when running tests
-	CoutStream::CoutStream()
+	Coutstd::iostream::Coutstd::iostream()
 		: m_os(Catch::cout().rdbuf())
 	{}
 
-	std::ostream& CoutStream::stream() const {
+	std::ostream& Coutstd::iostream::stream() const {
 		return m_os;
 	}
 
@@ -7594,7 +7594,7 @@ namespace Catch
 		virtual void Result(AssertionResult const& result) = 0;
 	};
 
-	class LegacyReporterAdapter : public SharedImpl<IStreamingReporter>
+	class LegacyReporterAdapter : public SharedImpl<Istd::iostreamingReporter>
 	{
 	public:
 		LegacyReporterAdapter(Ptr<IReporter> const& legacyReporter);
@@ -8405,16 +8405,16 @@ namespace Catch {
 
 namespace Catch {
 
-	class MultipleReporters : public SharedImpl<IStreamingReporter> {
-		typedef std::vector<Ptr<IStreamingReporter> > Reporters;
+	class MultipleReporters : public SharedImpl<Istd::iostreamingReporter> {
+		typedef std::vector<Ptr<Istd::iostreamingReporter> > Reporters;
 		Reporters m_reporters;
 
 	public:
-		void add(Ptr<IStreamingReporter> const& reporter) {
+		void add(Ptr<Istd::iostreamingReporter> const& reporter) {
 			m_reporters.push_back(reporter);
 		}
 
-	public: // IStreamingReporter
+	public: // Istd::iostreamingReporter
 
 		virtual ReporterPreferences getPreferences() const CATCH_OVERRIDE{
 			return m_reporters[0]->getPreferences();
@@ -8508,14 +8508,14 @@ namespace Catch {
 		}
 	};
 
-	Ptr<IStreamingReporter> addReporter(Ptr<IStreamingReporter> const& existingReporter, Ptr<IStreamingReporter> const& additionalReporter) {
-		Ptr<IStreamingReporter> resultingReporter;
+	Ptr<Istd::iostreamingReporter> addReporter(Ptr<Istd::iostreamingReporter> const& existingReporter, Ptr<Istd::iostreamingReporter> const& additionalReporter) {
+		Ptr<Istd::iostreamingReporter> resultingReporter;
 
 		if (existingReporter) {
 			MultipleReporters* multi = dynamic_cast<MultipleReporters*>(existingReporter.get());
 			if (!multi) {
 				multi = new MultipleReporters;
-				resultingReporter = Ptr<IStreamingReporter>(multi);
+				resultingReporter = Ptr<Istd::iostreamingReporter>(multi);
 				if (existingReporter)
 					multi->add(existingReporter);
 			}
@@ -8541,9 +8541,9 @@ namespace Catch {
 
 namespace Catch {
 
-	struct StreamingReporterBase : SharedImpl<IStreamingReporter> {
+	struct std::iostreamingReporterBase : SharedImpl<Istd::iostreamingReporter> {
 
-		StreamingReporterBase(ReporterConfig const& _config)
+		std::iostreamingReporterBase(ReporterConfig const& _config)
 			: m_config(_config.fullConfig()),
 			stream(_config.stream())
 		{
@@ -8554,7 +8554,7 @@ namespace Catch {
 			return m_reporterPrefs;
 		}
 
-		virtual ~StreamingReporterBase() CATCH_OVERRIDE;
+		virtual ~std::iostreamingReporterBase() CATCH_OVERRIDE;
 
 		virtual void noMatchingTestCases(std::string const&) CATCH_OVERRIDE{}
 
@@ -8603,7 +8603,7 @@ namespace Catch {
 		ReporterPreferences m_reporterPrefs;
 	};
 
-	struct CumulativeReporterBase : SharedImpl<IStreamingReporter> {
+	struct CumulativeReporterBase : SharedImpl<Istd::iostreamingReporter> {
 		template<typename T, typename ChildNodeT>
 		struct Node : SharedImpl<> {
 			explicit Node(T const& _value) : value(_value) {}
@@ -8756,9 +8756,9 @@ namespace Catch {
 		return line;
 	}
 
-	struct TestEventListenerBase : StreamingReporterBase {
+	struct TestEventListenerBase : std::iostreamingReporterBase {
 		TestEventListenerBase(ReporterConfig const& _config)
-			: StreamingReporterBase(_config)
+			: std::iostreamingReporterBase(_config)
 		{}
 
 		virtual void assertionStarting(AssertionInfo const&) CATCH_OVERRIDE{}
@@ -8778,7 +8778,7 @@ namespace Catch {
 	class LegacyReporterRegistrar {
 
 		class ReporterFactory : public IReporterFactory {
-			virtual IStreamingReporter* create(ReporterConfig const& config) const {
+			virtual Istd::iostreamingReporter* create(ReporterConfig const& config) const {
 				return new LegacyReporterAdapter(new T(config));
 			}
 
@@ -8802,7 +8802,7 @@ namespace Catch {
 			// *** Please Note ***:
 			// - If you end up here looking at a compiler error because it's trying to register
 			// your custom reporter class be aware that the native reporter interface has changed
-			// to IStreamingReporter. The "legacy" interface, IReporter, is still supported via
+			// to Istd::iostreamingReporter. The "legacy" interface, IReporter, is still supported via
 			// an adapter. Just use REGISTER_LEGACY_REPORTER to take advantage of the adapter.
 			// However please consider updating to the new interface as the old one is now
 			// deprecated and will probably be removed quite soon!
@@ -8810,7 +8810,7 @@ namespace Catch {
 			// In fact, ideally, please contact me anyway to let me know you've hit this - as I have
 			// no idea who is actually using custom reporters at all (possibly no-one!).
 			// The new interface is designed to minimise exposure to interface changes in the future.
-			virtual IStreamingReporter* create(ReporterConfig const& config) const {
+			virtual Istd::iostreamingReporter* create(ReporterConfig const& config) const {
 				return new T(config);
 			}
 
@@ -8831,7 +8831,7 @@ namespace Catch {
 
 		class ListenerFactory : public SharedImpl<IReporterFactory> {
 
-			virtual IStreamingReporter* create(ReporterConfig const& config) const {
+			virtual Istd::iostreamingReporter* create(ReporterConfig const& config) const {
 				return new T(config);
 			}
 			virtual std::string getDescription() const {
@@ -9045,7 +9045,7 @@ namespace Catch {
 			return *this;
 		}
 
-		void setStream(std::ostream& os) {
+		void setstd::iostream(std::ostream& os) {
 			m_os = &os;
 		}
 
@@ -9095,10 +9095,10 @@ namespace Catch {
 
 
 namespace Catch {
-	class XmlReporter : public StreamingReporterBase {
+	class XmlReporter : public std::iostreamingReporterBase {
 	public:
 		XmlReporter(ReporterConfig const& _config)
-			: StreamingReporterBase(_config),
+			: std::iostreamingReporterBase(_config),
 			m_sectionDepth(0)
 		{
 			m_reporterPrefs.shouldRedirectStdOut = true;
@@ -9110,28 +9110,28 @@ namespace Catch {
 			return "Reports test results as an XML document";
 		}
 
-	public: // StreamingReporterBase
+	public: // std::iostreamingReporterBase
 
 		virtual void noMatchingTestCases(std::string const& s) CATCH_OVERRIDE{
-			StreamingReporterBase::noMatchingTestCases(s);
+			std::iostreamingReporterBase::noMatchingTestCases(s);
 		}
 
 			virtual void testRunStarting(TestRunInfo const& testInfo) CATCH_OVERRIDE{
-			StreamingReporterBase::testRunStarting(testInfo);
-			m_xml.setStream(stream);
+			std::iostreamingReporterBase::testRunStarting(testInfo);
+			m_xml.setstd::iostream(stream);
 			m_xml.startElement("Catch");
 			if (!m_config->name().empty())
 				m_xml.writeAttribute("name", m_config->name());
 		}
 
 			virtual void testGroupStarting(GroupInfo const& groupInfo) CATCH_OVERRIDE{
-			StreamingReporterBase::testGroupStarting(groupInfo);
+			std::iostreamingReporterBase::testGroupStarting(groupInfo);
 			m_xml.startElement("Group")
 				.writeAttribute("name", groupInfo.name);
 		}
 
 			virtual void testCaseStarting(TestCaseInfo const& testInfo) CATCH_OVERRIDE{
-			StreamingReporterBase::testCaseStarting(testInfo);
+			std::iostreamingReporterBase::testCaseStarting(testInfo);
 			m_xml.startElement("TestCase").writeAttribute("name", trim(testInfo.name));
 
 			if (m_config->showDurations() == ShowDurations::Always)
@@ -9139,7 +9139,7 @@ namespace Catch {
 		}
 
 			virtual void sectionStarting(SectionInfo const& sectionInfo) CATCH_OVERRIDE{
-			StreamingReporterBase::sectionStarting(sectionInfo);
+			std::iostreamingReporterBase::sectionStarting(sectionInfo);
 			if (m_sectionDepth++ > 0) {
 				m_xml.startElement("Section")
 					.writeAttribute("name", trim(sectionInfo.name))
@@ -9222,7 +9222,7 @@ namespace Catch {
 		}
 
 			virtual void sectionEnded(SectionStats const& sectionStats) CATCH_OVERRIDE{
-			StreamingReporterBase::sectionEnded(sectionStats);
+			std::iostreamingReporterBase::sectionEnded(sectionStats);
 			if (--m_sectionDepth > 0) {
 				XmlWriter::ScopedElement e = m_xml.scopedElement("OverallResults");
 				e.writeAttribute("successes", sectionStats.assertions.passed);
@@ -9237,7 +9237,7 @@ namespace Catch {
 		}
 
 			virtual void testCaseEnded(TestCaseStats const& testCaseStats) CATCH_OVERRIDE{
-			StreamingReporterBase::testCaseEnded(testCaseStats);
+			std::iostreamingReporterBase::testCaseEnded(testCaseStats);
 			XmlWriter::ScopedElement e = m_xml.scopedElement("OverallResult");
 			e.writeAttribute("success", testCaseStats.totals.assertions.allOk());
 
@@ -9248,7 +9248,7 @@ namespace Catch {
 		}
 
 			virtual void testGroupEnded(TestGroupStats const& testGroupStats) CATCH_OVERRIDE{
-			StreamingReporterBase::testGroupEnded(testGroupStats);
+			std::iostreamingReporterBase::testGroupEnded(testGroupStats);
 			// TODO: Check testGroupStats.aborting and act accordingly.
 			m_xml.scopedElement("OverallResults")
 				.writeAttribute("successes", testGroupStats.totals.assertions.passed)
@@ -9258,7 +9258,7 @@ namespace Catch {
 		}
 
 			virtual void testRunEnded(TestRunStats const& testRunStats) CATCH_OVERRIDE{
-			StreamingReporterBase::testRunEnded(testRunStats);
+			std::iostreamingReporterBase::testRunEnded(testRunStats);
 			m_xml.scopedElement("OverallResults")
 				.writeAttribute("successes", testRunStats.totals.assertions.passed)
 				.writeAttribute("failures", testRunStats.totals.assertions.failed)
@@ -9490,9 +9490,9 @@ namespace Catch {
 
 namespace Catch {
 
-	struct ConsoleReporter : StreamingReporterBase {
+	struct ConsoleReporter : std::iostreamingReporterBase {
 		ConsoleReporter(ReporterConfig const& _config)
-			: StreamingReporterBase(_config),
+			: std::iostreamingReporterBase(_config),
 			m_headerPrinted(false)
 		{}
 
@@ -9530,7 +9530,7 @@ namespace Catch {
 
 			virtual void sectionStarting(SectionInfo const& _sectionInfo) CATCH_OVERRIDE{
 			m_headerPrinted = false;
-			StreamingReporterBase::sectionStarting(_sectionInfo);
+			std::iostreamingReporterBase::sectionStarting(_sectionInfo);
 		}
 			virtual void sectionEnded(SectionStats const& _sectionStats) CATCH_OVERRIDE{
 			if (_sectionStats.missingAssertions) {
@@ -9551,11 +9551,11 @@ namespace Catch {
 				if (m_config->showDurations() == ShowDurations::Always)
 					stream << _sectionStats.sectionInfo.name << " completed in " << _sectionStats.durationInSeconds << "s" << std::endl;
 			}
-			StreamingReporterBase::sectionEnded(_sectionStats);
+			std::iostreamingReporterBase::sectionEnded(_sectionStats);
 		}
 
 			virtual void testCaseEnded(TestCaseStats const& _testCaseStats) CATCH_OVERRIDE{
-			StreamingReporterBase::testCaseEnded(_testCaseStats);
+			std::iostreamingReporterBase::testCaseEnded(_testCaseStats);
 			m_headerPrinted = false;
 		}
 			virtual void testGroupEnded(TestGroupStats const& _testGroupStats) CATCH_OVERRIDE{
@@ -9565,13 +9565,13 @@ namespace Catch {
 				printTotals(_testGroupStats.totals);
 				stream << "\n" << std::endl;
 			}
-			StreamingReporterBase::testGroupEnded(_testGroupStats);
+			std::iostreamingReporterBase::testGroupEnded(_testGroupStats);
 		}
 			virtual void testRunEnded(TestRunStats const& _testRunStats) CATCH_OVERRIDE{
 			printTotalsDivider(_testRunStats.totals);
 			printTotals(_testRunStats.totals);
 			stream << std::endl;
-			StreamingReporterBase::testRunEnded(_testRunStats);
+			std::iostreamingReporterBase::testRunEnded(_testRunStats);
 		}
 
 	private:
@@ -9922,10 +9922,10 @@ namespace Catch {
 
 namespace Catch {
 
-	struct CompactReporter : StreamingReporterBase {
+	struct CompactReporter : std::iostreamingReporterBase {
 
 		CompactReporter(ReporterConfig const& _config)
-			: StreamingReporterBase(_config)
+			: std::iostreamingReporterBase(_config)
 		{}
 
 		virtual ~CompactReporter();
@@ -9969,7 +9969,7 @@ namespace Catch {
 		virtual void testRunEnded(TestRunStats const& _testRunStats) {
 			printTotals(_testRunStats.totals);
 			stream << "\n" << std::endl;
-			StreamingReporterBase::testRunEnded(_testRunStats);
+			std::iostreamingReporterBase::testRunEnded(_testRunStats);
 		}
 
 	private:
@@ -10210,11 +10210,11 @@ namespace Catch {
 	// virtual methods
 	NonCopyable::~NonCopyable() {}
 	IShared::~IShared() {}
-	IStream::~IStream() CATCH_NOEXCEPT{}
-		FileStream::~FileStream() CATCH_NOEXCEPT{}
-		CoutStream::~CoutStream() CATCH_NOEXCEPT{}
-		DebugOutStream::~DebugOutStream() CATCH_NOEXCEPT{}
-		StreamBufBase::~StreamBufBase() CATCH_NOEXCEPT{}
+	Istd::iostream::~Istd::iostream() CATCH_NOEXCEPT{}
+		Filestd::iostream::~Filestd::iostream() CATCH_NOEXCEPT{}
+		Coutstd::iostream::~Coutstd::iostream() CATCH_NOEXCEPT{}
+		DebugOutstd::iostream::~DebugOutstd::iostream() CATCH_NOEXCEPT{}
+		std::iostreamBufBase::~std::iostreamBufBase() CATCH_NOEXCEPT{}
 		IContext::~IContext() {}
 	IResultCapture::~IResultCapture() {}
 	ITestCase::~ITestCase() {}
@@ -10226,7 +10226,7 @@ namespace Catch {
 	IReporter::~IReporter() {}
 	IReporterFactory::~IReporterFactory() {}
 	IReporterRegistry::~IReporterRegistry() {}
-	IStreamingReporter::~IStreamingReporter() {}
+	Istd::iostreamingReporter::~Istd::iostreamingReporter() {}
 	AssertionStats::~AssertionStats() {}
 	SectionStats::~SectionStats() {}
 	TestCaseStats::~TestCaseStats() {}
@@ -10235,7 +10235,7 @@ namespace Catch {
 	CumulativeReporterBase::SectionNode::~SectionNode() {}
 	CumulativeReporterBase::~CumulativeReporterBase() {}
 
-	StreamingReporterBase::~StreamingReporterBase() {}
+	std::iostreamingReporterBase::~std::iostreamingReporterBase() {}
 	ConsoleReporter::~ConsoleReporter() {}
 	CompactReporter::~CompactReporter() {}
 	IRunner::~IRunner() {}

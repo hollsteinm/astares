@@ -3,6 +3,8 @@
 #include "Vector.h"
 #include "Math.h"
 
+using namespace astares;
+
 Quaternion::Quaternion() :
 	x(0.0f),
 	y(0.0f),
@@ -145,10 +147,10 @@ int32 Quaternion::ToBuffer(f32 out_buffer[4]) const {
 	return 4;
 }
 
-const std::string Quaternion::ToString() const {
+const astares::cstring Quaternion::ToString() const {
 	char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f, %f]", x, y, z, w);
-	return std::string(buffer, size);
+	return buffer;
 }
 
 f32& Quaternion::operator[](int32 index) {

@@ -48,13 +48,7 @@
     <ClInclude Include="Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Config.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="core\Enum.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\File.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="core\ISubsystem.h">
@@ -129,7 +123,10 @@
     <ClInclude Include="core\UID.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="core\ISerializable.h">
+    <ClInclude Include="core\IFile.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\IConfig.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -143,25 +140,13 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Config.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\File.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="core\System.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="core\Types.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="math\Geometry.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="math\Math.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\Matrix.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="math\Matrix2.cpp">
@@ -188,9 +173,6 @@
     <ClCompile Include="math\Transform.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="math\Vector.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="math\Vector2.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
@@ -215,8 +197,14 @@
     <ClCompile Include="math\Hull.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="core\ISerializable.cpp">
+    <ClCompile Include="core\IFile.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\IConfig.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

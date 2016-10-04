@@ -1,13 +1,16 @@
 #ifndef ILOGGER_H
 #define ILOGGER_H
 
-#include "../astares.core.h"
+#include "../core/Types.h"
 
-struct ASTARESCORE_API ILogger {
-	virtual ~ILogger(){};
-	virtual void Info(const char* fmt, ...) = 0;
-	virtual void Warn(const char* fmt, ...) = 0;
-	virtual void Error(const char* fmt, ...) = 0;
-	virtual void Critical(const char* fmt, ...) = 0;
-};
+namespace astares
+{
+	struct ASTARESCORE_API ILogger {
+		virtual ~ILogger(){};
+		virtual void Info(cstring fmt, ...) = 0;
+		virtual void Warn(cstring fmt, ...) = 0;
+		virtual void Error(cstring fmt, ...) = 0;
+		virtual void Critical(cstring fmt, ...) = 0;
+	};
+}
 #endif

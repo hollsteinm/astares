@@ -3,6 +3,8 @@
 #include <ctime>
 #include <iomanip>
 
+using namespace astares;
+
 UID::UID() :
 	value(0)
 {
@@ -36,22 +38,12 @@ int64 UID::GetValue() const {
 	return value;
 }
 
-string UID::ToString() const {
+cstring UID::ToString() const {
 	std::stringstream out;
 	LazyConv val;
 	val.lval = value;
 	out << std::setfill('0') << std::setw(8) << std::hex << val.ival[0] << "-" << std::setw(8) << val.ival[1];
-	return out.str();
-}
-
-ReadStream& operator >> (ReadStream& in, UID& out) {
-	in >> out.value;
-	return in;
-}
-
-WriteStream& operator << (WriteStream& out, const UID& in) {
-	out << in.value;
-	return out;
+	return out.str().c_str();
 }
 
 bool UID::operator==(const UID& rhs) const {

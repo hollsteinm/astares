@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <stdarg.h>
 
+using namespace astares;
+
 static const char* I = "[INFO]\t\t %s \r\n";
 static const char* W = "[WARN]\t\t %s \r\n";
 static const char* E = "[ERROR]\t\t %s \r\n";

@@ -46,11 +46,11 @@ int64 Packet::ToRaw(string& outData) const {
 	return length;
 }
 
-WriteStream& operator<<(WriteStream& out, Packet& packet) {
+std::ostream& operator<<(std::ostream& out, Packet& packet) {
 	return out.write(packet.data.c_str(), packet.data.size());
 }
 
-ReadStream& operator>>(ReadStream& in, Packet& packet) {
+std::istream& operator>>(std::istream& in, Packet& packet) {
 	in.seekg(0, std::ios::end);
 	auto length = in.tellg();
 	in.seekg(0, std::ios::beg);

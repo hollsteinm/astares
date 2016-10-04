@@ -1,5 +1,7 @@
 #include "Sphere.h"
 
+using namespace astares;
+
 Sphere::Sphere(const Vector3& center, const f32& radius) : Center(center), Radius(radius)
 {
 

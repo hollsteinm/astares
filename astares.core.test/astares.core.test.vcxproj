@@ -83,11 +83,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="config.cpp" />
+    <ClCompile Include="file.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math.cpp" />
     <ClCompile Include="matrix2.cpp" />
     <ClCompile Include="matrix3.cpp" />
     <ClCompile Include="matrix4.cpp" />
+    <ClCompile Include="types.cpp" />
     <ClCompile Include="uid.cpp" />
     <ClCompile Include="vector2.cpp" />
     <ClCompile Include="vector3.cpp" />

@@ -1,51 +1,51 @@
 #include "catch.hpp"
 #include <math\Vector.h>
 
-TEST_CASE("Vector4", "[vectors]") {
+TEST_CASE("astares::Vector4", "[vectors]") {
 	SECTION("Constructors") {
-		Vector4 vec = Vector4();
+		astares::Vector4 vec = astares::Vector4();
 		REQUIRE(vec.data[0] == Approx(0.0f));
 		REQUIRE(vec.data[1] == Approx(0.0f));
 		REQUIRE(vec.data[2] == Approx(0.0f));
 		REQUIRE(vec.data[3] == Approx(0.0f));
 
-		vec = Vector4(1.57f, 9.0f);
+		vec = astares::Vector4(1.57f, 9.0f);
 		REQUIRE(vec.data[0] == Approx(1.57f));
 		REQUIRE(vec.data[1] == Approx(9.0f));
 		REQUIRE(vec.data[2] == Approx(0.0f));
 
-		vec = Vector4(1.57f, 9.0f, 8.0f);
+		vec = astares::Vector4(1.57f, 9.0f, 8.0f);
 		REQUIRE(vec.data[0] == Approx(1.57f));
 		REQUIRE(vec.data[1] == Approx(9.0f));
 		REQUIRE(vec.data[2] == Approx(8.0f));
 		REQUIRE(vec.data[3] == Approx(0.0f));
 
-		vec = Vector4(1.0f);
+		vec = astares::Vector4(1.0f);
 		REQUIRE(vec.data[0] == Approx(1.0f));
 		REQUIRE(vec.data[1] == Approx(0.0f));
 		REQUIRE(vec.data[2] == Approx(0.0f));
 
-		auto vec2 = Vector2(87.0f, 123.45f);
-		vec = Vector4(vec2);
+		auto vec2 = astares::Vector2(87.0f, 123.45f);
+		vec = astares::Vector4(vec2);
 		REQUIRE(vec.data[0] == vec2.data[0]);
 		REQUIRE(vec.data[1] == vec2.data[1]);
 		REQUIRE(vec.data[2] == Approx(0.0f));
 
-		auto vec3 = Vector3(86.5f, 65.7f, 1.2f);
-		vec = Vector4(vec3);
+		auto vec3 = astares::Vector3(86.5f, 65.7f, 1.2f);
+		vec = astares::Vector4(vec3);
 		REQUIRE(vec[0] == 86.5f);
 		REQUIRE(vec[1] == 65.7f);
 		REQUIRE(vec[2] == 1.2f);
 		REQUIRE(vec[3] == 0.0f);
 
-		vec = Vector4(1.43f, 5.67f, -90.1f, 1.0f);
+		vec = astares::Vector4(1.43f, 5.67f, -90.1f, 1.0f);
 		REQUIRE(vec.data[0] == Approx(1.43f));
 		REQUIRE(vec.data[1] == Approx(5.67f));
 		REQUIRE(vec.data[2] == Approx(-90.1f));
 		REQUIRE(vec.data[3] == Approx(1.0f));
 
-		auto vec4 = Vector4(87.0f, 123.45f, 56.7f, 1.0f);
-		vec = Vector4(vec4);
+		auto vec4 = astares::Vector4(87.0f, 123.45f, 56.7f, 1.0f);
+		vec = astares::Vector4(vec4);
 		REQUIRE(vec.data[0] == Approx(87.0f));
 		REQUIRE(vec.data[1] == Approx(123.45f));
 		REQUIRE(vec.data[2] == Approx(56.7f));
@@ -53,7 +53,7 @@ TEST_CASE("Vector4", "[vectors]") {
 	}
 
 	SECTION("Accessor") {
-		Vector4 vec(1.0f, 4.0f, 3.4f, 4.34f);
+		astares::Vector4 vec(1.0f, 4.0f, 3.4f, 4.34f);
 		REQUIRE(vec[0] == 1.0f);
 		REQUIRE(vec[1] == 4.0f);
 		REQUIRE(vec[2] == 3.4f);
@@ -62,8 +62,8 @@ TEST_CASE("Vector4", "[vectors]") {
 
 	SECTION("Data") {
 		SECTION("Buffer") {
-			f32 buff[4] = { 0.0f, 0.0f, -1000000.0f, 1.0f };
-			Vector4 vec(5.0f, 3.4f, 32.4564f, 3.4f);
+			astares::f32 buff[4] = { 0.0f, 0.0f, -1000000.0f, 1.0f };
+			astares::Vector4 vec(5.0f, 3.4f, 32.4564f, 3.4f);
 			int ret = vec.ToBuffer(buff);
 			REQUIRE(buff[0] == vec[0]);
 			REQUIRE(buff[1] == vec[1]);
@@ -74,18 +74,18 @@ TEST_CASE("Vector4", "[vectors]") {
 	}
 
 	SECTION("Mathematicial Operators") {
-		SECTION("Vectors") {
+		SECTION("astares::Vectors") {
 			SECTION("Addition") {
-				Vector4 first(1.0f, 2.0f, 32.4f, 4.0f);
-				Vector4 second(5.0f, 4.0f, 1.0f, 4.1f);
+				astares::Vector4 first(1.0f, 2.0f, 32.4f, 4.0f);
+				astares::Vector4 second(5.0f, 4.0f, 1.0f, 4.1f);
 
-				Vector4 third = first + second;
+				astares::Vector4 third = first + second;
 				REQUIRE(third[_X] == 6.0f);
 				REQUIRE(third[_Y] == 6.0f);
 				REQUIRE(third[_Z] == 33.4f);
 				REQUIRE(third[_W] == 8.1f);
 
-				Vector4 fourth = first + third;
+				astares::Vector4 fourth = first + third;
 				REQUIRE(fourth[_X] == first.data[0] + third.data[0]);
 				REQUIRE(fourth[_Y] == first.data[1] + third.data[1]);
 				REQUIRE(fourth[_Z] == first.data[2] + third.data[2]);
@@ -99,16 +99,16 @@ TEST_CASE("Vector4", "[vectors]") {
 			}
 
 			SECTION("Subtraction") {
-				Vector4 first(1.0f, 2.0f, 4.0f, 1.0f);
-				Vector4 second(5.0f, 4.0f, 4.0f, -0.3f);
+				astares::Vector4 first(1.0f, 2.0f, 4.0f, 1.0f);
+				astares::Vector4 second(5.0f, 4.0f, 4.0f, -0.3f);
 
-				Vector4 third = first - second;
+				astares::Vector4 third = first - second;
 				REQUIRE(third[_X] == -4.0f);
 				REQUIRE(third[_Y] == -2.0f);
 				REQUIRE(third[_Z] == 0.0f);
 				REQUIRE(third[_W] == 1.3f);
 
-				Vector4 fourth = first - third;
+				astares::Vector4 fourth = first - third;
 				REQUIRE(fourth[_X] == first.data[0] - third.data[0]);
 				REQUIRE(fourth[_Y] == first.data[1] - third.data[1]);
 				REQUIRE(fourth[_Z] == first.data[2] - third.data[2]);
@@ -124,8 +124,8 @@ TEST_CASE("Vector4", "[vectors]") {
 
 		SECTION("Real Numbers") {
 			SECTION("Addition") {
-				Vector4 vec(5.0f, -1.0f, 8.7f, 5.6f);
-				Vector4 result = vec + 4.0f;
+				astares::Vector4 vec(5.0f, -1.0f, 8.7f, 5.6f);
+				astares::Vector4 result = vec + 4.0f;
 
 				REQUIRE(result[0] == 9.0f);
 				REQUIRE(result[1] == 3.0f);
@@ -140,8 +140,8 @@ TEST_CASE("Vector4", "[vectors]") {
 			}
 
 			SECTION("Subtraction") {
-				Vector4 vec(5.0f, -1.0f, 2.0f, 0.1f);
-				Vector4 result = vec - 4.0f;
+				astares::Vector4 vec(5.0f, -1.0f, 2.0f, 0.1f);
+				astares::Vector4 result = vec - 4.0f;
 
 				REQUIRE(result[0] == 1.0f);
 				REQUIRE(result[1] == -5.0f);
@@ -156,8 +156,8 @@ TEST_CASE("Vector4", "[vectors]") {
 			}
 
 			SECTION("Division") {
-				Vector4 vec(5.0f, -3.0f, 4.0f, 8.0f);
-				Vector4 result = vec / 4.0f;
+				astares::Vector4 vec(5.0f, -3.0f, 4.0f, 8.0f);
+				astares::Vector4 result = vec / 4.0f;
 
 				REQUIRE(result[0] == Approx(1.25f));
 				REQUIRE(result[1] == Approx(-0.75f));
@@ -172,8 +172,8 @@ TEST_CASE("Vector4", "[vectors]") {
 			}
 
 			SECTION("Multiplication") {
-				Vector4 vec(5.0f, -3.0f, 0.1f, 0.5f);
-				Vector4 result = vec * 4.0f;
+				astares::Vector4 vec(5.0f, -3.0f, 0.1f, 0.5f);
+				astares::Vector4 result = vec * 4.0f;
 
 				REQUIRE(result[0] == Approx(20.0f));
 				REQUIRE(result[1] == Approx(-12.0f));
@@ -188,22 +188,22 @@ TEST_CASE("Vector4", "[vectors]") {
 			}
 		}
 
-		SECTION("Vector Math") {
-			Vector4 vec(1.0f, 8.0f, 3.4f, 5.0f);
-			Vector4 first(4.0f, -5.0f, 8.5f, 2.0f);
-			Vector4 second(12.45f, 30.0f, -123.45f, 8.9f);
+		SECTION("astares::Vector Math") {
+			astares::Vector4 vec(1.0f, 8.0f, 3.4f, 5.0f);
+			astares::Vector4 first(4.0f, -5.0f, 8.5f, 2.0f);
+			astares::Vector4 second(12.45f, 30.0f, -123.45f, 8.9f);
 
 			//TODO: start from here on Friday
 			REQUIRE(vec.GetMagnitude() == Approx(10.0777f));
 			REQUIRE(vec.GetLengthSquared() == Approx(101.56003729f));
 
-			Vector4 normalized = vec.GetNormalized();
+			astares::Vector4 normalized = vec.GetNormalized();
 			REQUIRE(normalized[0] == Approx(0.099229f));
 			REQUIRE(normalized[1] == Approx(0.793832f));
 			REQUIRE(normalized[2] == Approx(0.337379));
 			REQUIRE(normalized[3] == Approx(0.496145f));
 
-			Vector4 quote_inverted_quote = vec.GetInverse();
+			astares::Vector4 quote_inverted_quote = vec.GetInverse();
 			REQUIRE(quote_inverted_quote[0] == -1.0f);
 			REQUIRE(quote_inverted_quote[1] == -8.0f);
 			REQUIRE(quote_inverted_quote[2] == -3.4f);

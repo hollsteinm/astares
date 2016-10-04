@@ -3,14 +3,15 @@
 
 #include "Vector3.h"
 
-DECL_CORE_STL(Vector3)
+namespace astares {
 
-struct ASTARESCORE_API Hull {
-	Hull();
-	Hull(const vector<Vector3>& points);
+	DECL_CORE_STL(Vector3)
 
-	vector<Vector3> Points;
-};
+	struct ASTARESCORE_API Hull {
+		Hull();
+		Hull(const std::vector<Vector3>& points);
 
-
+		std::vector<Vector3> Points;
+	};
+}
 #endif

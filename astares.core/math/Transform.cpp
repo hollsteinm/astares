@@ -2,6 +2,8 @@
 #include "Vector.h"
 #include <cmath>
 
+using namespace astares;
+
 Transform::Transform() {
 
 }
@@ -98,8 +100,8 @@ Vector3 Transform::ScaleVector(const Vector3& scale) const {
 }
 
 Transform& Transform::SetParent(Transform* NewParent) {
-	if (Parent.get() != NewParent) {
-		Parent = std::shared_ptr<Transform>(NewParent);
+	if (Parent != NewParent) {
+		Parent = NewParent;
 	}
 	return *this;
 }
@@ -133,20 +135,32 @@ Transform& Transform::ScaleTransform(const Vector3& scale) {
 	return *this;
 }
 
-Vector3 Transform::PositionVector() const { return Position; }
-Vector3 Transform::RotationVector() const { return Rotation; }
-Vector3 Transform::ScaleVector() const { return Scale; }
-
-Vector3& Transform::PositionVector() { return Position; }
-Vector3& Transform::RotationVector() { return Rotation; }
-Vector3& Transform::ScaleVector() { return Scale; }
-
-WriteStream& operator<<(WriteStream& out, const Transform& in) 
+Vector3 Transform::PositionVector() const
 {
-	return out << in.Position << ' ' << in.Rotation << ' ' << in.Scale; //TODO:parent
+	return Position;
 }
 
-ReadStream& operator>>(ReadStream& in, Transform& out)
+Vector3 Transform::RotationVector() const
 {
-	return in >> out.Position >> out.Rotation >> out.Scale; //TODO:parent
+	return Rotation;
+}
+
+Vector3 Transform::ScaleVector() const
+{
+	return Scale;
+}
+
+Vector3& Transform::PositionVector()
+{
+	return Position;
+}
+
+Vector3& Transform::RotationVector()
+{
+	return Rotation;
+}
+
+Vector3& Transform::ScaleVector()
+{
+	return Scale;
 }

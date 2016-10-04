@@ -32,8 +32,8 @@ struct ASTARESFRAMEWORK_API Packet {
 	int64 RawSize() const;
 	int64 ToRaw(string& outData) const;
 
-	friend ASTARESFRAMEWORK_API WriteStream& operator<<(WriteStream& out, Packet& packet);
-	friend ASTARESFRAMEWORK_API ReadStream& operator>>(ReadStream& in, Packet& packet);
+	friend ASTARESFRAMEWORK_API std::ostream& operator<<(std::ostream& out, Packet& packet);
+	friend ASTARESFRAMEWORK_API std::istream& operator>>(std::istream& in, Packet& packet);
 };
 
 #endif

@@ -1,27 +1,10 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include "../astares.core.h"
 #include "Vector2.h"
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Quaternion.h"
-
-#include <iosfwd>
-
-
-ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector2& vec);
-ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector2& vec);
-
-ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector3& vec);
-ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector3& vec);
-
-ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Vector4& vec);
-ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Vector4& vec);
-
-ASTARESCORE_API WriteStream& operator<<(WriteStream& out, const Quaternion& vec);
-ASTARESCORE_API ReadStream& operator>>(ReadStream& in, Quaternion& vec);
-
 
 #ifndef _X
 #define _X 0

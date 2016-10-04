@@ -3,14 +3,16 @@
 
 #include "Vector.h"
 
-struct ASTARESCORE_API Box {
-	Box(const Vector3& center, const Vector3& halfSize);
-	Box(const Vector3& center);
-	Box();
+namespace astares {
 
-	Vector3 Center;
-	Vector3 HalfSize;
-};
+	struct ASTARESCORE_API Box {
+		Box(const Vector3& center, const Vector3& halfSize);
+		Box(const Vector3& center);
+		Box();
 
+		Vector3 Center;
+		Vector3 HalfSize;
+	};
 
+}
 #endif

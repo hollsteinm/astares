@@ -1,7 +1,10 @@
 #include "Matrix2.h"
 #include "Math.h"
 
-const Matrix2 Matrix2::Identity = Matrix2(Vector2(1.0f, 0.0), Vector2(0.0f, 1.0f));
+using namespace astares;
+
+const Matrix2 Matrix2::Identity = Matrix2(Vector2(1.0f, 0.0), 
+	Vector2(0.0f, 1.0f));
 
 Matrix2::Matrix2() {
 	*this = Identity;
@@ -168,12 +171,12 @@ int32 Matrix2::ToBuffer(f32 Out[2][2], bool transpose) {
 	return 4;
 }
 
-const std::string Matrix2::ToString() const {
+const astares::cstring Matrix2::ToString() const {
 	char buffer[256];
 	size_t size = sprintf_s(buffer, "[%f, %f]\n[%f, %f]",
 		m[0][0], m[1][0],
 		m[0][1], m[1][1]);
-	return std::string(buffer, size);
+	return buffer;
 }
 
 f32& Matrix2::operator()(int32 row, int32 col) {

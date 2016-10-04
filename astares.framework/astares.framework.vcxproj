@@ -119,11 +119,8 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClInclude Include="object\ObjectFactory.h" />
     <ClInclude Include="reflection\IReflectionInfo.h" />
     <ClInclude Include="reflection\IReflector.h" />
-    <ClInclude Include="reflection\JSONReflector.h" />
-    <ClInclude Include="reflection\PropertyVariant.h" />
     <ClInclude Include="reflection\Reflection.h" />
     <ClInclude Include="reflection\Reflector.h" />
-    <ClInclude Include="reflection\Variant.h" />
     <ClInclude Include="serialization\IObjectSerializer.h" />
     <ClInclude Include="serialization\StringHelper.h" />
     <ClInclude Include="stdafx.h" />
@@ -150,10 +147,7 @@ copy /Y "$(SDL_MIXER)\lib\x86\*.dll" "$(TargetDir)"</Command>
     <ClCompile Include="network\UDPSocket.cpp" />
     <ClCompile Include="object\Object.cpp" />
     <ClCompile Include="object\ObjectFactory.cpp" />
-    <ClCompile Include="reflection\JSONReflector.cpp" />
-    <ClCompile Include="reflection\PropertyVariant.cpp" />
     <ClCompile Include="reflection\Reflector.cpp" />
-    <ClCompile Include="reflection\Variant.cpp" />
     <ClCompile Include="serialization\StringHelper.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

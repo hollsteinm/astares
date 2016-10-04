@@ -2,6 +2,8 @@
 #include "Math.h"
 #include <cstdio>
 
+using namespace astares;
+
 Vector2::~Vector2() {
 }
 

@@ -1152,7 +1152,7 @@ namespace better_enums {
 
 
 
-	// Stream I/O operators.
+	// std::iostream I/O operators.
 
 	// This template is used as a sort of enable_if for SFINAE. It should be
 	// possible to use std::enable_if, however <type_traits> is not available in

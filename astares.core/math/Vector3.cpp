@@ -4,6 +4,8 @@
 
 #include <cstdio>
 
+using namespace astares;
+
 Vector3::~Vector3() {
 }
 
@@ -274,10 +276,10 @@ int32 Vector3::ToBuffer(f32* out_buffer) const {
 	return 3;
 }
 
-const std::string Vector3::ToString() const {
+const astares::cstring Vector3::ToString() const {
 	char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f]", data[0], data[1], data[2]);
-	return std::string(buffer, size);
+	return buffer;
 }
 
 f32& Vector3::operator[](int32 index) {

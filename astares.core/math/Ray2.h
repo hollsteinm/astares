@@ -3,17 +3,17 @@
 
 #include "Vector.h"
 
+namespace astares {
+	struct Vector2;
 
-struct Vector2;
+	struct ASTARESCORE_API Ray2 {
+		~Ray2();
+		Ray2();
+		Ray2(const Vector2& origin, const Vector2& direction);
 
-struct ASTARESCORE_API Ray2 {
-	~Ray2();
-	Ray2();
-	Ray2(const Vector2& origin, const Vector2& direction);
+		Vector2 Origin;
+		Vector2 Direction;
+	};
 
-	Vector2 Origin;
-	Vector2 Direction;
-};
-
-
+}
 #endif

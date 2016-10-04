@@ -4,7 +4,7 @@
 TEST_CASE("Matrix3", "[matrix]") {
 	SECTION("Constructors") {
 		SECTION("Vector3") {
-			Matrix3 mat = Matrix3(Vector3(1.0f, 4.5f, 3.4f));
+			astares::Matrix3 mat = astares::Matrix3(astares::Vector3(1.0f, 4.5f, 3.4f));
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
 			REQUIRE(mat[0][1] == Approx(4.5f));
@@ -19,9 +19,9 @@ TEST_CASE("Matrix3", "[matrix]") {
 		}
 
 		SECTION("Vector3 * 2") {
-			Matrix3 mat = Matrix3(
-				Vector3(1.0f, 4.5f, 3.4f),
-				Vector3(4.5f, 6.7f, 8.7f)
+			astares::Matrix3 mat = astares::Matrix3(
+				astares::Vector3(1.0f, 4.5f, 3.4f),
+				astares::Vector3(4.5f, 6.7f, 8.7f)
 				);
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
@@ -36,10 +36,10 @@ TEST_CASE("Matrix3", "[matrix]") {
 		}
 
 		SECTION("Vector3 * 3") {
-			Matrix3 mat = Matrix3(
-				Vector3(1.0f, 4.5f, 3.4f),
-				Vector3(4.5f, 6.7f, 8.7f),
-				Vector3(4.5f, 7.7f, 8.7f));
+			astares::Matrix3 mat = astares::Matrix3(
+				astares::Vector3(1.0f, 4.5f, 3.4f),
+				astares::Vector3(4.5f, 6.7f, 8.7f),
+				astares::Vector3(4.5f, 7.7f, 8.7f));
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
 			REQUIRE(mat[0][1] == Approx(4.5f));
@@ -53,7 +53,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 		}
 
 		SECTION("Vector2") {
-			Matrix3 mat = Matrix3(Vector2(1.0f, 4.5f));
+			astares::Matrix3 mat = astares::Matrix3(astares::Vector2(1.0f, 4.5f));
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
 			REQUIRE(mat[0][1] == Approx(4.5f));
@@ -67,9 +67,9 @@ TEST_CASE("Matrix3", "[matrix]") {
 		}
 
 		SECTION("Vector2 * 2") {
-			Matrix3 mat = Matrix3(
-				Vector2(1.0f, 4.5f),
-				Vector2(4.5f, 6.7f)
+			astares::Matrix3 mat = astares::Matrix3(
+				astares::Vector2(1.0f, 4.5f),
+				astares::Vector2(4.5f, 6.7f)
 				);
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
@@ -84,10 +84,10 @@ TEST_CASE("Matrix3", "[matrix]") {
 		}
 
 		SECTION("Vector2 * 3") {
-			Matrix3 mat = Matrix3(
-				Vector2(1.0f, 4.5f),
-				Vector2(3.4f, 8.5f),
-				Vector2(1.2f, 5.6f)
+			astares::Matrix3 mat = astares::Matrix3(
+				astares::Vector2(1.0f, 4.5f),
+				astares::Vector2(3.4f, 8.5f),
+				astares::Vector2(1.2f, 5.6f)
 				);
 
 			REQUIRE(mat[0][0] == Approx(1.0f));
@@ -103,7 +103,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 	}
 
 	SECTION("Identity Matrix") {
-		const auto identity = Matrix3::Identity;
+		const auto identity = astares::Matrix3::Identity;
 
 		REQUIRE(identity[0][0] == Approx(1.0f));
 		REQUIRE(identity[0][1] == Approx(0.0f));
@@ -116,7 +116,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 		REQUIRE(identity[2][2] == Approx(1.0f));
 	}
 
-	Matrix3 mat = {
+	astares::Matrix3 mat = {
 		{ 1.5f, 1.6f, 1.7f },
 		{ -5.6f, 7.8f, 0.9f },
 		{ 0.0f, 45.6f, -1.0f }
@@ -199,7 +199,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 	SECTION("Matrix Operators") {
 		SECTION("Addition") {
 			SECTION("Matrix") {
-				auto result = mat + Matrix3({
+				auto result = mat + astares::Matrix3({
 					{ 4.5f, 6.7f, 8.9f },
 					{ -4.5f, 3.4f, 128.0f },
 					{ 98.4567f, 34.5f, 67.5f }
@@ -219,7 +219,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 
 		SECTION("Subtraction") {
 			SECTION("Matrix") {
-				auto result = mat - Matrix3({
+				auto result = mat - astares::Matrix3({
 					{ 4.5f, 6.7f, 8.9f },
 					{ -4.5f, 3.4f, 128.0f },
 					{ 98.4567f, 34.5f, 67.5f }
@@ -239,7 +239,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 
 		SECTION("Multiplication") {
 			SECTION("Matrix") {
-				auto result = mat * Matrix3({
+				auto result = mat * astares::Matrix3({
 					{ 4.5f, 6.7f, 8.9f },
 					{ -4.5f, 3.4f, 128.0f },
 					{ 98.4567f, 34.5f, 67.5f }
@@ -270,7 +270,7 @@ TEST_CASE("Matrix3", "[matrix]") {
 			}
 
 			SECTION("Vector as matrix") {
-				auto result = mat * Vector3(4.5f, 6.7f, 8.9f);
+				auto result = mat * astares::Vector3(4.5f, 6.7f, 8.9f);
 				REQUIRE(result[0] == Approx(32.6f));
 				REQUIRE(result[1] == Approx(35.07f));
 				REQUIRE(result[2] == Approx(296.62f));

@@ -1,6 +1,8 @@
 #include "Ray3.h"
 #include "Math.h"
 
+using namespace astares;
+
 Ray3::~Ray3() {
 }
 

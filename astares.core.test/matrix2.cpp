@@ -3,7 +3,7 @@
 
 TEST_CASE("Matrix2", "[matrix]") {
 	SECTION("Identity Matrix") {
-		const Matrix2& identity = Matrix2::Identity;
+		const astares::Matrix2& identity = astares::Matrix2::Identity;
 		REQUIRE(identity[0][0] == 1.0f);
 		REQUIRE(identity[0][1] == 0.0f);
 		REQUIRE(identity[1][0] == 0.0f);
@@ -11,31 +11,31 @@ TEST_CASE("Matrix2", "[matrix]") {
 	}
 
 	SECTION("Constructors") {
-		Matrix2 mat;
+		astares::Matrix2 mat;
 
 		REQUIRE(mat[0][0] == 1.0f);
 		REQUIRE(mat[0][1] == 0.0f);
 		REQUIRE(mat[1][0] == 0.0f);
 		REQUIRE(mat[1][1] == 1.0f);
 
-		Vector2 rows[2] = {
-			Vector2(0.1f, 5.0f),
-			Vector2(8.0f, 123.45f)
+		astares::Vector2 rows[2] = {
+			astares::Vector2(0.1f, 5.0f),
+			astares::Vector2(8.0f, 123.45f)
 		};
 
-		mat = Matrix2(rows[0]);
+		mat = astares::Matrix2(rows[0]);
 		REQUIRE(mat[0][0] == rows[0][0]);
 		REQUIRE(mat[0][1] == rows[0][1]);
 		REQUIRE(mat[1][0] == 0.0f);
 		REQUIRE(mat[1][1] == 0.0f);
 
-		mat = Matrix2(rows[0], rows[1]);
+		mat = astares::Matrix2(rows[0], rows[1]);
 		REQUIRE(mat[0][0] == rows[0][0]);
 		REQUIRE(mat[0][1] == rows[0][1]);
 		REQUIRE(mat[1][0] == rows[1][0]);
 		REQUIRE(mat[1][1] == rows[1][1]);
 
-		mat = Matrix2(Matrix2({
+		mat = astares::Matrix2(astares::Matrix2({
 			{ 0, 1.0f },
 			{ 3.4f, 54.0f }
 		}));
@@ -47,7 +47,7 @@ TEST_CASE("Matrix2", "[matrix]") {
 	}
 
 	SECTION("Matrix Functions") {
-		Matrix2 mat = {
+		astares::Matrix2 mat = {
 			{ 4.5f, 3.2f },
 			{ 5.6f, 12.0f }
 		};
@@ -91,8 +91,8 @@ TEST_CASE("Matrix2", "[matrix]") {
 
 	SECTION("Buffer") {
 		SECTION("Normal") {
-			f32 buffer[2][2] = {};
-			Matrix2 mat = {
+			astares::f32 buffer[2][2] = {};
+			astares::Matrix2 mat = {
 				{ 4.5f, 3.2f },
 				{ 5.6f, 12.0f }
 			};
@@ -103,8 +103,8 @@ TEST_CASE("Matrix2", "[matrix]") {
 			REQUIRE(buffer[1][1] == 12.0f);
 		}
 		SECTION("Transposed") {
-			f32 buffer[2][2] = {};
-			Matrix2 mat = {
+			astares::f32 buffer[2][2] = {};
+			astares::Matrix2 mat = {
 				{ 4.5f, 3.2f },
 				{ 5.6f, 12.0f }
 			};
@@ -118,13 +118,13 @@ TEST_CASE("Matrix2", "[matrix]") {
 	}
 
 	SECTION("Operators") {
-		Matrix2 mat = {
+		astares::Matrix2 mat = {
 			{ 12.3f, 1.0f },
 			{ 8.7f, 5.6f }
 		};
 
 		SECTION("Matrix plus Matrix") {
-			auto result = mat + Matrix2({
+			auto result = mat + astares::Matrix2({
 				{ 1.0f, 3.4f },
 				{ 7.65f, 9.0f }
 			});
@@ -135,7 +135,7 @@ TEST_CASE("Matrix2", "[matrix]") {
 		}
 
 		SECTION("Matrix minus Matrix") {
-			auto result = mat - Matrix2({
+			auto result = mat - astares::Matrix2({
 				{ 1.0f, 3.4f },
 				{ 7.65f, 9.0f }
 			});
@@ -154,7 +154,7 @@ TEST_CASE("Matrix2", "[matrix]") {
 		}
 
 		SECTION("Matrix times Matrix") {
-			auto result = mat * Matrix2({
+			auto result = mat * astares::Matrix2({
 				{ 1.0f, 3.4f },
 				{ 7.65f, 9.0f }
 			});
@@ -173,7 +173,7 @@ TEST_CASE("Matrix2", "[matrix]") {
 		}
 
 		SECTION("Vector Multiplication (column matrix)") {
-			auto result = mat * Vector2(3.4f, 5.6f);
+			auto result = mat * astares::Vector2(3.4f, 5.6f);
 			REQUIRE(result[0] == Approx(47.42f));
 			REQUIRE(result[1] == Approx(60.94f));
 		}

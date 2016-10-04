@@ -3,27 +3,18 @@
 
 #include "Types.h"
 
-struct ILogger;
-struct ISubsystem;
+namespace astares
+{
+	struct ASTARESCORE_API ISystem {
+		ISystem();
+		virtual ~ISystem();
 
-DECL_CORE_STL_PTR(ISubsystem)
-DECL_CORE_STL(std::shared_ptr<ISubsystem>)
-DECL_CORE_STL(std::weak_ptr<ISubsystem>)
+		virtual void Configure(struct IConfig* config) = 0;
+		virtual bool Initialize() = 0;
+		virtual bool Run() = 0;
+		virtual void Shutdown() = 0;
+		static inline ISystem* MakeSystem(struct ILogger* logger, const std::vector<struct ISubsystem*>& subSystems);
+	};
 
-class ASTARESCORE_API System {
-public:
-	System(std::shared_ptr<ILogger> logger, const std::vector<std::shared_ptr<ISubsystem>>& subSystems);
-	virtual ~System();
-
-	virtual void Configure(class Config& config);
-	virtual bool Initialize();
-	virtual bool Run();
-	virtual void Shutdown();
-private:
-protected:
-	vector<std::shared_ptr<ISubsystem>> Subsystems;
-	std::shared_ptr<ILogger> logger;
-};
-
-
+}
 #endif

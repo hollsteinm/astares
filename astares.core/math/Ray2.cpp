@@ -1,5 +1,7 @@
 #include "Ray2.h"
 
+using namespace astares;
+
 Ray2::~Ray2() {
 }
 

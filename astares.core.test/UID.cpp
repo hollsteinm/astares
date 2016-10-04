@@ -4,8 +4,8 @@
 
 TEST_CASE("UID", "[core]") {
 	SECTION("Comparisons & Uniqueness") {
-		UID first = UID::Make();
-		UID second = UID::Make();
+		astares::UID first = astares::UID::Make();
+		astares::UID second = astares::UID::Make();
 
 		REQUIRE_FALSE(first == second);
 		REQUIRE(first != second);
