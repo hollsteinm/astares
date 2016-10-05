@@ -228,7 +228,7 @@ namespace astares
 	}
 }
 
-#ifndef DECL_API_EXTERN_TYPE
+#ifndef DECL_TYPE
 #define DECL_TYPE(type) template<> struct TypeInfo<type>\
 {\
 	static cstring Name() { return #type; }\

@@ -17,9 +17,10 @@ TEST_CASE("File", "[core]") {
 		}
 
 		SECTION("Reading") {
-			astares::cstring in;
+			astares::int8* in = new astares::int8[testString.size() + 1];
 			REQUIRE(file->Read(in));
-			REQUIRE(in == testString);
+			REQUIRE(strcmp((const char*)in, testString.c_str()) == 0);
+			delete[] in;
 		}
 
 		SECTION("Streaming Files") {

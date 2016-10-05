@@ -17,7 +17,7 @@ namespace astares {
 		virtual ~IFile();
 
 		virtual	void Init(cstring company, cstring project) = 0;
-		virtual	bool Read(cstring& out) = 0;
+		virtual	bool Read(int8* out) = 0;
 		virtual	bool Write(const cstring& in) = 0;
 		virtual	bool Append(const cstring& in) = 0;
 		virtual	bool Delete() = 0;

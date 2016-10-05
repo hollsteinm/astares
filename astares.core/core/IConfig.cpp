@@ -39,9 +39,9 @@ public:
 	void Parse(cstring content) override;
 
 private:
-	std::map<std::string, std::map<std::string, cstring>> Configurations;
+	std::map<std::string, std::map<std::string, std::string>> Configurations;
 
-	cstring CurrentSection;
+	std::string CurrentSection;
 
 	static const char SectionStartToken;
 	static const char SectionEndToken;
@@ -50,7 +50,7 @@ private:
 	static const char SectionNameEndToken;
 
 protected:
-	bool Load(cstring filename, cstring outContent);
+	bool Load(cstring filename, int8* outContent);
 	bool Save(cstring filename, cstring content);
 
 };
@@ -70,10 +70,12 @@ const char Config::SectionNameEndToken = ')';
 Config::Config(cstring filepath) :
 	CurrentSection("")
 {
-	char potentialContent[19280] = {};
+	int8* potentialContent = new int8[19280];
 	if (Load(filepath, potentialContent)) {
-		Parse(potentialContent);
+		std::string scopedString((const char*)potentialContent, strlen((const char*)potentialContent));
+		Parse(scopedString.c_str());
 	}
+	delete[] potentialContent;
 }
 
 Config::~Config() {
@@ -86,7 +88,7 @@ Config& Config::MoveSection(cstring section) {
 }
 
 bool Config::HasSetting(cstring setting) const {
-	if (HasSection(CurrentSection)) {
+	if (HasSection(CurrentSection.c_str())) {
 		return Configurations.at(CurrentSection).find(setting) != Configurations.at(CurrentSection).cend();
 	}
 	else {
@@ -119,7 +121,7 @@ bool Config::AsBool(cstring setting) const {
 
 cstring Config::AsString(cstring setting) const {
 	if (HasSetting(setting)) {
-		return Configurations.at(CurrentSection).at(setting);
+		return Configurations.at(CurrentSection).at(setting).c_str();
 	}
 	else {
 		return "";
@@ -128,7 +130,7 @@ cstring Config::AsString(cstring setting) const {
 
 f32 Config::AsFloat(cstring setting) const {
 	if (HasSetting(setting)) {
-		return (f32)atof(Configurations.at(CurrentSection).at(setting));
+		return (f32)atof(Configurations.at(CurrentSection).at(setting).c_str());
 	}
 	else {
 		return 0.0f;
@@ -137,14 +139,14 @@ f32 Config::AsFloat(cstring setting) const {
 
 int32 Config::AsInt(cstring setting) const {
 	if (HasSetting(setting)) {
-		return atoi(Configurations.at(CurrentSection).at(setting));
+		return atoi(Configurations.at(CurrentSection).at(setting).c_str());
 	}
 	else {
 		return 0;
 	}
 }
 
-bool Config::Load(cstring filename, cstring content) {
+bool Config::Load(cstring filename, int8* content) {
 	auto file = IFile::MakeFile(filename);
 	return file->Read(content);
 }
@@ -209,8 +211,8 @@ void Config::Parse(cstring content) {
 				str.push_back(next);
 				next = content[index++];
 			} while (next != SectionNameEndToken);
-			CurrentSection = str.c_str();
-			Configurations[str] = std::map<std::string, cstring>();
+			CurrentSection = str;
+			Configurations[str] = std::map<std::string, std::string>();
 			break;
 		}
 			break;

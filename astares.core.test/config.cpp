@@ -23,7 +23,7 @@ TEST_CASE("Config", "[core]") {
 		}
 
 		SECTION("String") {
-			REQUIRE(config->AsString("String0") == "Value0");
+			REQUIRE(strcmp(config->AsString("String0"), "Value0") == 0);
 		}
 
 		SECTION("Int") {

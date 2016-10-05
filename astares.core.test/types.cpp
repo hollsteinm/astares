@@ -55,7 +55,7 @@ TEST_CASE("Core Types Info", "[core]") {
 	SECTION("Type Query") {
 		astares::Matrix4 mat;
 		auto type = astares::TypeQuery::Query(mat);
-		REQUIRE(type.GetName() == "Matrix4"); 
+		REQUIRE(strcmp(type.GetName(), "Matrix4")); 
 		REQUIRE_FALSE(type.GetIsCollection()); 
 		REQUIRE_FALSE(type.GetIsPointer()); 
 		REQUIRE_FALSE(type.GetIsPrimitive());

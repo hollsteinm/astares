@@ -20,7 +20,7 @@ public:
 	StaticFileWrapper(cstring path);
 	~StaticFileWrapper();
 	void Init(cstring company, cstring project) override;
-	bool Read(cstring& out) override;
+	bool Read(int8* out) override;
 	bool Write(const cstring& in) override;
 	bool Append(const cstring& in) override;
 	bool Delete() override;
@@ -31,7 +31,7 @@ public:
 	bool OpenWriteStream(std::ofstream& out, FileMode mode = FileMode::Binary) override;
 	bool OpenReadWriteStream(std::fstream& out, FileMode mode = FileMode::Binary) override;
 private:
-	cstring filepath;
+	std::string filepath;
 };
 
 class File {
@@ -39,7 +39,7 @@ class File {
 public:
 	static void Init(cstring company, cstring project);
 
-	static bool Read(cstring filepath, cstring& out);
+	static bool Read(cstring filepath, int8* out);
 	static bool Write(cstring filepath, cstring out);
 	static bool Append(cstring filepath, cstring in);
 	static bool Delete(cstring filepath);
@@ -61,7 +61,7 @@ private:
 StaticFileWrapper::StaticFileWrapper(cstring path)
 {
 	auto safeDir = File::SafeWriteDir();
-	filepath = std::string().append(path, strlen(path)).c_str();
+	filepath = std::string(safeDir, strlen(safeDir)).append(path, strlen(path));
 }
 
 StaticFileWrapper::~StaticFileWrapper()
@@ -72,34 +72,34 @@ void StaticFileWrapper::Init(cstring company, cstring project)
 	return File::Init(company, project); 
 }
 
-bool StaticFileWrapper::Read(cstring& out) 
+bool StaticFileWrapper::Read(int8* out) 
 { 
-	return File::Read(filepath, out); 
+	return File::Read(filepath.c_str(), out); 
 }
 
 bool StaticFileWrapper::Write(const cstring& out) 
 {
-	return File::Write(filepath, out); 
+	return File::Write(filepath.c_str(), out);
 }
 
 bool StaticFileWrapper::Append(const cstring& in) 
 {
-	return File::Append(filepath, in); 
+	return File::Append(filepath.c_str(), in);
 }
 
 bool StaticFileWrapper::Delete() 
 {
-	return File::Delete(filepath); 
+	return File::Delete(filepath.c_str());
 }
 
 bool StaticFileWrapper::Create() 
 {
-	return File::Create(filepath); 
+	return File::Create(filepath.c_str());
 }
 
 cstring StaticFileWrapper::Expand() 
 { 
-	return File::Expand(filepath); 
+	return File::Expand(filepath.c_str());
 }
 
 cstring StaticFileWrapper::SafeWriteDir() 
@@ -109,17 +109,17 @@ cstring StaticFileWrapper::SafeWriteDir()
 
 bool StaticFileWrapper::OpenReadStream(std::ifstream& out, FileMode mode)
 { 
-	return File::OpenReadStream(filepath, out, mode); 
+	return File::OpenReadStream(filepath.c_str(), out, mode);
 }
 
 bool StaticFileWrapper::OpenWriteStream(std::ofstream& out, FileMode mode)
 {
-	return File::OpenWriteStream(filepath, out, mode);
+	return File::OpenWriteStream(filepath.c_str(), out, mode);
 }
 
 bool StaticFileWrapper::OpenReadWriteStream(std::fstream& out, FileMode mode)
 {
-	return File::OpenReadWriteStream(filepath, out, mode);
+	return File::OpenReadWriteStream(filepath.c_str(), out, mode);
 }
 
 IFile* IFile::MakeFile(cstring path) 
@@ -130,15 +130,15 @@ IFile* IFile::MakeFile(cstring path)
 
 const cstring File::ContentDir = "Content/";
 
-cstring File::Company = "";
-cstring File::Project = "";
+cstring File::Company = "A";
+cstring File::Project = "B";
 
 void File::Init(cstring company, cstring project) {
 	Company = company;
 	Project = project;
 }
 
-bool File::Read(cstring filepath, cstring& out){
+bool File::Read(cstring filepath, int8* out){
 	SDL_RWops* fandle = SDL_RWFromFile(filepath, "r");
 	if (fandle != nullptr) {
 		auto length = SDL_RWseek(fandle, 0, RW_SEEK_END);
@@ -152,7 +152,7 @@ bool File::Read(cstring filepath, cstring& out){
 			result.append(data, (uint32)length);
 			delete[] data;
 			SDL_RWclose(fandle);
-			out = result.c_str();
+			strcpy_s((char*)out, (size_t)length, result.c_str());
 			return read > 0;
 		}
 		else {
@@ -168,7 +168,7 @@ bool File::Read(cstring filepath, cstring& out){
 static bool DoWrite(cstring filepath, cstring out, const char* mode) {
 	SDL_RWops* fandle = SDL_RWFromFile(filepath, mode);
 	if (fandle != nullptr) {
-		int32 length = strnlen_s(out, 320);
+		int32 length = strnlen_s(out, INT_MAX);
 		SDL_RWwrite(fandle, out, sizeof(char), length);
 		SDL_RWclose(fandle);
 		return true;

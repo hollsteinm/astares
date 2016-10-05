@@ -8,7 +8,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
                        LPVOID lpReserved
 					 )
 {
-	std::unique_ptr<astares::ILogger> logger = std::make_unique<astares::CommonLogger>(astares::CommonLogger());
+	std::unique_ptr<astares::ILogger> logger = std::make_unique<astares::CommonLogger>();
 	static const char* moduleName = "Core Module";
 	logger->Info("%s", moduleName);
 	switch (ul_reason_for_call)

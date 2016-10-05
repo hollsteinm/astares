@@ -29,9 +29,6 @@ namespace astares {
 	DECL_CORE_TYPE(Vector3)
 	DECL_CORE_TYPE(Vector4)
 	DECL_CORE_TYPE(UID)
-
-	void Core_Init();
-	void Core_Shutdown();
 }
 
 #endif
