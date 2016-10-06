@@ -20,9 +20,9 @@ public:
 	StaticFileWrapper(cstring path);
 	~StaticFileWrapper();
 	void Init(cstring company, cstring project) override;
-	bool Read(int8* out) override;
-	bool Write(const cstring& in) override;
-	bool Append(const cstring& in) override;
+	bool Read(char*& out, uint64& outSize) override;
+	bool Write(cstring in) override;
+	bool Append(cstring in) override;
 	bool Delete() override;
 	bool Create() override;
 	cstring Expand() override;
@@ -39,7 +39,7 @@ class File {
 public:
 	static void Init(cstring company, cstring project);
 
-	static bool Read(cstring filepath, int8* out);
+	static bool Read(cstring filepath, char*& out, uint64& outSize);
 	static bool Write(cstring filepath, cstring out);
 	static bool Append(cstring filepath, cstring in);
 	static bool Delete(cstring filepath);
@@ -72,17 +72,17 @@ void StaticFileWrapper::Init(cstring company, cstring project)
 	return File::Init(company, project); 
 }
 
-bool StaticFileWrapper::Read(int8* out) 
+bool StaticFileWrapper::Read(char*& out, uint64& outSize)
 { 
-	return File::Read(filepath.c_str(), out); 
+	return File::Read(filepath.c_str(), out, outSize); 
 }
 
-bool StaticFileWrapper::Write(const cstring& out) 
+bool StaticFileWrapper::Write(cstring out) 
 {
 	return File::Write(filepath.c_str(), out);
 }
 
-bool StaticFileWrapper::Append(const cstring& in) 
+bool StaticFileWrapper::Append(cstring in) 
 {
 	return File::Append(filepath.c_str(), in);
 }
@@ -138,21 +138,23 @@ void File::Init(cstring company, cstring project) {
 	Project = project;
 }
 
-bool File::Read(cstring filepath, int8* out){
+bool File::Read(cstring filepath, char*& out, uint64& outSize){
+	if (out != nullptr)
+	{
+		delete[] out;
+	}
 	SDL_RWops* fandle = SDL_RWFromFile(filepath, "r");
 	if (fandle != nullptr) {
 		auto length = SDL_RWseek(fandle, 0, RW_SEEK_END);
 		SDL_RWclose(fandle);
 		fandle = SDL_RWFromFile(filepath, "r");
-		std::string result;
 		if (length > 0 && length < (int64)((uint32)~0)) {
-			char* data = new char[(uint32)length];
-			memset(data, 0, (size_t)length);
-			auto read = SDL_RWread(fandle, data, sizeof(char), (size_t)length);
-			result.append(data, (uint32)length);
-			delete[] data;
+			out = new char[(uint32)length + 1];
+			memset(out, 0, (size_t)length + 1);
+			auto read = SDL_RWread(fandle, &out[0], sizeof(char), (size_t)length);
+			outSize = read;
 			SDL_RWclose(fandle);
-			strcpy_s((char*)out, (size_t)length, result.c_str());
+			out[length + 1] = '\0';
 			return read > 0;
 		}
 		else {

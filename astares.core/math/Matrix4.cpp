@@ -372,7 +372,7 @@ int32 Matrix4::ToBuffer(f32 Out[4][4], bool transpose) {
 }
 
 const astares::cstring Matrix4::ToString() const {
-	char buffer[256];
+	static char buffer[256];
 	size_t size = sprintf_s(buffer, "[%f, %f, %f, %f]\n[%f, %f, %f, %f]\n[%f, %f, %f, %f]\n[%f, %f, %f, %f]",
 		m[0][0], m[1][0], m[2][0], m[3][0],
 		m[0][1], m[1][1], m[2][1], m[3][1],

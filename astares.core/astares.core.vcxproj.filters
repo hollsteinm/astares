@@ -129,9 +129,6 @@
     <ClInclude Include="core\IConfig.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="core\Buffer.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,9 +205,6 @@
     </ClCompile>
     <ClCompile Include="Core.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="core\Buffer.cpp">
-      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -148,7 +148,7 @@ int32 Quaternion::ToBuffer(f32 out_buffer[4]) const {
 }
 
 const astares::cstring Quaternion::ToString() const {
-	char buffer[128];
+	static char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f, %f]", x, y, z, w);
 	return buffer;
 }

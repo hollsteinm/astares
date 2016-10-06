@@ -16,8 +16,6 @@ Variable1 = Value1
 namespace astares
 {
 	struct ASTARESCORE_API IConfig {
-		IConfig(const IConfig& rhs);
-
 		virtual ~IConfig();
 
 		virtual IConfig& MoveSection(cstring section) = 0;
@@ -33,10 +31,12 @@ namespace astares
 		virtual void Parse(cstring content) = 0;
 
 		void operator=(const IConfig& rhs);
-		static inline IConfig* MakeConfig(cstring filepath);
+
+		static inline IConfig* MakeConfig(cstring filename);
 
 	protected:
 		IConfig();
+		IConfig(const IConfig& rhs);
 	};
 }
 #endif

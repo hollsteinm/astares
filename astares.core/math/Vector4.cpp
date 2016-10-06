@@ -257,7 +257,7 @@ int32 Vector4::ToBuffer(f32* out_buffer) const {
 }
 
 const astares::cstring Vector4::ToString() const {
-	char buffer[128];
+	static char buffer[128];
 	size_t size = sprintf_s(buffer, 128, "[%f, %f, %f, %f]", data[0], data[1], data[2], data[3]);
 	return buffer;
 }

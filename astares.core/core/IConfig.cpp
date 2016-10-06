@@ -21,7 +21,8 @@ void IConfig::operator=(const IConfig& rhs)
 }
 
 
-class Config : public IConfig {
+class Config : public IConfig 
+{
 public:
 	Config(cstring filepath);
 	virtual ~Config();
@@ -50,8 +51,8 @@ private:
 	static const char SectionNameEndToken;
 
 protected:
-	bool Load(cstring filename, int8* outContent);
-	bool Save(cstring filename, cstring content);
+	bool Load(cstring filename, std::string& outContent);
+	bool Save(cstring filename, const std::string& content);
 
 };
 
@@ -70,12 +71,10 @@ const char Config::SectionNameEndToken = ')';
 Config::Config(cstring filepath) :
 	CurrentSection("")
 {
-	int8* potentialContent = new int8[19280];
+	std::string potentialContent;
 	if (Load(filepath, potentialContent)) {
-		std::string scopedString((const char*)potentialContent, strlen((const char*)potentialContent));
-		Parse(scopedString.c_str());
+		Parse(potentialContent.c_str());
 	}
-	delete[] potentialContent;
 }
 
 Config::~Config() {
@@ -146,9 +145,28 @@ int32 Config::AsInt(cstring setting) const {
 	}
 }
 
-bool Config::Load(cstring filename, int8* content) {
+bool Config::Load(cstring filename, std::string& content) {
 	auto file = IFile::MakeFile(filename);
-	return file->Read(content);
+	if (file != nullptr)
+	{
+		char* data = nullptr;
+		uint64 length = 0;
+		if (file->Read(data, length))
+		{
+			content = std::string(data, static_cast<uint32>(length));
+			delete[] data;
+			return true;
+		}
+		else
+		{
+			delete[] data;
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
 }
 
 inline bool IsSpecial(char character) {
@@ -222,12 +240,12 @@ void Config::Parse(cstring content) {
 	}
 }
 
-bool Config::Save(cstring filename, cstring content) {
+bool Config::Save(cstring filename, const std::string& content) {
 	auto file = IFile::MakeFile(filename);
-	auto success = file->Write(content);
+	auto success = file->Write(content.c_str());
 	if (success)
 	{
-		Parse(content);
+		Parse(content.c_str());
 	}
 	return success;
 }
