@@ -1,6 +1,8 @@
 #include "CoreSocket.h"
 #include "Address.h"
 
+using namespace astares;
+
 #ifdef _WIN32
 #include <ws2tcpip.h>
 #pragma comment(lib, "Ws2_32.lib")

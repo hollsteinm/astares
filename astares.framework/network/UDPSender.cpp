@@ -4,6 +4,8 @@
 #include "Address.h"
 #include "Packet.h"
 
+using namespace astares;
+
 UDPSender::UDPSender(cstring host, cstring port) :
 Sock(new UDPSocket())
 {

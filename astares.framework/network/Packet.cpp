@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace astares;
+
 const int8 Packet::Header = 0x17;
 
 Packet::Packet()

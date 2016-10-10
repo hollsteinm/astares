@@ -6,6 +6,7 @@
 #include "core\IFile.h"
 #include "core\ISubsystem.h"
 #include "core\System.h"
+#include "core\String.h"
 #include "math\Geometry.h"
 #include "math\Vector.h"
 #include "math\Math.h"
@@ -31,6 +32,7 @@ namespace astares {
 	DECL_CORE_TYPE(Vector3)
 	DECL_CORE_TYPE(Vector4)
 	DECL_CORE_TYPE(UID)
+	DECL_CORE_TYPE(String)
 }
 
 #endif

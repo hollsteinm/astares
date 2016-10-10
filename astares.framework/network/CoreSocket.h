@@ -8,23 +8,26 @@
 typedef SOCKET Socket;
 #endif
 
-class ASTARESFRAMEWORK_API CoreSocket : public ISocket {
-public:
-	CoreSocket();
-	virtual ~CoreSocket();
+namespace astares
+{
+	class ASTARESFRAMEWORK_API CoreSocket : public ISocket {
+	public:
+		CoreSocket();
+		virtual ~CoreSocket();
 
-	virtual void Close() override;
-	virtual bool Bind(const Address& address) override;
-	virtual bool Ready() override;
+		virtual void Close() override;
+		virtual bool Bind(const Address& address) override;
+		virtual bool Ready() override;
 
-protected:
-	bool TryResolve(const class Address& address);
+	protected:
+		bool TryResolve(const class Address& address);
 
-	Socket Sock;
+		Socket Sock;
 
-	addrinfo* AddressInfo;
+		addrinfo* AddressInfo;
 
-private:
-};
+	private:
+	};
+}
 
 #endif

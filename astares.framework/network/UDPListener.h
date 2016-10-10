@@ -3,20 +3,22 @@
 
 #include "ISocket.h"
 
+namespace astares
+{
+	class ASTARESFRAMEWORK_API UDPListener 
+	{
+	public:
+		UDPListener(cstring port);
+		~UDPListener();
 
-class ASTARESFRAMEWORK_API UDPListener {
-public:
-	UDPListener(cstring port);
-	~UDPListener();
+		bool Ready();
+		struct Packet GetPacket();
 
-	bool Ready();
-	struct Packet GetPacket();
-
-private:
-	bool isAvailable;
-	std::unique_ptr<struct ISocket> Sock;
-};
+	private:
+		bool isAvailable;
+		std::unique_ptr<struct ISocket> Sock;
+	};
 
 
-
+}
 #endif

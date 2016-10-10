@@ -1,39 +1,43 @@
 #ifndef PACKET_H
 #define PACKET_H
 
-#ifndef PACKET_HEADER_SIZE
-#define PACKET_HEADER_SIZE	1
-#endif
-
-#ifndef PACKET_SIZE_SIZE
-#define PACKET_SIZE_SIZE	8
-#endif
-
 #include "../astares.framework.h"
 #include <core/Types.h>
 
-union PacketSize {
-	int8	c[PACKET_SIZE_SIZE];
-	int32	i[PACKET_SIZE_SIZE / 4];
-	int64	l;
-};
+#ifndef PACKET_HEADER_SIZE
+#define PACKET_HEADER_SIZE	sizeof(int8)
+#endif
 
-struct ASTARESFRAMEWORK_API Packet {
-	static const int8 Header;
-	PacketSize Size;
+#ifndef PACKET_SIZE_SIZE
+#define PACKET_SIZE_SIZE	sizeof(uint64)
+#endif
 
-	cstring data;
+namespace astares
+{
+	union PacketSize {
+		uint8	c[PACKET_SIZE_SIZE];
+		uint32	i[PACKET_SIZE_SIZE / 2];
+		uint64	l;
+	};
 
-	Packet();
-	Packet(cstring in, long size);
-	Packet(const Packet& other);
-	~Packet();
+	struct ASTARESFRAMEWORK_API Packet 
+	{
+		static const int8 Header;
+		PacketSize Size;
 
-	int64 RawSize() const;
-	int64 ToRaw(char*& outData) const;
+		cstring data;
 
-	friend ASTARESFRAMEWORK_API std::ostream& operator<<(std::ostream& out, Packet& packet);
-	friend ASTARESFRAMEWORK_API std::istream& operator>>(std::istream& in, Packet& packet);
-};
+		Packet();
+		Packet(cstring in, long size);
+		Packet(const Packet& other);
+		~Packet();
+
+		int64 RawSize() const;
+		int64 ToRaw(char*& outData) const;
+
+		friend ASTARESFRAMEWORK_API std::ostream& operator<<(std::ostream& out, Packet& packet);
+		friend ASTARESFRAMEWORK_API std::istream& operator>>(std::istream& in, Packet& packet);
+	};
+}
 
 #endif

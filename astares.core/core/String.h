@@ -13,7 +13,6 @@ namespace astares
 		{
 		public:
 			typedef Detail<char> CharInteratorDetails;
-			CharIterator(CharInteratorDetails::PointerType ValuePtr);
 
 			typedef CharIterator self_type;
 			typedef CharInteratorDetails::ValueType value_type;
@@ -21,13 +20,13 @@ namespace astares
 			typedef CharInteratorDetails::PointerType pointer;
 			typedef std::forward_iterator_tag iterator_category;
 			typedef int difference_type;
-			CharIterator(pointer ValuePtr) : ValuePtr(ValuePtr) { }
-			self_type operator++() { self_type i = *this;  ValuePtr++; return i; }
-			self_type operator++(int junk) { ValuePtr++; return *this; }
-			reference operator*() { return *ValuePtr; }
-			pointer operator->() { return ValuePtr; }
-			bool operator==(const self_type& rhs) const { return ValuePtr == rhs.ValuePtr; }
-			bool operator!=(const self_type& rhs) const { return ValuePtr != rhs.ValuePtr; }
+			CharIterator(pointer ValuePtr);
+			self_type operator++();
+			self_type operator++(int junk);
+			reference operator*() const;
+			pointer operator->() const;
+			bool operator==(const self_type& rhs) const;
+			bool operator!=(const self_type& rhs) const;
 
 		private:
 			CharInteratorDetails::PointerType ValuePtr;
@@ -37,7 +36,6 @@ namespace astares
 		{
 		public:
 			typedef Detail<const char> ConstCharInteratorDetails;
-			ConstCharIterator(ConstCharInteratorDetails::PointerType ValuePtr);
 
 			typedef ConstCharIterator self_type;
 			typedef ConstCharInteratorDetails::ValueType value_type;
@@ -45,13 +43,13 @@ namespace astares
 			typedef ConstCharInteratorDetails::PointerType pointer;
 			typedef std::forward_iterator_tag iterator_category;
 			typedef int difference_type;
-			ConstCharIterator(pointer ValuePtr) : ValuePtr(ValuePtr) { }
-			self_type operator++() { self_type i = *this;  ValuePtr++; return i; }
-			self_type operator++(int junk) { ValuePtr++; return *this; }
-			reference operator*() { return *ValuePtr; }
-			pointer operator->() { return ValuePtr; }
-			bool operator==(const self_type& rhs) const { return ValuePtr == rhs.ValuePtr; }
-			bool operator!=(const self_type& rhs) const { return ValuePtr != rhs.ValuePtr; }
+			ConstCharIterator(pointer ValuePtr);
+			self_type operator++();
+			self_type operator++(int junk);
+			reference operator*() const;
+			pointer operator->() const;
+			bool operator==(const self_type& rhs) const;
+			bool operator!=(const self_type& rhs) const;
 
 		private:
 			ConstCharInteratorDetails::PointerType ValuePtr;
@@ -73,9 +71,11 @@ namespace astares
 
 		ASTARESCORE_API void MakeLower();
 		ASTARESCORE_API void MakeUpper();
+		ASTARESCORE_API String& Append(const String& other);
 
 		ASTARESCORE_API bool IsNumeric() const;
 		ASTARESCORE_API bool IsDecimal() const;
+		ASTARESCORE_API bool IsBoolean() const;
 		ASTARESCORE_API bool IsEmpty() const;
 		ASTARESCORE_API bool IsWhitespace() const;
 		ASTARESCORE_API bool Contains(const String& Value) const;
@@ -90,6 +90,7 @@ namespace astares
 		ASTARESCORE_API uint64 ToUint64() const;
 		ASTARESCORE_API f32 ToF32() const;
 		ASTARESCORE_API f64 ToF64() const;
+		ASTARESCORE_API bool ToBoolean() const;
 
 		ASTARESCORE_API static String FromInt8(int8 Value);
 		ASTARESCORE_API static String FromInt16(int16 Value);
@@ -101,10 +102,12 @@ namespace astares
 		ASTARESCORE_API static String FromUint64(uint64 Value);
 		ASTARESCORE_API static String FromF32(f32 Value);
 		ASTARESCORE_API static String FromF64(f64 Value);
+		ASTARESCORE_API static String FromBoolean(bool Value);
+		ASTARESCORE_API static String FromFormat(const String& Format, ...);
 
 		ASTARESCORE_API uint64 Length() const;
 
-		ASTARESCORE_API char* Data();
+		ASTARESCORE_API cstring Data() const;
 
 		ASTARESCORE_API CharIterator begin();
 		ASTARESCORE_API CharIterator end();
@@ -120,9 +123,17 @@ namespace astares
 		ASTARESCORE_API char& operator[](uint64 Index);
 		ASTARESCORE_API const char& operator[](uint64 Index) const;
 
+		ASTARESCORE_API bool operator==(const String& rhs) const;
+		ASTARESCORE_API bool operator!=(const String& rhs) const;
+		ASTARESCORE_API bool operator>=(const String& rhs) const;
+		ASTARESCORE_API bool operator<=(const String& rhs) const;
+		ASTARESCORE_API bool operator>(const String& rhs) const;
+		ASTARESCORE_API bool operator<(const String& rhs) const;
+
 
 	private:
 		std::string InternalString;
+		String(const std::string& str);
 	};
 }
 

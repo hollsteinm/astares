@@ -1,5 +1,6 @@
 #include "Address.h"
 
+using namespace astares;
 
 Address::Address(cstring hostname, cstring port, Family family) :
 	Hostname(hostname),

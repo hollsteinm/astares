@@ -3,6 +3,8 @@
 #include "UDPSocket.h"
 #include "Packet.h"
 
+using namespace astares;
+
 UDPListener::UDPListener(cstring port) :
 Sock(new UDPSocket())
 {

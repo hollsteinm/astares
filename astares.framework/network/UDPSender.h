@@ -4,17 +4,20 @@
 #include "../astares.framework.h"
 #include <core/Types.h>
 
-class ASTARESFRAMEWORK_API UDPSender {
-public:
-	UDPSender(cstring host, cstring port);
-	~UDPSender();
+namespace astares
+{
+	class ASTARESFRAMEWORK_API UDPSender 
+	{
+	public:
+		UDPSender(cstring host, cstring port);
+		~UDPSender();
 
-	void Send(cstring data, uint64 size);
+		void Send(cstring data, uint64 size);
 
-private:
-	std::unique_ptr<struct ISocket> Sock;
-};
+	private:
+		std::unique_ptr<struct ISocket> Sock;
+	};
 
 
-
+}
 #endif

@@ -1,6 +1,8 @@
 #include "Session.h"
 #include "ISocket.h"
 
+using namespace astares;
+
 Session::Session(std::shared_ptr<ISocket> sessionSocket, const SessionRole& role) 
 	: Endpoint(sessionSocket),
 	SessionId(UID::Make()),
