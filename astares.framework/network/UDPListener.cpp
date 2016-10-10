@@ -3,7 +3,7 @@
 #include "UDPSocket.h"
 #include "Packet.h"
 
-UDPListener::UDPListener(string port) :
+UDPListener::UDPListener(cstring port) :
 Sock(new UDPSocket())
 {
 	Address loopback = Address("", port, Family::IPv6);
@@ -15,7 +15,7 @@ Sock(new UDPSocket())
 UDPListener::~UDPListener() {
 }
 
-gate UDPListener::Ready() {
+bool UDPListener::Ready() {
 	return isAvailable && Sock->Ready();
 }
 
@@ -28,11 +28,11 @@ Packet UDPListener::GetPacket() {
 	int64 desiredRead = netProtoSize;
 	PacketSize ps;
 	memset(&ps, 0, sizeof(PacketSize));
-	string data;
+	cstring data;
 	isAvailable = false;
 	do
 	{
-		string read;
+		cstring read;
 		if (Sock->Read(read, desiredRead) > 0) {
 			switch (currentState)
 			{

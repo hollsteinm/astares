@@ -27,9 +27,9 @@ SDLWAVAudioSystem::~SDLWAVAudioSystem() {
 	Shutdown();
 }
 
-bool SDLWAVAudioSystem::Supported(string filename){
+bool SDLWAVAudioSystem::Supported(cstring filename){
 	auto pos = filename.find_last_of('.');
-	if (pos != string::npos) {
+	if (pos != cstring::npos) {
 		return filename.substr(pos, filename.size()) == ".wav";
 	}
 	else
@@ -38,10 +38,10 @@ bool SDLWAVAudioSystem::Supported(string filename){
 	}
 }
 
-int64 SDLWAVAudioSystem::AddAsset(string filename) {
+int64 SDLWAVAudioSystem::AddAsset(cstring filename) {
 	AudioAsset asset;
 	asset.Name = filename;
-	string contents;
+	cstring contents;
 	if (File::Read(filename, contents)) {
 		asset.rawData.reserve(contents.size());
 		for (auto c : contents) {
@@ -153,7 +153,7 @@ void SDLWAVAudioSystem::ResumeAudio(int64 audioId) {
 	}
 }
 
-string SDLWAVAudioSystem::GetName() const {
+cstring SDLWAVAudioSystem::GetName() const {
 	return "SDLWAVAudioSystem";
 }
 
@@ -183,7 +183,7 @@ bool SDLWAVAudioSystem::Initialize(std::shared_ptr<ILogger> logger) {
 		for (int32 i = 0; i < length; ++i) {
 			auto name = SDL_GetAudioDeviceName(i, AUDIO_TYPES);
 			if (name != nullptr) {
-				AllAudioDevices.push_back(string(name, strlen(name)));
+				AllAudioDevices.push_back(cstring(name, strlen(name)));
 				if (logger != nullptr) {
 					logger->Info("Found %s audio device.", name);
 				}
@@ -237,14 +237,14 @@ void SDLWAVAudioSystem::UpdateChannel(int64 id, int8 channel) {
 
 }
 
-gate SDLWAVAudioSystem::Exists(int64 id) const {
+bool SDLWAVAudioSystem::Exists(int64 id) const {
 	return audioObjects.find(id) != audioObjects.cend();
 }
 
-gate SDLWAVAudioSystem::LoadedChunk(int64 id) const {
+bool SDLWAVAudioSystem::LoadedChunk(int64 id) const {
 	return LoadedChunks.find(id) != LoadedChunks.cend();
 }
 
-gate SDLWAVAudioSystem::LoadedMusic(int64 id) const {
+bool SDLWAVAudioSystem::LoadedMusic(int64 id) const {
 	return LoadedMusics.find(id) != LoadedMusics.cend();
 }

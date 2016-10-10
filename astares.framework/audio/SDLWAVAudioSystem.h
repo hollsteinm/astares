@@ -11,9 +11,9 @@ public:
 	SDLWAVAudioSystem();
 	~SDLWAVAudioSystem();
 
-	virtual bool Supported(string filename) override;
+	virtual bool Supported(cstring filename) override;
 
-	virtual int64 AddAsset(string filename) override;
+	virtual int64 AddAsset(cstring filename) override;
 	virtual void RemoveAsset(int64 id) override;
 
 	virtual void PlayAudio(int64 audioId) override;
@@ -21,7 +21,7 @@ public:
 	virtual void PauseAudio(int64 audioId) override;
 	virtual void ResumeAudio(int64 audioId) override;
 
-	virtual string GetName() const override;
+	virtual cstring GetName() const override;
 
 	virtual void Configure(Config& config) override;
 	virtual bool Initialize(std::shared_ptr<ILogger> logger) override;
@@ -36,15 +36,15 @@ public:
 
 private:
 	int8 Channels;
-	string DeviceName;
-	vector<string> AllAudioDevices;
+	cstring DeviceName;
+	vector<cstring> AllAudioDevices;
 	map<int64, class AudioAsset> audioObjects;
 	map<int64, std::shared_ptr<struct Mix_Chunk>> LoadedChunks;
 	map<int64, std::shared_ptr<struct _Mix_Music>> LoadedMusics;
 
-	gate Exists(int64 id) const;
-	gate LoadedChunk(int64 id) const;
-	gate LoadedMusic(int64 id) const;
+	bool Exists(int64 id) const;
+	bool LoadedChunk(int64 id) const;
+	bool LoadedMusic(int64 id) const;
 
 };
 

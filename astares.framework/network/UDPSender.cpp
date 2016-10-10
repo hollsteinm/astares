@@ -4,7 +4,7 @@
 #include "Address.h"
 #include "Packet.h"
 
-UDPSender::UDPSender(string host, string port) :
+UDPSender::UDPSender(cstring host, cstring port) :
 Sock(new UDPSocket())
 {
 	Sock->Open(Address(host, port, Family::IPv6));
@@ -13,9 +13,9 @@ Sock(new UDPSocket())
 UDPSender::~UDPSender() {
 }
 
-void UDPSender::Send(const string& data) {
+void UDPSender::Send(cstring data, uint64 size) {
 	Packet p(data, data.size());
-	string raw;
+	cstring raw;
 	p.ToRaw(raw);
 	Sock->Send(raw);
 }

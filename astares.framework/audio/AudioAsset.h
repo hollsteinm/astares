@@ -14,9 +14,9 @@ public:
 
 	int32 Volume;
 	int32 Length;
-	gate Loops;
+	bool Loops;
 	int32 LoopCount;
-	string Name;
+	cstring Name;
 	SoundType Type;
 	int8 Channel;
 	vector<uint8> rawData;

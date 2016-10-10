@@ -14,11 +14,11 @@ public:
 	virtual ~CoreSocket();
 
 	virtual void Close() override;
-	virtual gate Bind(const Address& address) override;
-	virtual gate Ready() override;
+	virtual bool Bind(const Address& address) override;
+	virtual bool Ready() override;
 
 protected:
-	gate TryResolve(const class Address& address);
+	bool TryResolve(const class Address& address);
 
 	Socket Sock;
 

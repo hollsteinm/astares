@@ -7,10 +7,10 @@
 
 class ASTARESFRAMEWORK_API UDPSocket : public CoreSocket {
 public:
-	virtual gate Open(const Address& address) override;
+	virtual bool Open(const Address& address) override;
 
-	virtual int32 Send(const string& data) override;
-	virtual int32 Read(string& outData, int32 size) override;
+	virtual int32 Send(cstring data, uint64 size) override;
+	virtual int32 Read(char*& outData, int32 size) override;
 };
 
 

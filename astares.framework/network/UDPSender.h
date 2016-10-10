@@ -6,10 +6,10 @@
 
 class ASTARESFRAMEWORK_API UDPSender {
 public:
-	UDPSender(string host, string port);
+	UDPSender(cstring host, cstring port);
 	~UDPSender();
 
-	void Send(const string& data);
+	void Send(cstring data, uint64 size);
 
 private:
 	std::unique_ptr<struct ISocket> Sock;

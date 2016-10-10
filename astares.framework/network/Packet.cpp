@@ -9,7 +9,7 @@ Packet::Packet()
 	Size.l = 0;
 }
 
-Packet::Packet(const string& in, long size) {
+Packet::Packet(cstring in, long size) {
 	data = in;
 	Size.l = size;
 }
@@ -28,7 +28,7 @@ int64 Packet::RawSize() const {
 	return PACKET_HEADER_SIZE + PACKET_SIZE_SIZE + Size.l;
 }
 
-int64 Packet::ToRaw(string& outData) const {
+int64 Packet::ToRaw(char*& outData) const {
 	int64 length = RawSize();
 	
 	int32 idx = 0;
@@ -57,7 +57,7 @@ std::istream& operator>>(std::istream& in, Packet& packet) {
 	char* buffer = new char[length];
 
 	in.read(buffer, length);
-	packet = Packet(string(buffer, length), length);
+	packet = Packet(cstring(buffer, length), length);
 
 	delete[] buffer;
 

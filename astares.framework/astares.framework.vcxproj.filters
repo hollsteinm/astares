@@ -93,32 +93,8 @@
     <ClInclude Include="audio\SoundType.h">
       <Filter>Header Files\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="object\Object.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="object\ObjectFactory.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\IReflectionInfo.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\IReflector.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Reflection.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\Reflector.h">
-      <Filter>Header Files\Reflection</Filter>
-    </ClInclude>
     <ClInclude Include="FrameworkProvider.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="serialization\IObjectSerializer.h">
-      <Filter>Header Files\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="serialization\StringHelper.h">
-      <Filter>Header Files\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="network\Address.h">
       <Filter>Header Files\Network</Filter>
@@ -160,18 +136,6 @@
     </ClCompile>
     <ClCompile Include="audio\SDLWAVAudioSystem.cpp">
       <Filter>Source Files\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="object\Object.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="object\ObjectFactory.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="reflection\Reflector.cpp">
-      <Filter>Source Files\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="serialization\StringHelper.cpp">
-      <Filter>Source Files\Serialization</Filter>
     </ClCompile>
     <ClCompile Include="network\Address.cpp">
       <Filter>Source Files\Network</Filter>

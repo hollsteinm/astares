@@ -9,9 +9,9 @@ struct ASTARESFRAMEWORK_API IAudioSystem : public ISubsystem {
 	IAudioSystem(){}
 	virtual ~IAudioSystem(){}
 
-	virtual bool Supported(string filename) = 0;
+	virtual bool Supported(cstring filename) = 0;
 
-	virtual int64 AddAsset(string filename) = 0;
+	virtual int64 AddAsset(cstring filename) = 0;
 	virtual void RemoveAsset(int64 id) = 0;
 
 	virtual void PlayAudio(int64 audioId) = 0;

@@ -12,6 +12,8 @@
 #include "math\Matrix.h"
 #include "core\UID.h"
 #include "math\Transform.h"
+#include "log\ILogger.h"
+#include "log\CommonLogger.h"
 
 namespace astares {
 	DECL_CORE_TYPE(Box)

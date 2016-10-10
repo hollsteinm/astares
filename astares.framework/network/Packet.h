@@ -22,15 +22,15 @@ struct ASTARESFRAMEWORK_API Packet {
 	static const int8 Header;
 	PacketSize Size;
 
-	string data;
+	cstring data;
 
 	Packet();
-	Packet(const string& in, long size);
+	Packet(cstring in, long size);
 	Packet(const Packet& other);
 	~Packet();
 
 	int64 RawSize() const;
-	int64 ToRaw(string& outData) const;
+	int64 ToRaw(char*& outData) const;
 
 	friend ASTARESFRAMEWORK_API std::ostream& operator<<(std::ostream& out, Packet& packet);
 	friend ASTARESFRAMEWORK_API std::istream& operator>>(std::istream& in, Packet& packet);

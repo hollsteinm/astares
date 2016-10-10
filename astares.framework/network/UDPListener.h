@@ -6,14 +6,14 @@
 
 class ASTARESFRAMEWORK_API UDPListener {
 public:
-	UDPListener(string port);
+	UDPListener(cstring port);
 	~UDPListener();
 
-	gate Ready();
+	bool Ready();
 	struct Packet GetPacket();
 
 private:
-	gate isAvailable;
+	bool isAvailable;
 	std::unique_ptr<struct ISocket> Sock;
 };
 

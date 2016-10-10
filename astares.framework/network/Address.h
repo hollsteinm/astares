@@ -4,26 +4,28 @@
 #include "../astares.framework.h"
 #include <core/Types.h>
 
-enum  class Family {
-	IPv4 = 0,
-	IPv6,
-	Unknown = ~0
-};
+namespace astares
+{
+	BETTER_ENUM(Family, uint8,
+		IPv4,
+		IPv6,
+		Unknown)
 
-class ASTARESFRAMEWORK_API Address {
-private:
-	std::string Hostname;
-	std::string Port;
-	Family Fam;
+	class ASTARESFRAMEWORK_API Address 
+	{
+	private:
+		cstring Hostname;
+		cstring Port;
+		Family Fam;
 
-public:
-	Address(std::string hostname, std::string port, Family family);
-	Address(const Address& other);
+	public:
+		Address(cstring hostname, cstring port, Family family);
+		Address(const Address& other);
 
-	std::string GetHostname() const;
-	std::string GetPort() const;
-	Family GetFamily() const;
-};
+		cstring GetHostname() const;
+		cstring GetPort() const;
+		Family GetFamily() const;
+	};
 
-
+}
 #endif

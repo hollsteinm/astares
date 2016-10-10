@@ -1,7 +1,7 @@
 #include "Address.h"
 
 
-Address::Address(string hostname, string port, Family family) :
+Address::Address(cstring hostname, cstring port, Family family) :
 	Hostname(hostname),
 	Port(port),
 	Fam(family)
@@ -16,6 +16,6 @@ Address::Address(const Address& other):
 {
 }
 
-std::string Address::GetHostname() const { return Hostname; }
-std::string Address::GetPort() const { return Port; }
+std::cstring Address::GetHostname() const { return Hostname; }
+std::cstring Address::GetPort() const { return Port; }
 Family Address::GetFamily() const { return Fam; }

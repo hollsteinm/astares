@@ -1,6 +1,6 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
-#include "log\CommonLogger.h"
+#include <log\CommonLogger.h>
 #include <memory>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -8,7 +8,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
                        LPVOID lpReserved
 					 )
 {
-	std::unique_ptr<ILogger> logger = std::make_unique<CommonLogger>(CommonLogger());
+	std::unique_ptr<astares::ILogger> logger = std::make_unique<astares::CommonLogger>();
 	static const char* moduleName = "Framework Module";
 	logger->Info("%s", moduleName);
 	switch (ul_reason_for_call)
