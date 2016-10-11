@@ -90,6 +90,7 @@
     <ClCompile Include="matrix2.cpp" />
     <ClCompile Include="matrix3.cpp" />
     <ClCompile Include="matrix4.cpp" />
+    <ClCompile Include="string.cpp" />
     <ClCompile Include="types.cpp" />
     <ClCompile Include="uid.cpp" />
     <ClCompile Include="vector2.cpp" />

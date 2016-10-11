@@ -7,21 +7,82 @@
 
 using namespace astares;
 
-String::CharIterator::CharIterator(pointer ValuePtr) : ValuePtr(ValuePtr) { }
-String::CharIterator::self_type String::CharIterator::operator++() { self_type i = *this;  ValuePtr++; return i; }
-String::CharIterator::self_type String::CharIterator::operator++(int junk) { ValuePtr++; return *this; }
-String::CharIterator::reference String::CharIterator::operator*() const { return *ValuePtr; }
-String::CharIterator::pointer String::CharIterator::operator->() const { return ValuePtr; }
-bool String::CharIterator::operator==(const self_type& rhs) const { return ValuePtr == rhs.ValuePtr; }
-bool String::CharIterator::operator!=(const self_type& rhs) const { return ValuePtr != rhs.ValuePtr; }
+String::CharIterator::CharIterator(pointer ValuePtr) : 
+	ValuePtr(ValuePtr)
+{
 
-String::ConstCharIterator::ConstCharIterator(pointer ValuePtr) : ValuePtr(ValuePtr) { }
-String::ConstCharIterator::self_type String::ConstCharIterator::operator++() { self_type i = *this;  ValuePtr++; return i; }
-String::ConstCharIterator::self_type String::ConstCharIterator::operator++(int junk) { ValuePtr++; return *this; }
-String::ConstCharIterator::reference String::ConstCharIterator::operator*() const { return *ValuePtr; }
-String::ConstCharIterator::pointer String::ConstCharIterator::operator->() const { return ValuePtr; }
-bool String::ConstCharIterator::operator==(const self_type& rhs) const { return ValuePtr == rhs.ValuePtr; }
-bool String::ConstCharIterator::operator!=(const self_type& rhs) const { return ValuePtr != rhs.ValuePtr; }
+}
+
+String::CharIterator::self_type String::CharIterator::operator++() 
+{ 
+	self_type i = *this;  
+	ValuePtr++; 
+	return i; 
+}
+String::CharIterator::self_type String::CharIterator::operator++(int junk) 
+{ 
+	ValuePtr++; 
+	return *this; 
+}
+
+String::CharIterator::reference String::CharIterator::operator*() const 
+{ 
+	return *ValuePtr; 
+}
+
+String::CharIterator::pointer String::CharIterator::operator->() const 
+{ 
+	return ValuePtr; 
+}
+
+bool String::CharIterator::operator==(const self_type& rhs) const 
+{ 
+	return ValuePtr == rhs.ValuePtr; 
+}
+
+bool String::CharIterator::operator!=(const self_type& rhs) const 
+{ 
+	return ValuePtr != rhs.ValuePtr; 
+}
+
+String::ConstCharIterator::ConstCharIterator(pointer ValuePtr) : 
+	ValuePtr(ValuePtr) 
+{ 
+
+}
+
+String::ConstCharIterator::self_type String::ConstCharIterator::operator++() 
+{ 
+	self_type i = *this; 
+	ValuePtr++;
+	return i; 
+}
+
+String::ConstCharIterator::self_type String::ConstCharIterator::operator++(int junk)
+{ 
+	ValuePtr++;
+	return *this;
+}
+
+String::ConstCharIterator::reference String::ConstCharIterator::operator*() const 
+{ 
+	return *ValuePtr; 
+}
+
+String::ConstCharIterator::pointer String::ConstCharIterator::operator->() const 
+{ 
+	return ValuePtr; 
+}
+
+bool String::ConstCharIterator::operator==(const self_type& rhs) const
+{ 
+	return ValuePtr == rhs.ValuePtr; 
+}
+
+bool String::ConstCharIterator::operator!=(const self_type& rhs) const 
+{ 
+	return ValuePtr != rhs.ValuePtr; 
+}
 
 String::String() :
 	InternalString()
@@ -72,7 +133,7 @@ String::~String()
 
 String String::SubString(uint64 StartIndex, uint64 Length) const
 {
-	return InternalString.substr(StartIndex, Length);
+	return InternalString.substr(StartIndex, static_cast<std::string::size_type>(Length));
 }
 
 int32 String::Compare(const String& other) const
@@ -96,12 +157,18 @@ String String::ToUpper() const
 
 void String::MakeLower()
 {
-	std::transform(stdext::make_unchecked_array_iterator(begin()), stdext::make_unchecked_array_iterator(end()), stdext::make_unchecked_array_iterator(begin()), std::function<char(char)>([](char value) -> char { return static_cast<char>(tolower(static_cast<int>(value))); }));
+	std::transform(InternalString.begin(), InternalString.end(), InternalString.begin(), std::function<char(char)>([](char value) -> char
+	{ 
+		return static_cast<char>(tolower(static_cast<int>(value)));
+	}));
 }
 
 void String::MakeUpper()
 {
-	std::transform(stdext::make_unchecked_array_iterator(begin()), stdext::make_unchecked_array_iterator(end()), stdext::make_unchecked_array_iterator(begin()), std::function<char(char)>([](char value) -> char { return static_cast<char>(toupper(static_cast<int>(value))); }));
+	std::transform(InternalString.begin(), InternalString.end(), InternalString.begin(), std::function<char(char)>([](char value) -> char 
+	{ 
+		return static_cast<char>(toupper(static_cast<int>(value))); 
+	}));
 }
 
 String& String::Append(const String& other)
@@ -112,7 +179,7 @@ String& String::Append(const String& other)
 
 bool String::IsNumeric() const
 {
-	return InternalString.find_first_not_of("1234567890.") == std::string::npos;
+	return InternalString.find_first_not_of("-1234567890.") == std::string::npos;
 }
 
 bool String::IsDecimal() const
@@ -256,10 +323,10 @@ String String::FromFormat(const String& Format, ...)
 	va_list args;
 	const char* fmt = Format.ToCString();
 	va_start(args, fmt);
-	char buff[1024];
+	char buff[256];
 	if (vsprintf_s(buff, Format.ToCString(), args) >= 0)
 	{
-		result = String(buff, strnlen_s(buff, 1024));
+		result = String(buff, strnlen_s(buff, 256));
 	}
 	va_end(args);
 	return result;
@@ -277,22 +344,22 @@ cstring String::Data() const
 
 String::CharIterator String::begin()
 {
-	return CharIterator(&InternalString[0]);
+	return CharIterator(&*InternalString.begin());
 }
 
 String::CharIterator String::end()
 {
-	return CharIterator((&InternalString[0]) + InternalString.size());
+	return CharIterator((&*InternalString.begin()) + InternalString.size());
 }
 
 String::ConstCharIterator String::cbegin() const
 {
-	return ConstCharIterator(&InternalString[0]);
+	return ConstCharIterator(&*InternalString.cbegin());
 }
 
 String::ConstCharIterator String::cend() const
 {
-	return ConstCharIterator((&InternalString[0]) + InternalString.size());
+	return ConstCharIterator((&*InternalString.cbegin()) + InternalString.size());
 }
 
 cstring String::ToCString() const
